@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -15,12 +14,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import wiu.cji.cs492.helper.Constants;
 import wiu.cji.cs492.helper.TileMapHelper;
 
-import static wiu.cji.cs492.helper.Constants.PPM;
-
 
 public class GameScreen implements Screen {
 
-    final ForestAdventures_2 game;
+    final ForestAdventures game;
 
     private World world;
 
@@ -38,7 +35,7 @@ public class GameScreen implements Screen {
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
 
-    public GameScreen(final ForestAdventures_2 game){
+    public GameScreen(final ForestAdventures game){
 
         this.game = game;
         this.spriteBatch = new SpriteBatch();
@@ -123,7 +120,7 @@ public class GameScreen implements Screen {
         orthogonalTiledMapRenderer.setView(gamecam);
         //add if statement for inputs
         if(Gdx.input.justTouched()){
-            game.setScreen(new MainMenuScreen((ForestAdventures_2)game));
+            game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
    }

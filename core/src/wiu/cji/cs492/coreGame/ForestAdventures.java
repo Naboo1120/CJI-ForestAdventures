@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
-public class ForestAdventures_2 extends Game{
+public class ForestAdventures extends Game{
 
 	//Sprite Batch for maps, items and player
 	public SpriteBatch batch;

@@ -9,7 +9,7 @@ import wiu.cji.cs492.helper.Constants;
 
 
 public class MainMenuScreen implements Screen{
-    final ForestAdventures_2 game;
+    final ForestAdventures game;
     OrthographicCamera camera;
 
 
@@ -29,7 +29,7 @@ public class MainMenuScreen implements Screen{
     private static final int BACKGROUND_WIDTH = 800;
 
 
-    public MainMenuScreen(final ForestAdventures_2 game){
+    public MainMenuScreen(final ForestAdventures game){
 
         this.game = game;
 
@@ -72,7 +72,7 @@ public class MainMenuScreen implements Screen{
 
         //Simple check to see if the change in screens works
         if(Gdx.input.justTouched()){
-            game.setScreen(new GameScreen((ForestAdventures_2)game));
+            game.setScreen(new GameScreen((ForestAdventures)game));
             dispose();
         }
 
