@@ -1,16 +1,21 @@
 package wiu.cji.cs492.coreGame;
 
 
+import static wiu.cji.cs492.helper.Constants.PPM;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.helper.Constants;
 import wiu.cji.cs492.helper.TileMapHelper;
 
@@ -31,9 +36,11 @@ public class GameScreen implements Screen {
     private OrthographicCamera gamecam;
     private Viewport gamePort;
 
+
     //Tiled map variables
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
+    private Player player;
 
     public GameScreen(final ForestAdventures game){
 
@@ -44,6 +51,8 @@ public class GameScreen implements Screen {
         this.tileMapHelper = new TileMapHelper(this);
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap();
+
+        //Creates Player
 
 
         //Camera
@@ -69,7 +78,7 @@ public class GameScreen implements Screen {
         //Renders the objects
         spriteBatch.begin();
 
-        box2DDebugRenderer.render(world, gamecam.combined.scl(Constants.PPM));
+        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
         spriteBatch.end();
 
@@ -104,6 +113,13 @@ public class GameScreen implements Screen {
 
     public void gamecamUpdate(){
         //gamecam.position.set(new Vector3());
+        Vector3 position = gamecam.position;
+        position.x = Math.round(player.getBody().getPosition().x )/1f;
+        float tempY = Math.round(player.getBody().getPosition().y  )/1f;
+        //insert check for bottom of the screen
+        position.y = 0 + tempY;
+
+        gamecam.position.set(position);
         gamecam.update();
     }
 
@@ -118,6 +134,8 @@ public class GameScreen implements Screen {
 
         //Renders the map to the game camera
         orthogonalTiledMapRenderer.setView(gamecam);
+
+        player.update();
         //add if statement for inputs
         if(Gdx.input.justTouched()){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
@@ -125,7 +143,11 @@ public class GameScreen implements Screen {
         }
    }
 
+
     public World getWorld() {
         return world;
+    }
+    public void setPlayer(Player player){
+        this.player = player;
     }
 }

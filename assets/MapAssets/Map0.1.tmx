@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="4">
+<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="5">
  <tileset firstgid="1" source="back.tsx"/>
  <tileset firstgid="136" source="far.tsx"/>
  <tileset firstgid="301" source="middle.tsx"/>
@@ -33,6 +33,9 @@
 127,128,129,130,131,132,133,134,135,127,128,129,130,131,132,133,134,135,127,128,129,130,131,132,133,134,135,127,128,129,130,131,132,133,134,135,127,128,129,130,131,132,133,134,135,127,128,129,130,131
 </data>
  </layer>
+ <objectgroup id="6" name="Player">
+  <object id="4" name="player" x="128" y="320" width="16" height="16"/>
+ </objectgroup>
  <layer id="2" name="Far Layer" width="50" height="25">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
