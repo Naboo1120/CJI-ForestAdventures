@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import wiu.cji.cs492.helper.Constants;
+import wiu.cji.cs492.helper.Hud;
 import wiu.cji.cs492.helper.TileMapHelper;
 
 
@@ -35,6 +36,9 @@ public class GameScreen implements Screen {
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
 
+    //For the Hud class
+    private Hud hud;
+
     public GameScreen(final ForestAdventures game){
 
         this.game = game;
@@ -44,6 +48,9 @@ public class GameScreen implements Screen {
         this.tileMapHelper = new TileMapHelper(this);
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap();
+
+        //Hud class call
+        hud = new Hud(game.batch);
 
 
         //Camera
@@ -72,6 +79,10 @@ public class GameScreen implements Screen {
         box2DDebugRenderer.render(world, gamecam.combined.scl(Constants.PPM));
 
         spriteBatch.end();
+
+        //Renders the Hud
+        game.batch.setProjectionMatrix(Hud.stage.getCamera().combined);
+        hud.stage.draw();
 
 
 

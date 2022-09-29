@@ -1,15 +1,19 @@
 package wiu.cji.cs492.coreGame;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import wiu.cji.cs492.helper.Constants;
 
 
 public class ForestAdventures extends Game{
 
 	//Sprite Batch for maps, items and player
 	public SpriteBatch batch;
-	public BitmapFont font;
+	public static BitmapFont font;
+
 
 
 

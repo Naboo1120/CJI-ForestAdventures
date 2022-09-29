@@ -1,54 +1,73 @@
 package wiu.cji.cs492.coreGame;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
-import wiu.cji.cs492.helper.Constants;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 
 public class MainMenuScreen implements Screen{
     final ForestAdventures game;
-    OrthographicCamera camera;
+    private Stage stage;
+    private Table table;
+    private Texture Background;
+    private Skin skin;
+    private TextureAtlas atlas;
+    private TextButton playButton;
+    private BitmapFont bitmapFont;
 
-
-    //Each image needed with adjusted heights and widths
-    Texture playButton;
-    private static final int PLAYBUTTON_HEIGHT = 100;
-    private static final int PLAYBUTTON_WIDTH = 200;
-    Texture settingsButton;
-    private static final int SETTINGSBUTTON_HEIGHT = 100;
-    private static final int SETTINGBUTTON_WIDTH = 200;
-    Texture exitButton;
-    private static final int EXITBUTTON_HEIGHT = 100;
-    private static final int EXITBUTTON_WIDTH = 200;
-
-    Texture Background;
-    private static final int BACKGROUND_HEIGHT = 400;
-    private static final int BACKGROUND_WIDTH = 800;
 
 
     public MainMenuScreen(final ForestAdventures game){
 
         this.game = game;
 
-        //Setting Button Textures
-        playButton = new Texture("Main Menu Assets/Pixel Buttons 2 (Rock Buttons)/Play_Unpressed.png");
-        settingsButton = new Texture("Main Menu Assets/Pixel Buttons 2 (Rock Buttons)/Info_Pressed.png");
-        exitButton = new Texture("Main Menu Assets/Pixel Buttons 2 (Rock Buttons)/Cross_Pressed.png");
 
-
-        //Setting Background Texture
-        Background = new Texture("Main Menu Assets/forest.png");
-
-        //Creating a camera and setting the view with the games set W+H
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.DEVICE_WIDTH, Constants.DEVICE_HEIGHT);
     }
 
     @Override
     public void show() {
+        //Sets the stage view to fit the device based on the constraints
+        stage = new Stage(new FitViewport(800, 400));
+        //Alows for input events on the stage
+        Gdx.input.setInputProcessor(stage);
+        //Adding image file to a texture object
+        Background = new Texture("Main Menu Assets/forest.png");
+        //Atlas lets there be images and text to an button object
+        atlas = new TextureAtlas("Main Menu Assets/Buttons/Skin/uiskin.atlas");
+        //Will let you apply the skin to the object
+        skin = new Skin(atlas);
+        //Used for the font in the buttons
+        bitmapFont = new BitmapFont(Gdx.files.internal("Main Menu Assets/Buttons/Skin/default.fnt"));
+        //Used to format the location of the buttons
+        table = new Table(skin);
+        table.setBounds(0, 0, 800, 400);
+
+        //Creation of the buttons an its properties
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.up = skin.getDrawable("default-round");
+        textButtonStyle.down = skin.getDrawable("default-round-down");
+        textButtonStyle.pressedOffsetX = 1;
+        textButtonStyle.pressedOffsetY = -1;
+        textButtonStyle.font = bitmapFont;
+
+
+        //Button object created with above properties
+        playButton = new TextButton("PLAY", textButtonStyle);
+        playButton.pad(20);
+
+
+        //Adding the button to the table and table to the stage
+        table.add(playButton);
+        stage.addActor(table);
+
+
 
     }
 
@@ -58,29 +77,35 @@ public class MainMenuScreen implements Screen{
         //Clears the Screen before rendering
         ScreenUtils.clear(0,0,0.2f,0);
 
-        //Will allow camera to update with button interaction
-        camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
+        update(delta);
+        //Draws the background before the buttons
+        stage.getBatch().begin();
+        stage.getBatch().draw(Background, 0,0,800,400);
+        stage.getBatch().end();
 
-        //Draws the buttons on the screen
-        game.batch.begin();
-        game.batch.draw(Background, 0,0 , BACKGROUND_WIDTH,BACKGROUND_HEIGHT);
-        game.batch.draw(playButton, 100, 100, PLAYBUTTON_WIDTH,PLAYBUTTON_HEIGHT);
-        game.batch.draw(settingsButton, 250, 100, SETTINGBUTTON_WIDTH,SETTINGSBUTTON_HEIGHT);
-        game.batch.draw(exitButton, 300, 20, EXITBUTTON_WIDTH,EXITBUTTON_HEIGHT);
-        game.batch.end();
+        //Draws the actors or buttons
+        stage.draw();
 
-        //Simple check to see if the change in screens works
-        if(Gdx.input.justTouched()){
-            game.setScreen(new GameScreen((ForestAdventures)game));
-            dispose();
-        }
 
 
     }
 
+    //Used to separate logic from rendering
+    public void update(float delta){
+        //calls any act method to the actors on stage
+        stage.act(delta);
+        //Will chnage screens when the button is pressed
+        if(playButton.isPressed() == true){
+            game.setScreen(new GameScreen((ForestAdventures)game));
+            dispose();
+        }
+    }
+
     @Override
     public void resize(int width, int height) {
+        //Will set the camera when stage is called, use true when using a HUD
+        stage.getViewport().update(width, height, false);
+
 
     }
 
@@ -101,7 +126,9 @@ public class MainMenuScreen implements Screen{
 
     @Override
     public void dispose() {
-
+        skin.dispose();
+        atlas.dispose();
+        stage.dispose();
     }
 
 }
