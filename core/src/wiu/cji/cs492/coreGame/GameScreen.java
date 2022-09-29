@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import wiu.cji.cs492.Objects.Player;
@@ -41,6 +42,7 @@ public class GameScreen implements Screen {
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
     private Player player;
+    private ExtendViewport viewport;
 
     public GameScreen(final ForestAdventures game){
 
@@ -57,8 +59,8 @@ public class GameScreen implements Screen {
 
         //Camera
         gamecam = new OrthographicCamera();
-        gamecam.setToOrtho(false,Constants.DEVICE_WIDTH ,Constants.DEVICE_HEIGHT );
-
+        //gamecam.setToOrtho(false,Constants.DEVICE_WIDTH ,Constants.DEVICE_HEIGHT );
+         viewport = new ExtendViewport(250, 225, gamecam);
 
 
     }
@@ -88,7 +90,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width, height, true);
+        spriteBatch.setProjectionMatrix(gamecam.combined);
     }
 
     @Override
@@ -115,9 +118,10 @@ public class GameScreen implements Screen {
         //gamecam.position.set(new Vector3());
         Vector3 position = gamecam.position;
         position.x = Math.round(player.getBody().getPosition().x )/1f;
-        float tempY = Math.round(player.getBody().getPosition().y  )/1f;
+        //float tempY = Math.round(player.getBody().getPosition().y  )/1f;
         //insert check for bottom of the screen
-        position.y = 0 + tempY;
+        position.y = 125;// + tempY;
+        position.x = (position.x <=250)? 250 : position.x ;
 
         gamecam.position.set(position);
         gamecam.update();
