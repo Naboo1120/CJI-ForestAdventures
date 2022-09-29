@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+
+import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
 
 public class TileMapHelper {
@@ -25,6 +27,7 @@ public class TileMapHelper {
         //grabs the objects and map files
         tiledMap = new TmxMapLoader().load("MapAssets/Map0.1.tmx");
         parseMapObjects(tiledMap.getLayers().get("Ground Layer").getObjects());
+        parseMapObjects(tiledMap.getLayers().get("Player").getObjects());
         //returns to the game screen
         return  new OrthogonalTiledMapRenderer(tiledMap);
     }
@@ -33,17 +36,31 @@ public class TileMapHelper {
         //Iteration through map objects
         for(MapObject mapObject : mapObjects){
             //Rectangle Case
+
+
             if(mapObject instanceof RectangleMapObject){
                 RectangleMapObject rectangleObject = (RectangleMapObject) mapObject;
                 Rectangle rectangle = rectangleObject.getRectangle();
-                //Box2d uses center cords so we need to math
-                BodyDef bodyDef = getBodyDef(rectangle.getX() + rectangle.getWidth() / 2f, rectangle.getY() + rectangle.getHeight() / 2f);
+                String tempName = mapObject.getName();
+                if (tempName != null && tempName.equals("player")){
+                    Body body = BodyHelperService.createBody(
+                            rectangle.getX() + rectangle.getWidth()/2,
+                            rectangle.getY()+rectangle.getHeight()/2,
+                            rectangle.getWidth(),
+                            rectangle.getHeight(),
+                            false,
+                            gameScreen.getWorld()
+                    ); gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));}
+                else {
+                    //Box2d uses center cords so we need to math
+                    BodyDef bodyDef = getBodyDef(rectangle.getX() + rectangle.getWidth() / 2f, rectangle.getY() + rectangle.getHeight() / 2f);
 
-                Body body = gameScreen.getWorld().createBody(bodyDef);
-                PolygonShape polygonShape = new PolygonShape();
-                polygonShape.setAsBox(rectangle.getWidth() / 2f, rectangle.getHeight() / 2f);
-                body.createFixture(polygonShape, 0.0f);
-                polygonShape.dispose();
+                    Body body = gameScreen.getWorld().createBody(bodyDef);
+                    PolygonShape polygonShape = new PolygonShape();
+                    polygonShape.setAsBox(rectangle.getWidth() / 2f, rectangle.getHeight() / 2f);
+                    body.createFixture(polygonShape, 0.0f);
+                    polygonShape.dispose();
+                }
 
             }
         }
