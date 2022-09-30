@@ -33,6 +33,8 @@ public class MainMenuScreen implements Screen{
 
     @Override
     public void show() {
+
+        //These assets should be controlled by a manager class, but we can adapt to that later.
         //Sets the stage view to fit the device based on the constraints
         stage = new Stage(new FitViewport(800, 400));
         //Alows for input events on the stage

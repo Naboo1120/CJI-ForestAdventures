@@ -1,7 +1,7 @@
 package wiu.cji.cs492.coreGame;
 
 
-import static wiu.cji.cs492.helper.Constants.PPM;
+import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -17,8 +17,8 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import wiu.cji.cs492.Objects.Player;
-import wiu.cji.cs492.helper.Constants;
-import wiu.cji.cs492.helper.TileMapHelper;
+import wiu.cji.cs492.coreGame.helper.Hud;
+import wiu.cji.cs492.coreGame.helper.TileMapHelper;
 
 
 public class GameScreen implements Screen {
@@ -26,6 +26,8 @@ public class GameScreen implements Screen {
     final ForestAdventures game;
 
     private World world;
+
+    private Hud hud;
 
     //Box2d usage
     private Box2DDebugRenderer box2DDebugRenderer;
@@ -47,6 +49,7 @@ public class GameScreen implements Screen {
     public GameScreen(final ForestAdventures game){
 
         this.game = game;
+        hud = new Hud(game.batch);
         this.spriteBatch = new SpriteBatch();
         this.world = new World(new Vector2(0,0),false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
@@ -69,6 +72,7 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
 
+
     }
 
     @Override
@@ -76,6 +80,8 @@ public class GameScreen implements Screen {
         this.update();
         ScreenUtils.clear(0,0,0.2f,0);
         orthogonalTiledMapRenderer.render();
+
+        hud.stage.draw();
 
         //Renders the objects
         spriteBatch.begin();
@@ -86,6 +92,14 @@ public class GameScreen implements Screen {
 
 
 
+    }
+
+    public void handleInput(float delta){
+        if(Gdx.input.isTouched()){
+            if(Gdx.input.getX() < Gdx.graphics.getWidth() / 2){
+
+            }
+        }
     }
 
     @Override
@@ -140,11 +154,7 @@ public class GameScreen implements Screen {
         orthogonalTiledMapRenderer.setView(gamecam);
 
         player.update();
-        //add if statement for inputs
-        if(Gdx.input.justTouched()){
-            game.setScreen(new MainMenuScreen((ForestAdventures)game));
-            dispose();
-        }
+
    }
 
 

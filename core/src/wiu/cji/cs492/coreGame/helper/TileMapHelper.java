@@ -1,4 +1,4 @@
-package wiu.cji.cs492.helper;
+package wiu.cji.cs492.coreGame.helper;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;

@@ -1,6 +1,6 @@
 package wiu.cji.cs492.Objects;
 
-import static wiu.cji.cs492.helper.Constants.PPM;
+import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -14,7 +14,7 @@ public class Player extends GameEntity {
     @Override
     public void update() {
         x =body.getPosition().x*PPM;
-        y= body.getPosition().y*PPM;
+        y =body.getPosition().y*PPM;
         //Check the users key
 
     }
