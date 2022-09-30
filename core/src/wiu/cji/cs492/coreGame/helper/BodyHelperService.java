@@ -1,8 +1,8 @@
-package wiu.cji.cs492.helper;
+package wiu.cji.cs492.coreGame.helper;
 
 import com.badlogic.gdx.physics.box2d.*;
 
-import static wiu.cji.cs492.helper.Constants.PPM;
+import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
 public class BodyHelperService {
     public static Body createBody(float x, float y, float width, float height, boolean isStatic, World world){
