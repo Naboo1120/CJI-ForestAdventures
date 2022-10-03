@@ -96,10 +96,12 @@ public class GameScreen implements Screen {
 
     public void handleInput(float delta){
         if(Gdx.input.isTouched()){
+
             if(Gdx.input.getX() > Gdx.graphics.getWidth() / 2){
                 player.getBody().applyForceToCenter(10f,0, true);
             }else{
                 player.getBody().applyForceToCenter(-10f,0, true);
+
             }
         }
     }
