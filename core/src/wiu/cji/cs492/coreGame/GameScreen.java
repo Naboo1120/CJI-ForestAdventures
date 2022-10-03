@@ -77,7 +77,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        this.update();
+        this.update(delta);
         ScreenUtils.clear(0,0,0.2f,0);
         orthogonalTiledMapRenderer.render();
 
@@ -96,8 +96,10 @@ public class GameScreen implements Screen {
 
     public void handleInput(float delta){
         if(Gdx.input.isTouched()){
-            if(Gdx.input.getX() < Gdx.graphics.getWidth() / 2){
-
+            if(Gdx.input.getX() > Gdx.graphics.getWidth() / 2){
+                player.getBody().applyForceToCenter(10f,0, true);
+            }else{
+                player.getBody().applyForceToCenter(-10f,0, true);
             }
         }
     }
@@ -131,28 +133,33 @@ public class GameScreen implements Screen {
     public void gamecamUpdate(){
         //gamecam.position.set(new Vector3());
         Vector3 position = gamecam.position;
-        position.x = Math.round(player.getBody().getPosition().x )/1f;
+        position.x = player.getBody().getPosition().x;
         //float tempY = Math.round(player.getBody().getPosition().y  )/1f;
         //insert check for bottom of the screen
         position.y = 125;// + tempY;
         position.x = (position.x <=250)? 250 : position.x ;
 
         gamecam.position.set(position);
+
         gamecam.update();
+
+
     }
 
-    public void update(){
+    public void update(float delta){
         //Updates the world at 60fps
         world.step(1/60f, 6, 2);
+        //input updating
+        handleInput(delta);
         //updates the camera to follow player
         gamecamUpdate();
         //This allows the camera to be combined with projection and view
         spriteBatch.setProjectionMatrix(gamecam.combined);
 
 
+
         //Renders the map to the game camera
         orthogonalTiledMapRenderer.setView(gamecam);
-
         player.update();
 
    }
