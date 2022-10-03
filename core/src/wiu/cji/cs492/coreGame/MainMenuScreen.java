@@ -30,7 +30,6 @@ public class MainMenuScreen implements Screen{
 
         this.game = game;
 
-
     }
 
     @Override

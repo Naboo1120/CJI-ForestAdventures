@@ -6,7 +6,10 @@ import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -16,6 +19,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import wiu.cji.cs492.Objects.GameEntity;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.helper.Hud;
 import wiu.cji.cs492.coreGame.helper.TileMapHelper;
@@ -37,21 +41,21 @@ public class GameScreen implements Screen {
 
     //camera and view port
     private OrthographicCamera gamecam;
-    private Viewport gamePort;
+    private ExtendViewport viewport;
 
 
     //Tiled map variables
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
     private Player player;
-    private ExtendViewport viewport;
+
 
     public GameScreen(final ForestAdventures game){
 
         this.game = game;
         hud = new Hud(game.batch);
         this.spriteBatch = new SpriteBatch();
-        this.world = new World(new Vector2(0,0),false);
+        this.world = new World(new Vector2(0,-25.3f),false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         this.tileMapHelper = new TileMapHelper(this);
         //Calls to helper class
@@ -75,32 +79,45 @@ public class GameScreen implements Screen {
 
     }
 
+    public void update(float delta){
+        //Updates the world at 60fps
+        world.step(1/60f, 6, 2);
+
+        //updates the camera to follow player
+        gamecamUpdate();
+        //This allows the camera to be combined with projection and view
+        spriteBatch.setProjectionMatrix(gamecam.combined);
+
+
+
+        //Renders the map to the game camera
+        orthogonalTiledMapRenderer.setView(gamecam);
+        player.update();
+
+    }
+
     @Override
     public void render(float delta) {
-        this.update();
+        this.update(delta);
         ScreenUtils.clear(0,0,0.2f,0);
         orthogonalTiledMapRenderer.render();
 
         hud.stage.draw();
 
+
         //Renders the objects
         spriteBatch.begin();
 
-        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
+
 
         spriteBatch.end();
 
 
+        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
     }
 
-    public void handleInput(float delta){
-        if(Gdx.input.isTouched()){
-            if(Gdx.input.getX() < Gdx.graphics.getWidth() / 2){
 
-            }
-        }
-    }
 
     @Override
     public void resize(int width, int height) {
@@ -131,31 +148,20 @@ public class GameScreen implements Screen {
     public void gamecamUpdate(){
         //gamecam.position.set(new Vector3());
         Vector3 position = gamecam.position;
-        position.x = Math.round(player.getBody().getPosition().x )/1f;
+        position.x = Math.round(player.getBody().getPosition().x *PPM *10)/10f;
         //float tempY = Math.round(player.getBody().getPosition().y  )/1f;
         //insert check for bottom of the screen
         position.y = 125;// + tempY;
         position.x = (position.x <=250)? 250 : position.x ;
 
         gamecam.position.set(position);
+
         gamecam.update();
+
+
     }
 
-    public void update(){
-        //Updates the world at 60fps
-        world.step(1/60f, 6, 2);
-        //updates the camera to follow player
-        gamecamUpdate();
-        //This allows the camera to be combined with projection and view
-        spriteBatch.setProjectionMatrix(gamecam.combined);
 
-
-        //Renders the map to the game camera
-        orthogonalTiledMapRenderer.setView(gamecam);
-
-        player.update();
-
-   }
 
 
     public World getWorld() {
