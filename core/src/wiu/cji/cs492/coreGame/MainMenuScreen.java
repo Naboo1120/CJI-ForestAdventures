@@ -20,6 +20,8 @@ public class MainMenuScreen implements Screen{
     private Skin skin;
     private TextureAtlas atlas;
     private TextButton playButton;
+    private TextButton settingsButton;
+    private TextButton exitButton;
     private BitmapFont bitmapFont;
 
 
@@ -64,12 +66,18 @@ public class MainMenuScreen implements Screen{
         playButton = new TextButton("PLAY", textButtonStyle);
         playButton.pad(20);
 
+        settingsButton = new TextButton("SETTINGS", textButtonStyle);
+        settingsButton.pad(20);
+
+        exitButton = new TextButton("Exit", textButtonStyle);
+        exitButton.pad(20);
+
 
         //Adding the button to the table and table to the stage
         table.add(playButton);
+        table.add(settingsButton).left().pad(20);
+        table.add(exitButton).pad(20);
         stage.addActor(table);
-
-
 
     }
 
@@ -99,6 +107,11 @@ public class MainMenuScreen implements Screen{
         //Will chnage screens when the button is pressed
         if(playButton.isPressed() == true){
             game.setScreen(new GameScreen((ForestAdventures)game));
+            dispose();
+        }
+
+        if(exitButton.isPressed() == true){
+            System.exit(1);
             dispose();
         }
     }
