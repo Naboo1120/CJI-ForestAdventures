@@ -6,7 +6,10 @@ import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -16,6 +19,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import wiu.cji.cs492.Objects.GameEntity;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.helper.Hud;
 import wiu.cji.cs492.coreGame.helper.TileMapHelper;
@@ -100,12 +104,14 @@ public class GameScreen implements Screen {
 
         hud.stage.draw();
 
+
         //Renders the objects
         spriteBatch.begin();
 
 
 
         spriteBatch.end();
+
 
         box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 

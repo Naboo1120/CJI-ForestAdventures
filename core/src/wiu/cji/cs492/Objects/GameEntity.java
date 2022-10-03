@@ -1,13 +1,16 @@
 package wiu.cji.cs492.Objects;
 
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 
-public abstract class GameEntity {
+public abstract class GameEntity{
     protected float x, y,height, width, speed, velocityX, velocityY;
     protected Body body;
 
+
     public GameEntity(float width, float height, Body body){
+
         this.body = body;
         this.x = body.getPosition().x;
         this.y = body.getPosition().y;
@@ -19,6 +22,8 @@ public abstract class GameEntity {
     }
 
     public abstract void update();
-    public abstract void render(SpriteBatch spriteBatch);
+    public void render(SpriteBatch spriteBatch){
+
+    }
     public Body getBody(){return body;}
 }

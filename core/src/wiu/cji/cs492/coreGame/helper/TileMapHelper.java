@@ -35,7 +35,7 @@ public class TileMapHelper {
         parseMapObjects(tiledMap.getLayers().get("Ground Object").getObjects());
         parseMapObjects(tiledMap.getLayers().get("Player").getObjects());
         //returns to the game screen
-        return  new OrthogonalTiledMapRenderer(tiledMap);
+        return new OrthogonalTiledMapRenderer(tiledMap);
     }
 
     public void parseMapObjects(MapObjects mapObjects){
