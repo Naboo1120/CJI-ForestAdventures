@@ -2,6 +2,7 @@ package wiu.cji.cs492.Objects;
 
 import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -16,7 +17,13 @@ public class Player extends GameEntity {
         x =body.getPosition().x*PPM;
         y =body.getPosition().y*PPM;
         //Check the users key
+        checkUserInput();
+    }
 
+
+    private void checkUserInput(){
+        velocityX = 0;
+        if()
     }
     @Override
     public void render(SpriteBatch spriteBatch) {
