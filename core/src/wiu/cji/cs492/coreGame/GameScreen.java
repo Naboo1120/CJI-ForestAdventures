@@ -37,21 +37,21 @@ public class GameScreen implements Screen {
 
     //camera and view port
     private OrthographicCamera gamecam;
-    private Viewport gamePort;
+    private ExtendViewport viewport;
 
 
     //Tiled map variables
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
     private Player player;
-    private ExtendViewport viewport;
+
 
     public GameScreen(final ForestAdventures game){
 
         this.game = game;
         hud = new Hud(game.batch);
         this.spriteBatch = new SpriteBatch();
-        this.world = new World(new Vector2(0,0),false);
+        this.world = new World(new Vector2(0,-25.3f),false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         this.tileMapHelper = new TileMapHelper(this);
         //Calls to helper class
@@ -75,6 +75,23 @@ public class GameScreen implements Screen {
 
     }
 
+    public void update(float delta){
+        //Updates the world at 60fps
+        world.step(1/60f, 6, 2);
+
+        //updates the camera to follow player
+        gamecamUpdate();
+        //This allows the camera to be combined with projection and view
+        spriteBatch.setProjectionMatrix(gamecam.combined);
+
+
+
+        //Renders the map to the game camera
+        orthogonalTiledMapRenderer.setView(gamecam);
+        player.update();
+
+    }
+
     @Override
     public void render(float delta) {
         this.update(delta);
@@ -86,25 +103,15 @@ public class GameScreen implements Screen {
         //Renders the objects
         spriteBatch.begin();
 
-        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
+
 
         spriteBatch.end();
 
-
+        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
     }
 
-    public void handleInput(float delta){
-        if(Gdx.input.isTouched()){
 
-            if(Gdx.input.getX() > Gdx.graphics.getWidth() / 2){
-                player.getBody().applyForceToCenter(10f,0, true);
-            }else{
-                player.getBody().applyForceToCenter(-10f,0, true);
-
-            }
-        }
-    }
 
     @Override
     public void resize(int width, int height) {
@@ -135,7 +142,7 @@ public class GameScreen implements Screen {
     public void gamecamUpdate(){
         //gamecam.position.set(new Vector3());
         Vector3 position = gamecam.position;
-        position.x = player.getBody().getPosition().x;
+        position.x = Math.round(player.getBody().getPosition().x *PPM *10)/10f;
         //float tempY = Math.round(player.getBody().getPosition().y  )/1f;
         //insert check for bottom of the screen
         position.y = 125;// + tempY;
@@ -148,23 +155,7 @@ public class GameScreen implements Screen {
 
     }
 
-    public void update(float delta){
-        //Updates the world at 60fps
-        world.step(1/60f, 6, 2);
-        //input updating
-        handleInput(delta);
-        //updates the camera to follow player
-        gamecamUpdate();
-        //This allows the camera to be combined with projection and view
-        spriteBatch.setProjectionMatrix(gamecam.combined);
 
-
-
-        //Renders the map to the game camera
-        orthogonalTiledMapRenderer.setView(gamecam);
-        player.update();
-
-   }
 
 
     public World getWorld() {
