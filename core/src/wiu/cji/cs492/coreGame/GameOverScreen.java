@@ -10,21 +10,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-public class Settings implements Screen{
+public class GameOverScreen implements Screen{
     final ForestAdventures game;
     private Stage stage;
     private Table table;
     private Texture Background;
     private Skin skin;
     private TextureAtlas atlas;
-    private TextButton playButton;
-    private TextButton musicButton;
-    private TextButton backButton;
+    private TextButton restartButton;
+    private TextButton menuButton;
     private BitmapFont bitmapFont;
     private ProgressBar pBar;
 
 
-    public Settings(final ForestAdventures game){
+    public GameOverScreen(final ForestAdventures game){
 
         this.game = game;
 
@@ -60,14 +59,11 @@ public class Settings implements Screen{
 
 
         //Button object created with above properties
-        playButton = new TextButton("PLAY", textButtonStyle);
-        playButton.pad(20);
+        restartButton = new TextButton("PLAY", textButtonStyle);
+        restartButton.pad(20);
 
-        musicButton = new TextButton("Music: On", textButtonStyle);
-        musicButton.pad(20);
-
-        backButton = new TextButton("Main Menu", textButtonStyle);
-        backButton.pad(20);
+        menuButton = new TextButton("Main Menu", textButtonStyle);
+        menuButton.pad(20);
 
         //Adding the button to the table and table to the stage
         refresh();
@@ -98,26 +94,12 @@ public class Settings implements Screen{
         //calls any act method to the actors on stage
         stage.act(delta);
         //Will chnage screens when the button is pressed
-        if(playButton.isTouchFocusListener() == true){
+        if(restartButton.isTouchFocusListener() == true){
             game.setScreen(new GameScreen((ForestAdventures)game));
             dispose();
         }
 
-        if(musicButton.isTouchFocusListener() == true){
-            if(musicButton.getText().toString().equals("Music: Off")) {
-                //turn music off when music is added******
-                musicButton.setText("Music: On");
-            }
-            else{
-                //turn music on when music is added******
-                musicButton.setText("Music: Off");
-            }
-
-            refresh();
-            //update screen so button changes****** still needs work
-        }
-
-        if(backButton.isTouchFocusListener() == true){
+        if(menuButton.isTouchFocusListener() == true){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
@@ -127,9 +109,8 @@ public class Settings implements Screen{
     {
         //Adding the button to the table and table to the stage
         table.clear();
-        table.add(playButton);
-        table.add(musicButton).left().pad(20);
-        table.add(backButton).pad(20);
+        table.add(restartButton);
+        table.add(menuButton).pad(20);
         stage.clear();
         stage.addActor(table);
     }

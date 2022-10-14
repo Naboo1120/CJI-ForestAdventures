@@ -104,17 +104,17 @@ public class MainMenuScreen implements Screen{
         //calls any act method to the actors on stage
         stage.act(delta);
         //Will chnage screens when the button is pressed
-        if(playButton.isPressed() == true){
+        if(playButton.isTouchFocusListener() == true){
             game.setScreen(new GameScreen((ForestAdventures)game));
             dispose();
         }
 
-        if(settingsButton.isPressed() == true){
+        if(settingsButton.isTouchFocusListener() == true){
             game.setScreen(new Settings((ForestAdventures)game));
             dispose();
         }
 
-        if(exitButton.isPressed() == true){
+        if(exitButton.isTouchFocusListener() == true){
             System.exit(1);
             dispose();
         }
