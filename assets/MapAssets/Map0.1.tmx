@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="5">
+<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="50" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="13">
  <tileset firstgid="1" source="back.tsx"/>
  <tileset firstgid="136" source="far.tsx"/>
  <tileset firstgid="301" source="middle.tsx"/>
@@ -124,8 +124,14 @@
 </data>
  </layer>
  <objectgroup id="5" name="Ground Object">
-  <object id="1" x="0" y="352" width="224" height="48"/>
-  <object id="2" x="256" y="352" width="544" height="48"/>
-  <object id="3" x="432" y="288" width="128" height="32"/>
+  <object id="10" x="0" y="352">
+   <polygon points="0,0 224,0 224,48 0,48"/>
+  </object>
+  <object id="11" x="432" y="288">
+   <polygon points="0,0 128,0 128,32 0,32"/>
+  </object>
+  <object id="12" x="256" y="352">
+   <polygon points="0,0 544,0 544,48 0,48"/>
+  </object>
  </objectgroup>
 </map>
