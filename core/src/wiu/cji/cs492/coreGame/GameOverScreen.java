@@ -7,26 +7,23 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-
-public class MainMenuScreen implements Screen{
+public class GameOverScreen implements Screen{
     final ForestAdventures game;
     private Stage stage;
     private Table table;
     private Texture Background;
     private Skin skin;
     private TextureAtlas atlas;
-    private TextButton playButton;
-    private TextButton settingsButton;
-    private TextButton exitButton;
+    private TextButton restartButton;
+    private TextButton menuButton;
     private BitmapFont bitmapFont;
+    private ProgressBar pBar;
 
 
-
-    public MainMenuScreen(final ForestAdventures game){
+    public GameOverScreen(final ForestAdventures game){
 
         this.game = game;
 
@@ -62,21 +59,14 @@ public class MainMenuScreen implements Screen{
 
 
         //Button object created with above properties
-        playButton = new TextButton("PLAY", textButtonStyle);
-        playButton.pad(20);
+        restartButton = new TextButton("PLAY", textButtonStyle);
+        restartButton.pad(20);
 
-        settingsButton = new TextButton("SETTINGS", textButtonStyle);
-        settingsButton.pad(20);
-
-        exitButton = new TextButton("Exit", textButtonStyle);
-        exitButton.pad(20);
-
+        menuButton = new TextButton("Main Menu", textButtonStyle);
+        menuButton.pad(20);
 
         //Adding the button to the table and table to the stage
-        table.add(playButton);
-        table.add(settingsButton).left().pad(20);
-        table.add(exitButton).pad(20);
-        stage.addActor(table);
+        refresh();
 
     }
 
@@ -104,20 +94,25 @@ public class MainMenuScreen implements Screen{
         //calls any act method to the actors on stage
         stage.act(delta);
         //Will chnage screens when the button is pressed
-        if(playButton.isTouchFocusListener() == true){
+        if(restartButton.isTouchFocusListener() == true){
             game.setScreen(new GameScreen((ForestAdventures)game));
             dispose();
         }
 
-        if(settingsButton.isTouchFocusListener() == true){
-            game.setScreen(new Settings((ForestAdventures)game));
+        if(menuButton.isTouchFocusListener() == true){
+            game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
+    }
 
-        if(exitButton.isTouchFocusListener() == true){
-            System.exit(1);
-            dispose();
-        }
+    public void refresh()
+    {
+        //Adding the button to the table and table to the stage
+        table.clear();
+        table.add(restartButton);
+        table.add(menuButton).pad(20);
+        stage.clear();
+        stage.addActor(table);
     }
 
     @Override
