@@ -66,8 +66,7 @@ public class GameScreen implements Screen {
 
         //Camera
         gamecam = new OrthographicCamera();
-        //gamecam.setToOrtho(false,Constants.DEVICE_WIDTH ,Constants.DEVICE_HEIGHT );
-         viewport = new ExtendViewport(250, 225, gamecam);
+        viewport = new ExtendViewport(250, 225, gamecam);
 
 
     }
