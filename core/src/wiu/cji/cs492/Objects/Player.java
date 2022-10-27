@@ -14,11 +14,6 @@ import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
 
-    @Override
-    public Body getBody() {
-        return super.getBody();
-    }
-
     public Player(float width, float height, Body body){
         super(width, height, body);
         this.speed = 10f;
@@ -26,6 +21,7 @@ public class Player extends GameEntity {
 
     }
     public void handleInput(){
+
         //From Hud class it gets either 1 or -1 for left and right, and 2 for jump otherwise it stays 0
 
         if(Hud.movement() == 1){
@@ -41,6 +37,7 @@ public class Player extends GameEntity {
         }
         else{
             velocityX = 0;
+
         }
         body.setLinearVelocity(velocityX * speed, body.getLinearVelocity().y <25 ? body.getLinearVelocity().y :25);
     }
@@ -55,7 +52,6 @@ public class Player extends GameEntity {
 
         //Check the users key
         handleInput();
-
     }
 
     @Override
