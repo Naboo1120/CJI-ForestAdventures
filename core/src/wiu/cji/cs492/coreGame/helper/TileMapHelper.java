@@ -1,5 +1,6 @@
 package wiu.cji.cs492.coreGame.helper;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -14,14 +15,20 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.badlogic.gdx.utils.Null;
+
+import wiu.cji.cs492.Objects.Collectables;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
 
 import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
+import java.util.Locale;
+
 public class TileMapHelper {
     private TiledMap tiledMap;
     private GameScreen gameScreen;
+     // can create an array of maps to cycle through
 
     public TileMapHelper(GameScreen gameScreen){
         this.gameScreen = gameScreen;
@@ -30,14 +37,32 @@ public class TileMapHelper {
     //Method to render the map and objects
     public OrthogonalTiledMapRenderer setUpMap(){
         //grabs the objects and map files
-        tiledMap = new TmxMapLoader().load("MapAssets/Map0.1.tmx");
+        try {
+            tiledMap = new TmxMapLoader().load("MapAssets/Map1.1.tmx");
+        }
+        catch (NullPointerException n){
+            Gdx.app.log("Layers", "Map does not exist");
+
+        }
         //THIS WAS THE WORST PART
-        parseMapObjects(tiledMap.getLayers().get("Ground Object").getObjects());
-        parseMapObjects(tiledMap.getLayers().get("Player").getObjects());
+        //can create a string array and parse through all layers in a loop
+
+        getLayer("Ground Object");
+       // parseMapObjects(tiledMap.getLayers().get("Ground Object").getObjects());
+        getLayer("Player");
+        //parseMapObjects(tiledMap.getLayers().get("Player").getObjects());
+        getLayer("Collectables");
+        getLayer("Death");
         //returns to the game screen
         return new OrthogonalTiledMapRenderer(tiledMap);
     }
-
+    private void getLayer( String s){
+        try{
+            parseMapObjects(tiledMap.getLayers().get(s).getObjects());}
+        catch (NullPointerException n){
+            Gdx.app.log("Map", s+"  could not load");
+        };
+    }
     public void parseMapObjects(MapObjects mapObjects){
         //Iteration through map objects
         for(MapObject mapObject : mapObjects){
@@ -51,7 +76,7 @@ public class TileMapHelper {
                 RectangleMapObject rectangleObject = (RectangleMapObject) mapObject;
                 Rectangle rectangle = rectangleObject.getRectangle();
                 String tempName = mapObject.getName();
-                if (tempName != null && tempName.equals("player")){
+                if (tempName != null){
                     Body body = BodyHelperService.createBody(
                             rectangle.getX() + rectangle.getWidth()/2,
                             rectangle.getY()+rectangle.getHeight()/2,
@@ -60,7 +85,15 @@ public class TileMapHelper {
                             false,
                             gameScreen.getWorld()
                     );
+
+                if (tempName.toLowerCase().equals("player")){
+                    Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
                     gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));
+                }
+                else if (tempName.equals("Carrot")){
+                    gameScreen.addCollectables(new Collectables(rectangle.width, rectangle.height, body, "Carrot"));
+                    Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                }
                 }
 
             }
