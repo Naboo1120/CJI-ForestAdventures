@@ -13,7 +13,6 @@ import wiu.cji.cs492.coreGame.GameScreen;
 
 public class Player extends GameEntity {
 
-
     public Player(float width, float height, Body body){
         super(width, height, body);
         this.speed = 10f;
@@ -31,20 +30,21 @@ public class Player extends GameEntity {
                 velocityX = -1;
             }
             if(Gdx.input.getY() < Gdx.graphics.getHeight() / 2){
-                float force = body.getMass() *10;
-                body.setLinearVelocity(body.getLinearVelocity().x, 0); // might need a debounce
-                body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
+                if (velocityY <= 0){ // needs to check for collision
+                    float force = body.getMass() *10;
+                    body.setLinearVelocity(body.getLinearVelocity().x, 0); // might need a debounce
+                    body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
+                }
             }
         }
         body.setLinearVelocity(velocityX * speed, body.getLinearVelocity().y <25 ? body.getLinearVelocity().y :25);
     }
     @Override
     public void update() {
-        x =body.getPosition().x;
-        y =body.getPosition().y;
+        x = body.getPosition().x;
+        y = body.getPosition().y;
         //Check the users key
         handleInput();
-
     }
 
     @Override
