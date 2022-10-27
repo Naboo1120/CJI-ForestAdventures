@@ -185,6 +185,7 @@ public class GameScreen implements Screen {
     }
     public void addCollectables(Collectables collectables){
         collect.add(collectables);
+        Gdx.app.log("collectables", "Collectable created");
     }
     public void removeCollectable(Collectables collectables){
         //???

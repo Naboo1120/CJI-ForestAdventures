@@ -9,6 +9,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+
 import wiu.cji.cs492.coreGame.GameScreen;
 
 public class Player extends GameEntity {
@@ -17,6 +21,22 @@ public class Player extends GameEntity {
         super(width, height, body);
         this.speed = 10f;
 
+        //this may be added to the create entity class
+        FixtureDef fdef = new FixtureDef();
+        CircleShape shape = new CircleShape();
+        shape.setRadius(10/PPM);
+
+        fdef.shape = shape;
+        body.createFixture(fdef);
+        //fdef.filter.categoryBits =
+
+        EdgeShape head = new EdgeShape();
+        head.set(new Vector2(-2/PPM, 10/PPM),new Vector2(2/PPM, 5/PPM));
+        fdef.shape = head;
+        fdef.isSensor = true;
+        body.createFixture(fdef).setUserData("head");
+
+// can use edgeShape to define certain body parts
 
     }
     public void handleInput(){
