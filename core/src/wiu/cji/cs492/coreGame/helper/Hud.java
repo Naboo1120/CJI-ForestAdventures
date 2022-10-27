@@ -1,5 +1,6 @@
 package wiu.cji.cs492.coreGame.helper;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -7,12 +8,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import wiu.cji.cs492.Objects.GameEntity;
+import wiu.cji.cs492.Objects.Player;
 
 
 public class Hud {
@@ -92,16 +97,20 @@ public class Hud {
 
     }
 
-    public static int movement(){
+    public static int movement()  {
         if(leftButton.isPressed()){
             return -1;
         }
         if (rightButton.isPressed()){
             return 1;
         }
-        if(jumpButton.isTouchFocusListener()){
-            return 2;
+        if(jumpButton.isPressed()) {
+            if (Player.getPlayerLinerVelocity() == 0)
+                return 2;
+            else
+                return 0;
         }
+
 
         return 0;
     }

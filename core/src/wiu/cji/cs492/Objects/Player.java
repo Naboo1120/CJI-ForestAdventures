@@ -3,6 +3,7 @@ package wiu.cji.cs492.Objects;
 import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ai.steer.behaviors.MatchVelocity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,6 +14,10 @@ import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
 
+    @Override
+    public Body getBody() {
+        return super.getBody();
+    }
 
     public Player(float width, float height, Body body){
         super(width, height, body);
@@ -30,20 +35,24 @@ public class Player extends GameEntity {
             velocityX = -1;
         }
         else if(Hud.movement() == 2){
-            float force = body.getMass() *10;
+            float force = body.getMass() *15;
             body.setLinearVelocity(body.getLinearVelocity().x, 0); // might need a debounce
             body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
         }
         else{
             velocityX = 0;
         }
-
         body.setLinearVelocity(velocityX * speed, body.getLinearVelocity().y <25 ? body.getLinearVelocity().y :25);
+    }
+
+    public static float getPlayerLinerVelocity() {
+        return body.getLinearVelocity().y;
     }
     @Override
     public void update() {
         x =body.getPosition().x;
         y =body.getPosition().y;
+
         //Check the users key
         handleInput();
 
