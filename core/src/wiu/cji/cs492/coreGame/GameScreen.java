@@ -13,16 +13,20 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import wiu.cji.cs492.Objects.Collectables;
 import wiu.cji.cs492.Objects.GameEntity;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.helper.Hud;
 import wiu.cji.cs492.coreGame.helper.TileMapHelper;
+import wiu.cji.cs492.coreGame.helper.WorldContactListener;
 
 
 public class GameScreen implements Screen {
@@ -48,6 +52,7 @@ public class GameScreen implements Screen {
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
     private Player player;
+    private Array<Collectables> collect = new Array<Collectables>();
 
 
     public GameScreen(final ForestAdventures game){
@@ -59,15 +64,16 @@ public class GameScreen implements Screen {
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         this.tileMapHelper = new TileMapHelper(this);
         //Calls to helper class
-        this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap();
+        this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
         //Creates Player
 
 
         //Camera
         gamecam = new OrthographicCamera();
-        viewport = new ExtendViewport(250, 225, gamecam);
-
+        //gamecam.setToOrtho(false,Constants.DEVICE_WIDTH ,Constants.DEVICE_HEIGHT );
+         viewport = new ExtendViewport(250, 225, gamecam);
+        world.setContactListener(new WorldContactListener());
 
     }
 
@@ -106,8 +112,16 @@ public class GameScreen implements Screen {
 
         //Renders the objects
         spriteBatch.begin();
+        for (Collectables c : collect){
+            Body body = c.getBody();
+
+            spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
 
 
+        }
+
+
+// insert Collectables here
 
         spriteBatch.end();
 
@@ -168,5 +182,13 @@ public class GameScreen implements Screen {
     }
     public void setPlayer(Player player){
         this.player = player;
+    }
+    public void addCollectables(Collectables collectables){
+        collect.add(collectables);
+        Gdx.app.log("collectables", "Collectable created");
+    }
+    public void removeCollectable(Collectables collectables){
+        //???
+
     }
 }
