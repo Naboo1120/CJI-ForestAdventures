@@ -67,12 +67,11 @@ public class GameScreen implements Screen {
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
         //Creates Player
-
+        player = new Player(10f,20f, player.getBody());
 
         //Camera
         gamecam = new OrthographicCamera();
-        //gamecam.setToOrtho(false,Constants.DEVICE_WIDTH ,Constants.DEVICE_HEIGHT );
-         viewport = new ExtendViewport(250, 225, gamecam);
+        viewport = new ExtendViewport(250, 225, gamecam);
         world.setContactListener(new WorldContactListener());
 
     }
@@ -90,8 +89,9 @@ public class GameScreen implements Screen {
 
         //updates the camera to follow player
         gamecamUpdate();
-        //This allows the camera to be combined with projection and view
-        spriteBatch.setProjectionMatrix(gamecam.combined);
+
+        //This allows the sprite batch to be projected along the world correctly
+        spriteBatch.setProjectionMatrix(gamecam.combined.scl(PPM));
 
 
 
@@ -120,7 +120,7 @@ public class GameScreen implements Screen {
 
         }
 
-
+        spriteBatch.draw(player.bunnyTexture,0,0);
 // insert Collectables here
 
         spriteBatch.end();
@@ -129,8 +129,6 @@ public class GameScreen implements Screen {
         box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
     }
-
-
 
     @Override
     public void resize(int width, int height) {

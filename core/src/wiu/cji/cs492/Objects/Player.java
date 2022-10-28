@@ -13,7 +13,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
-
+    public Texture bunnyTexture;
+    public Sprite bunnySprite;
     @Override
     public Body getBody() {
         return super.getBody();
@@ -22,6 +23,9 @@ public class Player extends GameEntity {
     public Player(float width, float height, Body body){
         super(width, height, body);
         this.speed = 10f;
+
+        bunnyTexture = new Texture("PlayerAssets/BunnyLeft.png");
+        bunnySprite = new Sprite(bunnyTexture);
 
 
     }
