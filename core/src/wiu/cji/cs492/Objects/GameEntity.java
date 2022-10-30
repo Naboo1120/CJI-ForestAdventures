@@ -2,15 +2,13 @@ package wiu.cji.cs492.Objects;
 
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 
 public abstract class GameEntity{
     protected float x, y,height, width, speed, velocityX, velocityY;
-    protected static Body body;
+    protected Body body;
     protected Texture texture;
-
 
 
     public GameEntity(float width, float height, Body body){
@@ -23,7 +21,6 @@ public abstract class GameEntity{
         this.velocityX = 0;
         this.velocityY = 0;
         this.speed = 0;
-
 
     }
 

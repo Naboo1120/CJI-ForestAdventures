@@ -18,7 +18,6 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.utils.Null;
 
 import wiu.cji.cs492.Objects.Collectables;
-import wiu.cji.cs492.Objects.Food;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
 
@@ -92,7 +91,7 @@ public class TileMapHelper {
                     gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));
                 }
                 else if (tempName.equals("Carrot")){
-                    gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot"));
+                    gameScreen.addCollectables(new Collectables(rectangle.width, rectangle.height, body, "Carrot"));
                     Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                 }
                 }
