@@ -99,6 +99,11 @@ public class TileMapHelper {
                         Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
                         gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));
                     }
+
+                    else if (tempName.equals("enemy")) { //|| s.equals("Collectables")){
+                        //gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot"));
+                        Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
                     else if (tempName.equals("Carrot")) { //|| s.equals("Collectables")){
                         gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot"));
                         Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);

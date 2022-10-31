@@ -80,6 +80,12 @@ public class Hud {
         stage.addActor(table);
 
     }
+    public void updateFood(int value){
+        foodCount += value;
+        foodLabel.setText(String.format("%03d", foodCount));
+
+
+    }
 
 
 }
