@@ -17,7 +17,7 @@ public abstract class Collectables extends GameEntity {
         super(width, height, body);
         FixtureDef fdef  = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width /2/PPM + body.getPosition().x, height/2/PPM +body.getPosition().y );
+        shape.setAsBox(width/20/PPM + (body.getPosition().x)/PPM , height/20/PPM + (body.getPosition().y)/PPM );
         fdef.shape = shape;
 
        // body.createFixture(fdef).setUserData("food");

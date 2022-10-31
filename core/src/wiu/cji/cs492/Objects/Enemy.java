@@ -46,7 +46,7 @@ public class Enemy extends GameEntity {
     public void onhit(){
         collided = true;
         // game.dispose();
-        Gdx.app.log("DeathWall", "found the players fall damage lol ");
+        Gdx.app.log("Enemy", "found the player was attacked ");
     }
 
     @Override

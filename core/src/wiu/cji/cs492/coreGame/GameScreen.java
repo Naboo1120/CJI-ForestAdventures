@@ -206,6 +206,7 @@ public class GameScreen implements Screen {
     public void addDeathWall(DeathWall d){
         dWalls.add(d);
     }
+    public void addEnemy(Enemy e){enemys.add(e);}
     public void removeCollectable(Collectables collectables){
         //???
 
