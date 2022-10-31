@@ -17,6 +17,9 @@ public class Food extends Collectables{
     public void onHeadHit() {
         Gdx.app.log("Food", "Player has collided with food");
         this.body = null;
+        fixture.setSensor(true);
+        fixture.setUserData(null);
+        this.fixture = null;
         this.collected = false;
 
     }
