@@ -16,18 +16,19 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import wiu.cji.cs492.coreGame.GameScreen;
 
 public class Player extends GameEntity {
-
+    protected Vector2 startLocation;
     public Player(float width, float height, Body body){
         super(width, height, body);
         this.speed = 10f;
-
+        startLocation = body.getPosition();
         //this may be added to the create entity class
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(10/PPM);
+        shape.setRadius(22/PPM);
 
         fdef.shape = shape;
         body.createFixture(fdef);
+
         //fdef.filter.categoryBits =
 
         EdgeShape head = new EdgeShape();
@@ -35,6 +36,20 @@ public class Player extends GameEntity {
         fdef.shape = head;
         fdef.isSensor = true;
         body.createFixture(fdef).setUserData("head");
+
+        shape.setRadius(22/PPM);
+
+        fdef.shape = shape;
+
+
+        //fdef.filter.categoryBits =
+
+        EdgeShape feet = new EdgeShape();
+        feet.set(new Vector2(-4/PPM, 10/PPM),new Vector2(2/PPM, 5/PPM));
+        fdef.shape = feet;
+        fdef.isSensor = true;
+        body.createFixture(fdef).setUserData("playerBody");
+
 
 // can use edgeShape to define certain body parts
 
@@ -65,6 +80,11 @@ public class Player extends GameEntity {
         y = body.getPosition().y;
         //Check the users key
         handleInput();
+    }
+    public void resetFall(){
+        x = body.getPosition().x - 20/PPM;
+        y = startLocation.y;
+        update();
     }
 
     @Override

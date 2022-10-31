@@ -22,6 +22,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import wiu.cji.cs492.Objects.Collectables;
+import wiu.cji.cs492.Objects.DeathWall;
 import wiu.cji.cs492.Objects.GameEntity;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.helper.Hud;
@@ -53,6 +54,7 @@ public class GameScreen implements Screen {
     private TileMapHelper tileMapHelper;
     private Player player;
     private Array<Collectables> collect = new Array<Collectables>();
+    private Array<DeathWall> dWalls = new Array<>();
 
 
     public GameScreen(final ForestAdventures game){
@@ -186,6 +188,9 @@ public class GameScreen implements Screen {
     public void addCollectables(Collectables collectables){
         collect.add(collectables);
         Gdx.app.log("collectables", "Collectable created");
+    }
+    public void addDeathWall(DeathWall d){
+        dWalls.add(d);
     }
     public void removeCollectable(Collectables collectables){
         //???

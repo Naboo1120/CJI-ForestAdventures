@@ -12,18 +12,22 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Null;
 
 import wiu.cji.cs492.Objects.Collectables;
+import wiu.cji.cs492.Objects.DeathWall;
 import wiu.cji.cs492.Objects.Food;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
 
 import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
+import java.util.Iterator;
 import java.util.Locale;
 
 public class TileMapHelper {
@@ -47,29 +51,30 @@ public class TileMapHelper {
         }
         //THIS WAS THE WORST PART
         //can create a string array and parse through all layers in a loop
-
+        getLayer("Death");
         getLayer("Ground Object");
        // parseMapObjects(tiledMap.getLayers().get("Ground Object").getObjects());
         getLayer("Player");
         //parseMapObjects(tiledMap.getLayers().get("Player").getObjects());
         getLayer("Collectables");
-        getLayer("Death");
+
         //returns to the game screen
         return new OrthogonalTiledMapRenderer(tiledMap);
     }
     private void getLayer( String s){
         try{
-            parseMapObjects(tiledMap.getLayers().get(s).getObjects());}
+            parseMapObjects(tiledMap.getLayers().get(s).getObjects(), s);}
         catch (NullPointerException n){
             Gdx.app.log("Map", s+"  could not load");
         };
     }
-    public void parseMapObjects(MapObjects mapObjects){
+    public void parseMapObjects(MapObjects mapObjects, String s){
         //Iteration through map objects
         for(MapObject mapObject : mapObjects){
 
             if(mapObject instanceof PolygonMapObject){
-                createStaticBody((PolygonMapObject) mapObject);
+                Body body = createStaticBody((PolygonMapObject) mapObject);
+
             }
 
             //Rectangle Case
@@ -91,9 +96,13 @@ public class TileMapHelper {
                     Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
                     gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));
                 }
-                else if (tempName.equals("Carrot")){
+                else if (tempName.equals("Carrot") || s.equals("Collectables")){
                     gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot"));
                     Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                }
+                else if(tempName.equals("Death")){
+                    gameScreen.addDeathWall (new DeathWall(rectangle.width, rectangle.height, body));
+                    Gdx.app.log("sprites", "Death Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                 }
                 }
 
@@ -111,13 +120,14 @@ public class TileMapHelper {
         return bodyDef;
     }
 
-    private void createStaticBody(PolygonMapObject polygonMapObject){
+    private Body createStaticBody(PolygonMapObject polygonMapObject){
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
         Body body = gameScreen.getWorld().createBody(bodyDef);
         Shape shape = createPolygonShape(polygonMapObject);
         body.createFixture(shape, 1000);
         shape.dispose();
+        return body;
     }
 
     private Shape createPolygonShape(PolygonMapObject polygonMapObject) {

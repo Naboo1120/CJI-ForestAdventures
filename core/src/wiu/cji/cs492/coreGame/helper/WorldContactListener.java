@@ -11,6 +11,8 @@ import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 
 import wiu.cji.cs492.Objects.Collectables;
+import wiu.cji.cs492.Objects.DeathWall;
+import wiu.cji.cs492.Objects.Player;
 
 public class WorldContactListener implements ContactListener {
 
@@ -20,15 +22,34 @@ public class WorldContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
-        Gdx.app.log("Begin Contact", ""+fixA.getUserData());
+        Gdx.app.log("Begin Contact", ""+ (fixA.getUserData()== null ? fixB.getUserData(): fixB.getUserData()));
         if (fixA.getUserData() == "head" || fixB.getUserData() =="head"){
             Fixture head = fixA.getUserData() == "head" ? fixA:fixB;
             Fixture object = head == fixA ? fixB:fixA;
-            if (object.getUserData() != null && Collectables.class.isAssignableFrom(object.getUserData().getClass())) {
-                ((Collectables) object.getUserData()).onHeadHit();
+            if (object.getUserData() != null){
 
+                if (Collectables.class.isAssignableFrom(object.getUserData().getClass())) {
+                    ((Collectables) object.getUserData()).onHeadHit();
+                }
+                if (DeathWall.class.isAssignableFrom(object.getUserData().getClass()) && Player.class.isAssignableFrom(head.getUserData().getClass())){
+                  //  ((DeathWall)object.getUserData()).onhit((Player) head.getUserData());
+                }
             }
         }
+        else if(fixA.getUserData() == "playerBody" || fixB.getUserData() =="playerBody"){
+            Fixture head = fixA.getUserData() == "playerBody" ? fixA:fixB;
+            Fixture object = head == fixA ? fixB:fixA;
+            if (object.getUserData() != null){
+
+                if (Collectables.class.isAssignableFrom(object.getUserData().getClass())) {
+                    ((Collectables) object.getUserData()).onHeadHit();
+                }
+                if (DeathWall.class.isAssignableFrom(object.getUserData().getClass()) && Player.class.isAssignableFrom(head.getUserData().getClass())){
+                      ((DeathWall)object.getUserData()).onhit((Player) head.getUserData());
+                }
+            }
+        }
+
 
         int contactDef = fixA.getFilterData().categoryBits| fixB.getFilterData().categoryBits;
 
