@@ -1,6 +1,7 @@
 package wiu.cji.cs492.Objects;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,14 +14,12 @@ public abstract class GameEntity extends Sprite {
     protected float x, y,height, width, speed, velocityX, velocityY;
     protected static Body body;
     protected Texture texture;
-    protected TextureRegion bunnySit;
+
+
 
 
     public GameEntity(float width, float height, Body body, GameScreen gameScreen){
-        super(gameScreen.getAtlas().findRegion("bunnyRight"));
-        bunnySit = new TextureRegion(getTexture(), 0,0,16,16);
-        setBounds(0,0, 16/ Constants.PPM, 16/Constants.PPM);
-        setRegion(bunnySit);
+
 
         this.body = body;
         this.x = body.getPosition().x;
@@ -31,10 +30,11 @@ public abstract class GameEntity extends Sprite {
         this.velocityY = 0;
         this.speed = 0;
 
+
     }
 
     public void update(float delta){
-        setPosition(x-getWidth()/2, y/getHeight()/2);
+        Gdx.app.log("Game Entity Update", "Its Updating");
     }
     public void render(SpriteBatch spriteBatch){
 

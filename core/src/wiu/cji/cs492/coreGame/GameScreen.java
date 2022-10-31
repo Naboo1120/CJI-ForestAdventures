@@ -70,7 +70,7 @@ public class GameScreen implements Screen {
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
         //Creates Player
-        player = new Player(10f,20f, player.getBody(),this);
+        //player = new Player(5f,5f, player.getBody(),this);
 
         //Camera
         gamecam = new OrthographicCamera();
@@ -92,12 +92,6 @@ public class GameScreen implements Screen {
         player.update(delta);
         //updates the camera to follow player
         gamecamUpdate();
-
-        //This allows the sprite batch to be projected along the world correctly
-        spriteBatch.setProjectionMatrix(gamecam.combined);
-
-
-
         //Renders the map to the game camera
         orthogonalTiledMapRenderer.setView(gamecam);
 
@@ -113,7 +107,9 @@ public class GameScreen implements Screen {
         spriteBatch.setProjectionMatrix(gamecam.combined.scl(PPM));
 
         spriteBatch.begin();
+
         player.draw(spriteBatch);
+
         for (Collectables c : collect){
             Body body = c.getBody();
 
@@ -157,6 +153,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+        orthogonalTiledMapRenderer.dispose();
+        world.dispose();
+        box2DDebugRenderer.dispose();
+
 
     }
 
@@ -165,11 +165,8 @@ public class GameScreen implements Screen {
     }
 
     public void gamecamUpdate(){
-        //gamecam.position.set(new Vector3());
         Vector3 position = gamecam.position;
         position.x = Math.round(player.getBody().getPosition().x *PPM *10)/10f;
-        //float tempY = Math.round(player.getBody().getPosition().y  )/1f;
-        //insert check for bottom of the screen
         position.y = 125;// + tempY;
         position.x = (position.x <=250)? 250 : position.x ;
 

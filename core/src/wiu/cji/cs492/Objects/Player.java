@@ -1,13 +1,19 @@
 package wiu.cji.cs492.Objects;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import wiu.cji.cs492.coreGame.GameScreen;
+import wiu.cji.cs492.coreGame.helper.Constants;
 import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
+
+    protected TextureRegion bunnySit;
+
 
     @Override
     public Body getBody() {
@@ -20,6 +26,10 @@ public class Player extends GameEntity {
         super(width, height, body, gameScreen);
         this.speed = 10f;
 
+        gameScreen.getAtlas().findRegion("BunnyLeft");
+        bunnySit = new TextureRegion(getTexture(),0,0,47,31);
+        setBounds(0, 0, 16/Constants.PPM, 16/Constants.PPM);
+        setRegion(bunnySit);
 
     }
     public void handleInput(){
@@ -48,11 +58,14 @@ public class Player extends GameEntity {
     @Override
     public void update(float delta) {
 
-        x =body.getPosition().x;
-        y =body.getPosition().y;
+        x = body.getPosition().x;
+        y = body.getPosition().y;
+
+        setPosition(body.getPosition().x-getWidth()/2,body.getPosition().y-getHeight());
 
         //Check the users key
         handleInput();
+        Gdx.app.log("Player Update", "Its Updating");
 
     }
 
@@ -61,7 +74,4 @@ public class Player extends GameEntity {
 
     }
 
-    public void draw(SpriteBatch spriteBatch){
-        super.draw(spriteBatch);
-    }
 }

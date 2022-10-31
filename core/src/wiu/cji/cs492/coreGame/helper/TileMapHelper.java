@@ -89,7 +89,7 @@ public class TileMapHelper {
 
                 if (tempName.toLowerCase().equals("player")){
                     Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
-                    gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body,gameScreen));
+                    gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body, gameScreen));
                 }
                 else if (tempName.equals("Carrot")){
                     gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot", gameScreen));
