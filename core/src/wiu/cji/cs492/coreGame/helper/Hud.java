@@ -112,10 +112,7 @@ public class Hud implements Disposable {
             return 1;
         }
         if(jumpButton.isPressed()) {
-            if(Player.getPlayerLinerVelocity() == 0)
                 return 2;
-            else
-                return 0;
         }
 
 

@@ -54,10 +54,10 @@ public class GameScreen implements Screen {
     //Tiled map variables
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
-    private Player player;
     private Array<Collectables> collect = new Array<Collectables>();
     private Array<DeathWall> dWalls = new Array<>();
     private Array<Enemy> enemys = new Array<>();
+    private Player player;
 
 
     public GameScreen(final ForestAdventures game){
@@ -213,9 +213,6 @@ public class GameScreen implements Screen {
     public World getWorld() {
         return world;
     }
-    public void setPlayer(Player player){
-        this.player = player;
-    }
     public void addCollectables(Collectables collectables){
         collect.add(collectables);
         Gdx.app.log("collectables", "Collectable created");
@@ -224,6 +221,9 @@ public class GameScreen implements Screen {
         dWalls.add(d);
     }
     public void addEnemy(Enemy e){enemys.add(e);}
+    public void setPlayer(Player player){
+        this.player = player;
+    }
     public void removeCollectable(Collectables collectables){
         //???
 

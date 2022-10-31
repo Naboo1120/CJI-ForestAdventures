@@ -12,11 +12,8 @@ import wiu.cji.cs492.coreGame.helper.Constants;
 
 public abstract class GameEntity{
     protected float x, y,height, width, speed, velocityX, velocityY;
-    protected static Body body;
+    protected Body body;
     protected Texture texture;
-
-
-
 
     public GameEntity(float width, float height, Body body){
 

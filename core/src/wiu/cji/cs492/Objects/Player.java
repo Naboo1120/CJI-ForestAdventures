@@ -17,6 +17,7 @@ import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
     protected Vector2 startLocation;
+    protected Body bod;
 
     public Player(float width, float height, Body body){
         super(width, height, body);
@@ -38,11 +39,6 @@ public class Player extends GameEntity {
         body.createFixture(fdef).setUserData("head");
 
 
-
-
-
-
-
 // can use edgeShape to define certain body parts
 
     }
@@ -56,9 +52,11 @@ public class Player extends GameEntity {
             velocityX = -1;
         }
         else if(Hud.movement() == 2){
-            float force = body.getMass() *15;
-            body.setLinearVelocity(body.getLinearVelocity().x, 0); // might need a debounce
-            body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
+            if(body.getLinearVelocity().y == 0) {
+                float force = body.getMass() * 15;
+                body.setLinearVelocity(body.getLinearVelocity().x, 0); // might need a debounce
+                body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
+            }
         }
         else{
             velocityX = 0;
@@ -66,9 +64,6 @@ public class Player extends GameEntity {
         body.setLinearVelocity(velocityX * speed, body.getLinearVelocity().y <25 ? body.getLinearVelocity().y :25);
     }
 
-    public static float getPlayerLinerVelocity() {
-        return body.getLinearVelocity().y;
-    }
 
     @Override
     public void update() {
