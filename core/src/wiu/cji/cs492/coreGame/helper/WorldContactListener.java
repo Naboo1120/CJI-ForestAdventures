@@ -57,7 +57,7 @@ public class WorldContactListener implements ContactListener {
                     ((DeathWall)object.getUserData()).onhit();
                 }
                 else if (Enemy.class.isAssignableFrom(object.getUserData().getClass())){//(DeathWall.class.isAssignableFrom(object.getUserData().getClass())){
-                    Gdx.app.log("Death", " collides with player");
+                    Gdx.app.log("Death", " Enemy collides with player");
                     ((Enemy)object.getUserData()).onhit();
                 }
             }
