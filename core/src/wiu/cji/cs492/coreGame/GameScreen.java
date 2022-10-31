@@ -22,6 +22,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import wiu.cji.cs492.Objects.Collectables;
+import wiu.cji.cs492.Objects.DeathWall;
 import wiu.cji.cs492.Objects.GameEntity;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.helper.Hud;
@@ -53,6 +54,7 @@ public class GameScreen implements Screen {
     private TileMapHelper tileMapHelper;
     private Player player;
     private Array<Collectables> collect = new Array<Collectables>();
+    private Array<DeathWall> dWalls = new Array<>();
 
 
     public GameScreen(final ForestAdventures game){
@@ -73,7 +75,7 @@ public class GameScreen implements Screen {
         gamecam = new OrthographicCamera();
         //gamecam.setToOrtho(false,Constants.DEVICE_WIDTH ,Constants.DEVICE_HEIGHT );
          viewport = new ExtendViewport(250, 225, gamecam);
-        world.setContactListener(new WorldContactListener());
+        world.setContactListener(new WorldContactListener(game));
 
     }
 
@@ -93,7 +95,14 @@ public class GameScreen implements Screen {
         //This allows the camera to be combined with projection and view
         spriteBatch.setProjectionMatrix(gamecam.combined);
 
+        for (DeathWall d : dWalls){
+            if (d.collided){
+                game.setScreen(new GameOverScreen((ForestAdventures)game));
+                dispose();
 
+            }
+
+        }
 
         //Renders the map to the game camera
         orthogonalTiledMapRenderer.setView(gamecam);
@@ -114,9 +123,9 @@ public class GameScreen implements Screen {
         spriteBatch.begin();
         for (Collectables c : collect){
             Body body = c.getBody();
-
-            spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
-
+            if(body != null ) {
+                spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
+            }
 
         }
 
@@ -185,6 +194,10 @@ public class GameScreen implements Screen {
     }
     public void addCollectables(Collectables collectables){
         collect.add(collectables);
+        Gdx.app.log("collectables", "Collectable created");
+    }
+    public void addDeathWall(DeathWall d){
+        dWalls.add(d);
     }
     public void removeCollectable(Collectables collectables){
         //???
