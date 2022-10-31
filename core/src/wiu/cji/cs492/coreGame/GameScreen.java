@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -21,9 +22,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import wiu.cji.cs492.Objects.Collectables;
-import wiu.cji.cs492.Objects.GameEntity;
-import wiu.cji.cs492.Objects.Player;
+import wiu.cji.cs492.Objects.*;
 import wiu.cji.cs492.coreGame.helper.Hud;
 import wiu.cji.cs492.coreGame.helper.TileMapHelper;
 import wiu.cji.cs492.coreGame.helper.WorldContactListener;
@@ -36,6 +35,10 @@ public class GameScreen implements Screen {
     private World world;
 
     private Hud hud;
+
+    Sprite bunnySprite;
+    TextureRegion bunnyTextureRegion;
+    Texture bunnyTexture;
 
     //Box2d usage
     private Box2DDebugRenderer box2DDebugRenderer;
@@ -69,12 +72,14 @@ public class GameScreen implements Screen {
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
         //Creates Player
-
+        bunnyTexture = new Texture("PlayerAssets/bunny2.png");
+        bunnyTextureRegion = new TextureRegion(bunnyTexture, 51,4,16,16);
+        bunnySprite = new Sprite(bunnyTexture);
 
         //Camera
         gamecam = new OrthographicCamera();
         viewport = new ExtendViewport(250, 225, gamecam);
-        world.setContactListener(new WorldContactListener());
+        world.setContactListener(new WorldContactListener(game));
 
     }
 
@@ -88,7 +93,7 @@ public class GameScreen implements Screen {
     public void update(float delta){
         //Updates the world at 60fps
         world.step(1/60f, 6, 2);
-        player.update(delta);
+        player.update();
         //updates the camera to follow player
         gamecamUpdate();
         //This allows the camera to be combined with projection and view
@@ -154,7 +159,7 @@ public class GameScreen implements Screen {
     }
 
 
-    }
+
 
     @Override
     public void resize(int width, int height) {

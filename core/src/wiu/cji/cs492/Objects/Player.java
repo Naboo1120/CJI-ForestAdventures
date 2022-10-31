@@ -2,10 +2,10 @@ package wiu.cji.cs492.Objects;
 
 import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -13,12 +13,11 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
-import wiu.cji.cs492.coreGame.GameScreen;
-import wiu.cji.cs492.coreGame.helper.Constants;
 import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
     protected Vector2 startLocation;
+
     public Player(float width, float height, Body body){
         super(width, height, body);
         this.speed = 10f;
@@ -37,6 +36,10 @@ public class Player extends GameEntity {
         fdef.shape = head;
         fdef.isSensor = true;
         body.createFixture(fdef).setUserData("head");
+
+
+
+
 
 
 
@@ -66,19 +69,24 @@ public class Player extends GameEntity {
     public static float getPlayerLinerVelocity() {
         return body.getLinearVelocity().y;
     }
+
     @Override
-    public void update(float delta) {
+    public void update() {
 
         x = body.getPosition().x;
         y = body.getPosition().y;
         //Check the users key
         handleInput();
+
+
     }
+
     public void resetFall(){
         x = body.getPosition().x - 20/PPM;
         y = startLocation.y;
-        update();
+        //update();
     }
+
 
     @Override
     public void render(SpriteBatch spriteBatch) {

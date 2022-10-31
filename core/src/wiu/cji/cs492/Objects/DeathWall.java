@@ -8,9 +8,6 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-import wiu.cji.cs492.coreGame.ForestAdventures;
-import wiu.cji.cs492.coreGame.GameOverScreen;
-
 public class DeathWall extends GameEntity{
     protected Fixture fixture;
     public Boolean collided;

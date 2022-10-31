@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import wiu.cji.cs492.coreGame.GameScreen;
 import wiu.cji.cs492.coreGame.helper.Constants;
 
-public abstract class GameEntity extends Sprite {
+public abstract class GameEntity{
     protected float x, y,height, width, speed, velocityX, velocityY;
     protected static Body body;
     protected Texture texture;
@@ -18,7 +18,7 @@ public abstract class GameEntity extends Sprite {
 
 
 
-    public GameEntity(float width, float height, Body body, GameScreen gameScreen){
+    public GameEntity(float width, float height, Body body){
 
 
         this.body = body;
@@ -33,11 +33,13 @@ public abstract class GameEntity extends Sprite {
 
     }
 
-    public void update(float delta){
-        Gdx.app.log("Game Entity Update", "Its Updating");
-    }
+
+
+
     public void render(SpriteBatch spriteBatch){
 
     }
     public Body getBody(){return body;}
+
+    public abstract void update();
 }
