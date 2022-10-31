@@ -17,7 +17,6 @@ import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
     protected Vector2 startLocation;
-    protected Body bod;
 
     public Player(float width, float height, Body body){
         super(width, height, body);

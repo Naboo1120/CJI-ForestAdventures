@@ -102,14 +102,13 @@ public class GameScreen implements Screen {
         for (DeathWall d : dWalls){
             if (d.collided){
                 game.setScreen(new GameOverScreen((ForestAdventures)game));
-                dispose();
+
             }
         }
 
         for (Enemy e : enemys){
             if (e.collided){
                 game.setScreen(new GameOverScreen((ForestAdventures)game));
-                dispose();
             }
         }
 

@@ -75,9 +75,9 @@ public class Hud implements Disposable {
         jumpButtonStyle.up = skin.getDrawable("default-round");
         jumpButtonStyle.font = bitmapFont;
 
-        rightButton = new TextButton("", rightButtonStyle);
+        rightButton = new TextButton("   >>>", rightButtonStyle);
         rightButton.setPosition(0, 0);
-        leftButton = new TextButton("", leftButtonStyle);
+        leftButton = new TextButton("   <<<", leftButtonStyle);
         leftButton.setPosition(0, 0);
         jumpButton = new TextButton("JUMP", jumpButtonStyle);
         jumpButton.setPosition(0,0);
@@ -86,12 +86,12 @@ public class Hud implements Disposable {
 
         //Creation of the label "%03d" means the length of the label
         foodLabel = new Label(String.format("%03d", foodCount), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-
+        foodLabel.setFontScale(4);
         //Adds the labels to the screen with padding to the top by 10 pixels
-        table.add(foodLabel).expandX().padTop(10);
+        table.add(foodLabel).expandX().padTop(5);
         table.row();
-        table.add(leftButton).expandY().left();
-        table.add(rightButton).expandY().right();
+        table.add(leftButton).expandY().left().pad(5);
+        table.add(rightButton).expandY().right().pad(5);
         table.add(jumpButton).center();
 
         stage.addActor(table);
