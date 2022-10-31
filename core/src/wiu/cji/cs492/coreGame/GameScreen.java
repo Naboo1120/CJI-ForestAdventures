@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import wiu.cji.cs492.Objects.Collectables;
 import wiu.cji.cs492.Objects.DeathWall;
+import wiu.cji.cs492.Objects.Enemy;
 import wiu.cji.cs492.Objects.GameEntity;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.helper.Hud;
@@ -55,6 +56,7 @@ public class GameScreen implements Screen {
     private Player player;
     private Array<Collectables> collect = new Array<Collectables>();
     private Array<DeathWall> dWalls = new Array<>();
+    private Array<Enemy> enemys = new Array<>();
 
 
     public GameScreen(final ForestAdventures game){
@@ -99,9 +101,14 @@ public class GameScreen implements Screen {
             if (d.collided){
                 game.setScreen(new GameOverScreen((ForestAdventures)game));
                 dispose();
-
             }
+        }
 
+        for (Enemy e : enemys){
+            if (e.collided){
+                game.setScreen(new GameOverScreen((ForestAdventures)game));
+                dispose();
+            }
         }
 
         //Renders the map to the game camera

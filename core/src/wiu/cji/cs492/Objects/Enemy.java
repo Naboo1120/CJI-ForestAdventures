@@ -14,10 +14,13 @@ import wiu.cji.cs492.coreGame.GameScreen;
 public class Enemy extends GameEntity {
 
     int flip=60;  //flip time is multiplied by 60
+    public Boolean collided;
+
     public Enemy(float width, float height, Body body, int flipTime){
         super(width, height, body);
         this.speed = 5f; // speed will be half of player
         flip = flipTime; //flip time can be changed depending on length of platform
+        collided = false;
 
     }
     public void handleInput(){      //in case of input
@@ -38,6 +41,12 @@ public class Enemy extends GameEntity {
             flip-=1;
 
 //        handleInput();
+    }
+
+    public void onhit(){
+        collided = true;
+        // game.dispose();
+        Gdx.app.log("DeathWall", "found the players fall damage lol ");
     }
 
     @Override
