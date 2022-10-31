@@ -97,7 +97,8 @@ public class GameScreen implements Screen {
 
         for (DeathWall d : dWalls){
             if (d.collided){
-                GameOverScreen over = new GameOverScreen(game);
+                game.setScreen(new GameOverScreen((ForestAdventures)game));
+                dispose();
 
             }
 
