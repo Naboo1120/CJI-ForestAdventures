@@ -17,7 +17,10 @@ import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
     protected Vector2 startLocation;
-    protected Body bod;
+    protected Texture tex;
+    protected TextureRegion texRegion;
+    protected Sprite bunny;
+
 
     public Player(float width, float height, Body body){
         super(width, height, body);
@@ -37,6 +40,15 @@ public class Player extends GameEntity {
         fdef.shape = head;
         fdef.isSensor = true;
         body.createFixture(fdef).setUserData("head");
+
+        tex = new Texture("PlayerAssets/bunny2.png");
+        texRegion = new TextureRegion(tex,51,4,47,31);
+        bunny = new Sprite(texRegion);
+        bunny.setPosition(0,0);
+
+
+
+
 
 
 // can use edgeShape to define certain body parts
@@ -74,18 +86,23 @@ public class Player extends GameEntity {
         handleInput();
 
 
+
+
     }
 
     public void resetFall(){
         x = body.getPosition().x - 20/PPM;
         y = startLocation.y;
-        //update();
+        update();
     }
 
 
     @Override
     public void render(SpriteBatch spriteBatch) {
-
+        //Drawing of the player, called in the gameScreen class
+        spriteBatch.begin();
+        spriteBatch.draw(bunny,body.getPosition().x*PPM - bunny.getWidth()/2, body.getPosition().y*PPM - bunny.getHeight()/2 );
+        spriteBatch.end();
 
     }
 }

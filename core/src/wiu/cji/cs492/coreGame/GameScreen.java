@@ -36,9 +36,6 @@ public class GameScreen implements Screen {
 
     private Hud hud;
 
-    Sprite bunnySprite;
-    TextureRegion bunnyTextureRegion;
-    Texture bunnyTexture;
 
     //Box2d usage
     private Box2DDebugRenderer box2DDebugRenderer;
@@ -60,6 +57,7 @@ public class GameScreen implements Screen {
     private Player player;
 
 
+
     public GameScreen(final ForestAdventures game){
 
         this.game = game;
@@ -72,9 +70,6 @@ public class GameScreen implements Screen {
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
         //Creates Player
-        bunnyTexture = new Texture("PlayerAssets/bunny2.png");
-        bunnyTextureRegion = new TextureRegion(bunnyTexture, 51,4,16,16);
-        bunnySprite = new Sprite(bunnyTexture);
 
         //Camera
         gamecam = new OrthographicCamera();
@@ -101,15 +96,15 @@ public class GameScreen implements Screen {
 
         for (DeathWall d : dWalls){
             if (d.collided){
-                game.setScreen(new GameOverScreen((ForestAdventures)game));
-                dispose();
+                game.setScreen(new GameOverScreen(game));
+
             }
         }
 
         for (Enemy e : enemys){
             if (e.collided){
-                game.setScreen(new GameOverScreen((ForestAdventures)game));
-                dispose();
+                game.setScreen(new GameOverScreen(game));
+
             }
         }
 
@@ -125,15 +120,18 @@ public class GameScreen implements Screen {
         ScreenUtils.clear(0,0,0.2f,0);
         orthogonalTiledMapRenderer.render();
         box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
-        spriteBatch.setProjectionMatrix(gamecam.combined.scl(PPM));
 
 
         //Renders the objects
+        player.render(spriteBatch);
+
+
+
         spriteBatch.begin();
         for (Collectables c : collect){
             Body body = c.getBody();
             if(body != null ) {
-                spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
+                //spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
             }else {
                 if (! c.getCollected()){
                     hud.updateFood(1);
@@ -145,10 +143,6 @@ public class GameScreen implements Screen {
             }
 
         }
-
-
-// insert Collectables here
-
         spriteBatch.end();
         spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
