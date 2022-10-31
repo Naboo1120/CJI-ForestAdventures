@@ -1,31 +1,24 @@
 package wiu.cji.cs492.Objects;
 
-import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ai.steer.behaviors.MatchVelocity;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import wiu.cji.cs492.coreGame.GameScreen;
 import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
-    public Texture bunnyTexture;
-    public Sprite bunnySprite;
+
     @Override
     public Body getBody() {
         return super.getBody();
     }
 
-    public Player(float width, float height, Body body){
-        super(width, height, body);
-        this.speed = 10f;
 
-        bunnyTexture = new Texture("PlayerAssets/BunnyLeft.png");
-        bunnySprite = new Sprite(bunnyTexture);
+
+    public Player(float width, float height, Body body, GameScreen gameScreen){
+        super(width, height, body, gameScreen);
+        this.speed = 10f;
 
 
     }
@@ -53,7 +46,8 @@ public class Player extends GameEntity {
         return body.getLinearVelocity().y;
     }
     @Override
-    public void update() {
+    public void update(float delta) {
+
         x =body.getPosition().x;
         y =body.getPosition().y;
 
@@ -65,6 +59,9 @@ public class Player extends GameEntity {
     @Override
     public void render(SpriteBatch spriteBatch) {
 
+    }
 
+    public void draw(SpriteBatch spriteBatch){
+        super.draw(spriteBatch);
     }
 }

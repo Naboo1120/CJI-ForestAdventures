@@ -37,6 +37,8 @@ public class GameScreen implements Screen {
 
     private Hud hud;
 
+    private TextureAtlas atlas;
+
     //Box2d usage
     private Box2DDebugRenderer box2DDebugRenderer;
 
@@ -56,6 +58,7 @@ public class GameScreen implements Screen {
 
 
     public GameScreen(final ForestAdventures game){
+        atlas = new TextureAtlas("PlayerAssets/bunny.pack");
 
         this.game = game;
         hud = new Hud(game.batch);
@@ -67,7 +70,7 @@ public class GameScreen implements Screen {
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
         //Creates Player
-        player = new Player(10f,20f, player.getBody());
+        player = new Player(10f,20f, player.getBody(),this);
 
         //Camera
         gamecam = new OrthographicCamera();
@@ -86,18 +89,18 @@ public class GameScreen implements Screen {
     public void update(float delta){
         //Updates the world at 60fps
         world.step(1/60f, 6, 2);
-
+        player.update(delta);
         //updates the camera to follow player
         gamecamUpdate();
 
         //This allows the sprite batch to be projected along the world correctly
-        spriteBatch.setProjectionMatrix(gamecam.combined.scl(PPM));
+        spriteBatch.setProjectionMatrix(gamecam.combined);
 
 
 
         //Renders the map to the game camera
         orthogonalTiledMapRenderer.setView(gamecam);
-        player.update();
+
 
     }
 
@@ -106,12 +109,11 @@ public class GameScreen implements Screen {
         this.update(delta);
         ScreenUtils.clear(0,0,0.2f,0);
         orthogonalTiledMapRenderer.render();
+        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
+        spriteBatch.setProjectionMatrix(gamecam.combined.scl(PPM));
 
-        hud.stage.draw();
-
-
-        //Renders the objects
         spriteBatch.begin();
+        player.draw(spriteBatch);
         for (Collectables c : collect){
             Body body = c.getBody();
 
@@ -119,21 +121,23 @@ public class GameScreen implements Screen {
 
 
         }
-
-        spriteBatch.draw(player.bunnyTexture,0,0);
-// insert Collectables here
-
         spriteBatch.end();
+        spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
 
 
-        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
+        //Renders the objects
+
+
+
+
 
     }
 
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-        spriteBatch.setProjectionMatrix(gamecam.combined);
+
     }
 
     @Override
@@ -154,6 +158,10 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public TextureAtlas getAtlas(){
+        return atlas;
     }
 
     public void gamecamUpdate(){

@@ -18,6 +18,7 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.utils.Null;
 
 import wiu.cji.cs492.Objects.Collectables;
+import wiu.cji.cs492.Objects.Food;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
 
@@ -88,10 +89,10 @@ public class TileMapHelper {
 
                 if (tempName.toLowerCase().equals("player")){
                     Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
-                    gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));
+                    gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body,gameScreen));
                 }
                 else if (tempName.equals("Carrot")){
-                    gameScreen.addCollectables(new Collectables(rectangle.width, rectangle.height, body, "Carrot"));
+                    gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot", gameScreen));
                     Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                 }
                 }
