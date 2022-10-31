@@ -134,6 +134,7 @@ public class GameScreen implements Screen {
                     hud.updateFood(1);
 
                     c.setCollected(true);
+                   // c.fixture = null;
                     Gdx.app.log("food", "Food has been collected");
                 }
             }

@@ -9,6 +9,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+
 import wiu.cji.cs492.coreGame.GameScreen;
 
 public class Enemy extends GameEntity {
@@ -21,6 +25,20 @@ public class Enemy extends GameEntity {
         this.speed = 5f; // speed will be half of player
         flip = flipTime; //flip time can be changed depending on length of platform
         collided = false;
+
+        FixtureDef fdef = new FixtureDef();
+        CircleShape shape = new CircleShape();
+        shape.setRadius(30/PPM);
+        //fdef.filter.categoryBits =
+
+
+        //fdef.filter.categoryBits =
+
+        EdgeShape head = new EdgeShape();
+        head.set(new Vector2(-2/PPM, 10/PPM),new Vector2(2/PPM, 5/PPM));
+        fdef.shape = head;
+        fdef.isSensor = true;
+        body.createFixture(fdef).setUserData(this);
 
     }
     public void handleInput(){      //in case of input

@@ -19,10 +19,10 @@ public abstract class Collectables extends GameEntity {
         collected = false;
         FixtureDef fdef  = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width /2/PPM + body.getPosition().x, height/2/PPM +body.getPosition().y );
+        shape.setAsBox(width/50/PPM + (body.getPosition().x)/PPM , height/50/PPM + (body.getPosition().y)/PPM );
         fdef.shape = shape;
 
-        body.createFixture(fdef).setUserData("food");
+       // body.createFixture(fdef).setUserData("food");
 
         fixture = body.createFixture(fdef);
         if (type =="Carrot"){ // need to remove later

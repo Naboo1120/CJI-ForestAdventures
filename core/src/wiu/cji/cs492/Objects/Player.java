@@ -28,8 +28,7 @@ public class Player extends GameEntity {
         CircleShape shape = new CircleShape();
         shape.setRadius(13/PPM);
         //fdef.filter.categoryBits =
-        fdef.shape = shape;
-        body.createFixture(fdef);
+
 
         //fdef.filter.categoryBits =
 
