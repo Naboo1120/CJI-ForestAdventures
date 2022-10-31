@@ -13,8 +13,10 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 // can be changed to allow other the collections rn its written for food
 public abstract class Collectables extends GameEntity {
     protected Fixture fixture;
+    protected Boolean collected;
     public Collectables(float width, float height, Body body, String type) {
         super(width, height, body);
+        collected = false;
         FixtureDef fdef  = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width /2/PPM + body.getPosition().x, height/2/PPM +body.getPosition().y );
@@ -34,6 +36,15 @@ public abstract class Collectables extends GameEntity {
     public void update() {
 
     }
+
+    public Boolean getCollected() {
+        return collected;
+    }
+
+    public void setCollected(Boolean collected) {
+        this.collected = collected;
+    }
+
     public Texture getTexture(){
         return this.texture;
     }

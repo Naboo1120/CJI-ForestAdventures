@@ -125,6 +125,13 @@ public class GameScreen implements Screen {
             Body body = c.getBody();
             if(body != null ) {
                 spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
+            }else {
+                if (! c.getCollected()){
+                    hud.updateFood(1);
+
+                    c.setCollected(true);
+                    Gdx.app.log("food", "Food has been collected");
+                }
             }
 
         }
