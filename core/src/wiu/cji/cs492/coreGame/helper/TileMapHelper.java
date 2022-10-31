@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.Null;
 
 import wiu.cji.cs492.Objects.Collectables;
 import wiu.cji.cs492.Objects.DeathWall;
+import wiu.cji.cs492.Objects.Enemy;
 import wiu.cji.cs492.Objects.Food;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
@@ -110,6 +111,10 @@ public class TileMapHelper {
                     else if(tempName.equals("Death")){
                         gameScreen.addDeathWall (new DeathWall(rectangle.width, rectangle.height, body));
                         Gdx.app.log("sprites", "Death Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
+                    else if(tempName.equals("Enemy")){
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, 1));
+                        Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
 
 

@@ -12,21 +12,20 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 
-public class MainMenuScreen implements Screen{
+public class LevelListScreen implements Screen{
     final ForestAdventures game;
     private Stage stage;
     private Table table;
     private Texture Background;
     private Skin skin;
     private TextureAtlas atlas;
-    private TextButton playButton;
-    private TextButton settingsButton;
-    private TextButton exitButton;
+    private TextButton l1Button,l2Button, l3Button, l4Button, l5Button, l6Button,l7Button, l8Button, l9Button;
+    private TextButton backButton;
     private BitmapFont bitmapFont;
 
 
 
-    public MainMenuScreen(final ForestAdventures game){
+    public LevelListScreen(final ForestAdventures game){
 
         this.game = game;
 
@@ -62,20 +61,44 @@ public class MainMenuScreen implements Screen{
 
 
         //Button object created with above properties
-        playButton = new TextButton("PLAY", textButtonStyle);
-        playButton.pad(20);
 
-        settingsButton = new TextButton("SETTINGS", textButtonStyle);
-        settingsButton.pad(20);
+        l1Button = new TextButton("Level 1", textButtonStyle);
+        l1Button.pad(9);
+        l2Button = new TextButton("Level 2", textButtonStyle);
+        l2Button.pad(9);
+        l3Button = new TextButton("Level 3", textButtonStyle);
+        l3Button.pad(9);
+        l4Button = new TextButton("Level 4", textButtonStyle);
+        l4Button.pad(9);
+        l5Button = new TextButton("Level 5", textButtonStyle);
+        l5Button.pad(9);
+        l6Button = new TextButton("Level 6", textButtonStyle);
+        l6Button.pad(9);
+        l7Button = new TextButton("Level 7", textButtonStyle);
+        l7Button.pad(9);
+        l8Button = new TextButton("Level 8", textButtonStyle);
+        l8Button.pad(9);
+        l9Button = new TextButton("Level 9", textButtonStyle);
+        l9Button.pad(9);
 
-        exitButton = new TextButton("Exit", textButtonStyle);
-        exitButton.pad(20);
+        //we will add more when levels are made
+
+        backButton = new TextButton("Main Menu", textButtonStyle);
+        backButton.pad(20);
 
 
         //Adding the button to the table and table to the stage
-        table.add(playButton);
-        table.add(settingsButton).left().pad(20);
-        table.add(exitButton).pad(20);
+        table.add(l1Button).top();
+        table.add(l2Button);
+        table.add(l3Button).bottom();
+        table.add(l4Button);
+        table.add(l5Button).top();
+        table.add(l6Button);
+        table.add(l7Button).bottom();
+        table.add(l8Button);
+        table.add(l9Button).top();
+
+        table.add(backButton).pad(20);
         stage.addActor(table);
 
     }
@@ -104,18 +127,37 @@ public class MainMenuScreen implements Screen{
         //calls any act method to the actors on stage
         stage.act(delta);
         //Will chnage screens when the button is pressed
-        if(playButton.isTouchFocusListener() == true){
-            game.setScreen(new LevelListScreen((ForestAdventures)game));
+        if(l1Button.isTouchFocusListener() == true){
+            game.setScreen(new GameScreen((ForestAdventures)game));
             dispose();
         }
+        if(l2Button.isTouchFocusListener() == true){
 
-        if(settingsButton.isTouchFocusListener() == true){
-            game.setScreen(new Settings((ForestAdventures)game));
-            dispose();
+        }
+        if(l3Button.isTouchFocusListener() == true){
+
+        }
+        if(l4Button.isTouchFocusListener() == true){
+
+        }
+        if(l5Button.isTouchFocusListener() == true){
+
+        }
+        if(l6Button.isTouchFocusListener() == true){
+
+        }
+        if(l7Button.isTouchFocusListener() == true){
+
+        }
+        if(l8Button.isTouchFocusListener() == true){
+
+        }
+        if(l9Button.isTouchFocusListener() == true){
+
         }
 
-        if(exitButton.isTouchFocusListener() == true){
-            System.exit(1);
+        if(backButton.isTouchFocusListener() == true){
+            game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
     }

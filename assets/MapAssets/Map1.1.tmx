@@ -135,6 +135,9 @@
  <objectgroup id="7" name="Death">
   <object id="35" name="Death" x="98" y="363.333" width="3080" height="16"/>
  </objectgroup>
+ <objectgroup id="9" name="Enemies">
+  <object id="39" name="Enemy" x="544.667" y="300.333"/>
+ </objectgroup>
  <objectgroup id="8" name="Player">
   <object id="36" name="Player" x="132.417" y="195.333" width="27.5" height="25.75"/>
  </objectgroup>
