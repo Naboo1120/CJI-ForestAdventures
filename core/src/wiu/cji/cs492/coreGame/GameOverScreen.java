@@ -59,7 +59,7 @@ public class GameOverScreen implements Screen{
 
 
         //Button object created with above properties
-        restartButton = new TextButton("PLAY", textButtonStyle);
+        restartButton = new TextButton("Retry Level", textButtonStyle);
         restartButton.pad(20);
 
         menuButton = new TextButton("Main Menu", textButtonStyle);

@@ -1,8 +1,8 @@
 package wiu.cji.cs492.Objects;
 
 import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
-
 import com.badlogic.gdx.Game;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -12,18 +12,19 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import wiu.cji.cs492.coreGame.GameScreen;
 
 
+
 // can be changed to allow other the collections rn its written for food
 public abstract class Collectables extends GameEntity {
     protected Fixture fixture;
 
-    public Collectables(float width, float height, Body body, String type, GameScreen gameScreen) {
-        super(width, height, body,gameScreen);
+    public Collectables(float width, float height, Body body, String type) {
+        super(width, height, body);
         FixtureDef fdef  = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width /2/PPM + body.getPosition().x, height/2/PPM +body.getPosition().y );
+        shape.setAsBox(width/20/PPM + (body.getPosition().x)/PPM , height/20/PPM + (body.getPosition().y)/PPM );
         fdef.shape = shape;
 
-        body.createFixture(fdef).setUserData("food");
+       // body.createFixture(fdef).setUserData("food");
 
         fixture = body.createFixture(fdef);
         if (type =="Carrot"){ // need to remove later
@@ -32,7 +33,6 @@ public abstract class Collectables extends GameEntity {
 
     }
     public abstract void onHeadHit();
-
 
     public void update() {
 
