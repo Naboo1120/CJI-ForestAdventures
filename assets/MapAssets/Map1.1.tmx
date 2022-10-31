@@ -114,30 +114,28 @@
 </data>
  </layer>
  <objectgroup id="4" name="Collectables">
-  <object id="1" x="186" y="298"/>
-  <object id="2" x="430.667" y="303.333"/>
-  <object id="3" x="248.667" y="299.333"/>
-  <object id="4" x="757.333" y="295.333"/>
-  <object id="5" x="898" y="276"/>
-  <object id="6" x="1114.67" y="221.333"/>
-  <object id="7" x="1204.67" y="222"/>
-  <object id="8" x="1384.67" y="297.333" width="1.33333"/>
-  <object id="9" x="1608" y="290"/>
-  <object id="10" x="1380" y="295.333"/>
-  <object id="11" x="1810.67" y="204.667"/>
-  <object id="12" x="2186.67" y="196"/>
-  <object id="13" x="2048.67" y="280"/>
-  <object id="14" x="2436.67" y="230"/>
-  <object id="15" x="2806.67" y="275.333"/>
+  <object id="1" name="Carrot" x="186" y="298"/>
+  <object id="2" name="Carrot" x="430.667" y="303.333"/>
+  <object id="3" name="Carrot" x="248.667" y="299.333"/>
+  <object id="4" name="Carrot" x="757.333" y="295.333"/>
+  <object id="5" name="Carrot" x="898" y="276"/>
+  <object id="6" name="Carrot" x="1114.67" y="221.333"/>
+  <object id="7" name="Carrot" x="1204.67" y="222"/>
+  <object id="8" name="Carrot" x="1384.67" y="297.333" width="1.33333"/>
+  <object id="9" name="Carrot" x="1608" y="290"/>
+  <object id="10" name="Carrot" x="1380" y="295.333"/>
+  <object id="11" name="Carrot" x="1810.67" y="204.667"/>
+  <object id="12" name="Carrot" x="2186.67" y="196"/>
+  <object id="13" name="Carrot" x="2048.67" y="280"/>
+  <object id="14" name="Carrot" x="2436.67" y="230"/>
+  <object id="15" name="Carrot" x="2806.67" y="275.333"/>
   <object id="16" name="Carrot" x="2598" y="286.667"/>
   <object id="17" name="Carrot" x="2918.67" y="278.667"/>
  </objectgroup>
  <objectgroup id="7" name="Death">
   <object id="35" name="Death" x="98" y="363.333" width="3080" height="16"/>
  </objectgroup>
- <objectgroup id="9" name="Enemies">
-  <object id="39" name="Enemy" x="544.667" y="300.333"/>
- </objectgroup>
+ <objectgroup id="9"/>
  <objectgroup id="8" name="Player">
   <object id="36" name="Player" x="132.417" y="195.333" width="27.5" height="25.75"/>
  </objectgroup>
@@ -188,10 +186,10 @@
    <polygon points="0,0 144,0 144,48 0,48"/>
   </object>
   <object id="41" x="80" y="368">
-   <polygon points="0,0 3200,0 3200,32 0,32"/>
+   <polygon points="0,16 3200,16 3200,32 0,32"/>
   </object>
  </objectgroup>
  <objectgroup id="9" name="Enemies">
-  <object id="39" name="enemy" x="517.333" y="304.667"/>
+  <object id="39" name="Enemy" x="517.333" y="304.667"/>
  </objectgroup>
 </map>
