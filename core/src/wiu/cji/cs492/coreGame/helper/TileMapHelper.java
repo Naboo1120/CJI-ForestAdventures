@@ -61,7 +61,7 @@ public class TileMapHelper {
         try{
             parseMapObjects(tiledMap.getLayers().get(s).getObjects());}
         catch (NullPointerException n){
-            Gdx.app.log("Map", s+"  could not load");
+            Gdx.app.log("Map", s+" could not load \n"+ n.getLocalizedMessage() );
         };
     }
     public void parseMapObjects(MapObjects mapObjects){
