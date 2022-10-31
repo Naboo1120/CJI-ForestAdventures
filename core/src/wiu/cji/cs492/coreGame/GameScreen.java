@@ -95,7 +95,13 @@ public class GameScreen implements Screen {
         //This allows the camera to be combined with projection and view
         spriteBatch.setProjectionMatrix(gamecam.combined);
 
+        for (DeathWall d : dWalls){
+            if (d.collided){
+                GameOverScreen over = new GameOverScreen(game);
 
+            }
+
+        }
 
         //Renders the map to the game camera
         orthogonalTiledMapRenderer.setView(gamecam);

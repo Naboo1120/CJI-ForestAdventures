@@ -13,9 +13,10 @@ import wiu.cji.cs492.coreGame.GameOverScreen;
 
 public class DeathWall extends GameEntity{
     protected Fixture fixture;
+    public Boolean collided;
     public DeathWall(float width, float height, Body body) {
         super(width, height, body);
-
+        collided = false;
         FixtureDef fdef  = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width /2/PPM + body.getPosition().x, height/2/PPM +body.getPosition().y );
@@ -31,8 +32,8 @@ public class DeathWall extends GameEntity{
     public void update() {
 
     }
-    public void onhit(ForestAdventures fa){
-        GameOverScreen game = new GameOverScreen(fa);
+    public void onhit(){
+        collided = true;
        // game.dispose();
         Gdx.app.log("DeathWall", "found the players fall damage lol ");
     }
