@@ -37,8 +37,6 @@ public class GameScreen implements Screen {
 
     private Hud hud;
 
-    private TextureAtlas atlas;
-
     //Box2d usage
     private Box2DDebugRenderer box2DDebugRenderer;
 
@@ -55,10 +53,11 @@ public class GameScreen implements Screen {
     private TileMapHelper tileMapHelper;
     private Player player;
     private Array<Collectables> collect = new Array<Collectables>();
+    private Array<DeathWall> dWalls = new Array<>();
+    private Array<Enemy> enemys = new Array<>();
 
 
     public GameScreen(final ForestAdventures game){
-        atlas = new TextureAtlas("PlayerAssets/bunny.pack");
 
         this.game = game;
         hud = new Hud(game.batch);
@@ -70,7 +69,7 @@ public class GameScreen implements Screen {
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
         //Creates Player
-        //player = new Player(5f,5f, player.getBody(),this);
+
 
         //Camera
         gamecam = new OrthographicCamera();
@@ -92,6 +91,23 @@ public class GameScreen implements Screen {
         player.update(delta);
         //updates the camera to follow player
         gamecamUpdate();
+        //This allows the camera to be combined with projection and view
+        spriteBatch.setProjectionMatrix(gamecam.combined);
+
+        for (DeathWall d : dWalls){
+            if (d.collided){
+                game.setScreen(new GameOverScreen((ForestAdventures)game));
+                dispose();
+            }
+        }
+
+        for (Enemy e : enemys){
+            if (e.collided){
+                game.setScreen(new GameOverScreen((ForestAdventures)game));
+                dispose();
+            }
+        }
+
         //Renders the map to the game camera
         orthogonalTiledMapRenderer.setView(gamecam);
 
@@ -106,26 +122,35 @@ public class GameScreen implements Screen {
         box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
         spriteBatch.setProjectionMatrix(gamecam.combined.scl(PPM));
 
+
+        //Renders the objects
         spriteBatch.begin();
-
-        player.draw(spriteBatch);
-
         for (Collectables c : collect){
             Body body = c.getBody();
+            if(body != null ) {
+                spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
+            }else {
+                if (! c.getCollected()){
+                    hud.updateFood(1);
 
-            spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
-
+                    c.setCollected(true);
+                    Gdx.app.log("food", "Food has been collected");
+                }
+            }
 
         }
+
+
+// insert Collectables here
+
         spriteBatch.end();
         spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
 
-        //Renders the objects
+        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
-
-
+    }
 
 
     }
@@ -133,7 +158,7 @@ public class GameScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-
+        spriteBatch.setProjectionMatrix(gamecam.combined);
     }
 
     @Override
@@ -160,13 +185,12 @@ public class GameScreen implements Screen {
 
     }
 
-    public TextureAtlas getAtlas(){
-        return atlas;
-    }
-
     public void gamecamUpdate(){
+        //gamecam.position.set(new Vector3());
         Vector3 position = gamecam.position;
         position.x = Math.round(player.getBody().getPosition().x *PPM *10)/10f;
+        //float tempY = Math.round(player.getBody().getPosition().y  )/1f;
+        //insert check for bottom of the screen
         position.y = 125;// + tempY;
         position.x = (position.x <=250)? 250 : position.x ;
 
@@ -190,6 +214,10 @@ public class GameScreen implements Screen {
         collect.add(collectables);
         Gdx.app.log("collectables", "Collectable created");
     }
+    public void addDeathWall(DeathWall d){
+        dWalls.add(d);
+    }
+    public void addEnemy(Enemy e){enemys.add(e);}
     public void removeCollectable(Collectables collectables){
         //???
 

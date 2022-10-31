@@ -97,6 +97,12 @@ public class Hud implements Disposable {
         stage.addActor(table);
 
     }
+    public void updateFood(int value){
+        foodCount += value;
+        foodLabel.setText(String.format("%03d", foodCount));
+
+
+    }
 
     public static int movement()  {
         if(leftButton.isPressed()){

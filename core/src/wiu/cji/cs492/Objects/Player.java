@@ -1,35 +1,47 @@
 package wiu.cji.cs492.Objects;
 
+import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+
 import wiu.cji.cs492.coreGame.GameScreen;
 import wiu.cji.cs492.coreGame.helper.Constants;
 import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Player extends GameEntity {
-
-    protected TextureRegion bunnySit;
-
-
-    @Override
-    public Body getBody() {
-        return super.getBody();
-    }
-
-
-
-    public Player(float width, float height, Body body, GameScreen gameScreen){
-        super(width, height, body, gameScreen);
+    protected Vector2 startLocation;
+    public Player(float width, float height, Body body){
+        super(width, height, body);
         this.speed = 10f;
+        startLocation = body.getPosition();
+        //this may be added to the create entity class
+        FixtureDef fdef = new FixtureDef();
+        CircleShape shape = new CircleShape();
+        shape.setRadius(13/PPM);
+        //fdef.filter.categoryBits =
+        fdef.shape = shape;
+        body.createFixture(fdef);
 
-        gameScreen.getAtlas().findRegion("BunnyLeft");
-        bunnySit = new TextureRegion(getTexture(),0,0,47,31);
-        setBounds(0, 0, 16/Constants.PPM, 16/Constants.PPM);
-        setRegion(bunnySit);
+        //fdef.filter.categoryBits =
+
+        EdgeShape head = new EdgeShape();
+        head.set(new Vector2(-2/PPM, 10/PPM),new Vector2(2/PPM, 5/PPM));
+        fdef.shape = head;
+        fdef.isSensor = true;
+        body.createFixture(fdef).setUserData("head");
+
+
+
+// can use edgeShape to define certain body parts
 
     }
     public void handleInput(){
@@ -60,18 +72,18 @@ public class Player extends GameEntity {
 
         x = body.getPosition().x;
         y = body.getPosition().y;
-
-        setPosition(body.getPosition().x-getWidth()/2,body.getPosition().y-getHeight());
-
         //Check the users key
         handleInput();
-        Gdx.app.log("Player Update", "Its Updating");
-
+    }
+    public void resetFall(){
+        x = body.getPosition().x - 20/PPM;
+        y = startLocation.y;
+        update();
     }
 
     @Override
     public void render(SpriteBatch spriteBatch) {
 
-    }
 
+    }
 }

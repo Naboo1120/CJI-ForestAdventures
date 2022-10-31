@@ -17,7 +17,6 @@ public class Settings implements Screen{
     private Texture Background;
     private Skin skin;
     private TextureAtlas atlas;
-    private TextButton playButton;
     private TextButton musicButton;
     private TextButton backButton;
     private BitmapFont bitmapFont;
@@ -60,8 +59,6 @@ public class Settings implements Screen{
 
 
         //Button object created with above properties
-        playButton = new TextButton("PLAY", textButtonStyle);
-        playButton.pad(20);
 
         musicButton = new TextButton("Music: On", textButtonStyle);
         musicButton.pad(20);
@@ -98,10 +95,6 @@ public class Settings implements Screen{
         //calls any act method to the actors on stage
         stage.act(delta);
         //Will chnage screens when the button is pressed
-        if(playButton.isTouchFocusListener() == true){
-            game.setScreen(new GameScreen((ForestAdventures)game));
-            dispose();
-        }
 
         if(musicButton.isTouchFocusListener() == true){
             if(musicButton.getText().toString().equals("Music: Off")) {
@@ -127,7 +120,6 @@ public class Settings implements Screen{
     {
         //Adding the button to the table and table to the stage
         table.clear();
-        table.add(playButton);
         table.add(musicButton).left().pad(20);
         table.add(backButton).pad(20);
         stage.clear();
