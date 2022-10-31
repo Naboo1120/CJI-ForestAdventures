@@ -133,14 +133,14 @@
   <object id="17" name="Carrot" x="2918.67" y="278.667"/>
  </objectgroup>
  <objectgroup id="7" name="Death">
-  <object id="35" name="Death" x="96" y="368" width="3080" height="16"/>
+  <object id="35" name="Death" x="98" y="363.333" width="3080" height="16"/>
  </objectgroup>
  <objectgroup id="8" name="Player">
   <object id="36" name="Player" x="132.417" y="195.333" width="27.5" height="25.75"/>
  </objectgroup>
  <objectgroup id="5" name="Ground Object">
-  <object id="19" x="64" y="368">
-   <polygon points="0,48 0,-272 32,-272 32,48"/>
+  <object id="19" x="64" y="344.567">
+   <polygon points="0,38.1 0,-215.9 32,-215.9 32,38.1"/>
   </object>
   <object id="20" x="63.1692" y="383.914">
    <polygon points="0,0 3216.83,0.0861735 3216.83,96.0862 0.830767,80.0862"/>
@@ -148,8 +148,8 @@
   <object id="21" x="64" y="96">
    <polygon points="0,0 3216,0 3216,32 0,32"/>
   </object>
-  <object id="22" name="Finish" x="3279.53" y="128.108">
-   <polygon points="0,0 0.471261,287.892 -95.5287,287.892 -95.5287,-0.107717"/>
+  <object id="22" name="Finish" x="3279.53" y="128.096">
+   <polygon points="0,0 0.471261,255.904 -95.5287,255.904 -95.5287,-0.0957484"/>
   </object>
   <object id="23" x="64" y="320">
    <polygon points="0,0 256,0 256,48 0,48"/>

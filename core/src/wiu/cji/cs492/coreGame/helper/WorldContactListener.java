@@ -13,8 +13,14 @@ import java.awt.event.ContainerListener;
 import wiu.cji.cs492.Objects.Collectables;
 import wiu.cji.cs492.Objects.DeathWall;
 import wiu.cji.cs492.Objects.Player;
+import wiu.cji.cs492.coreGame.ForestAdventures;
 
 public class WorldContactListener implements ContactListener {
+    protected ForestAdventures game;
+    public WorldContactListener(ForestAdventures game){
+        this.game = game;
+
+    }
 
 
     @Override
@@ -36,16 +42,18 @@ public class WorldContactListener implements ContactListener {
                 }
             }
         }
-        else if(fixA.getUserData() == "playerBody" || fixB.getUserData() =="playerBody"){
-            Fixture head = fixA.getUserData() == "playerBody" ? fixA:fixB;
+        else if(fixA.getUserData() == "Player Body" || fixB.getUserData() =="Player Body"){
+            Fixture head = fixA.getUserData() == "Player Body" ? fixA:fixB;
             Fixture object = head == fixA ? fixB:fixA;
             if (object.getUserData() != null){
-
+                    Gdx.app.log("Death", " found this object "+object.getUserData()+ " "+ object.getUserData().getClass().toString());
+              Object temp = object.getUserData().getClass();
                 if (Collectables.class.isAssignableFrom(object.getUserData().getClass())) {
                     ((Collectables) object.getUserData()).onHeadHit();
                 }
-                if (DeathWall.class.isAssignableFrom(object.getUserData().getClass()) && Player.class.isAssignableFrom(head.getUserData().getClass())){
-                      ((DeathWall)object.getUserData()).onhit((Player) head.getUserData());
+                else if (DeathWall.class.isAssignableFrom(object.getUserData().getClass())){//(DeathWall.class.isAssignableFrom(object.getUserData().getClass())){
+                    Gdx.app.log("Death", " collides with player");
+                    ((DeathWall)object.getUserData()).onhit(game);
                 }
             }
         }

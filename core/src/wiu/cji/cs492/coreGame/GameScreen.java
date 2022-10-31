@@ -75,7 +75,7 @@ public class GameScreen implements Screen {
         gamecam = new OrthographicCamera();
         //gamecam.setToOrtho(false,Constants.DEVICE_WIDTH ,Constants.DEVICE_HEIGHT );
          viewport = new ExtendViewport(250, 225, gamecam);
-        world.setContactListener(new WorldContactListener());
+        world.setContactListener(new WorldContactListener(game));
 
     }
 
@@ -116,9 +116,9 @@ public class GameScreen implements Screen {
         spriteBatch.begin();
         for (Collectables c : collect){
             Body body = c.getBody();
-
-            spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
-
+            if(body != null ) {
+                spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
+            }
 
         }
 

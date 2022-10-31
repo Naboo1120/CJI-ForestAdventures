@@ -82,7 +82,7 @@ public class TileMapHelper {
                 RectangleMapObject rectangleObject = (RectangleMapObject) mapObject;
                 Rectangle rectangle = rectangleObject.getRectangle();
                 String tempName = mapObject.getName();
-                if (tempName != null){
+                if (tempName!=null){
                     Body body = BodyHelperService.createBody(
                             rectangle.getX() + rectangle.getWidth()/2,
                             rectangle.getY()+rectangle.getHeight()/2,
@@ -91,19 +91,22 @@ public class TileMapHelper {
                             false,
                             gameScreen.getWorld()
                     );
+                    if (tempName.toLowerCase().equals("player")){
+                        Iterator<Fixture> tmp = body.getFixtureList().iterator();
+                        tmp.next().setUserData("Player Body");
+                        Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
+                        gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));
+                    }
+                    else if (tempName.equals("Carrot")) { //|| s.equals("Collectables")){
+                        gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot"));
+                        Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
+                    else if(tempName.equals("Death")){
+                        gameScreen.addDeathWall (new DeathWall(rectangle.width, rectangle.height, body));
+                        Gdx.app.log("sprites", "Death Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
 
-                if (tempName.toLowerCase().equals("player")){
-                    Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
-                    gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));
-                }
-                else if (tempName.equals("Carrot") || s.equals("Collectables")){
-                    gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot"));
-                    Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
-                }
-                else if(tempName.equals("Death")){
-                    gameScreen.addDeathWall (new DeathWall(rectangle.width, rectangle.height, body));
-                    Gdx.app.log("sprites", "Death Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
-                }
+
                 }
 
             }

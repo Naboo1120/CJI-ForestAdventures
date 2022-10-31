@@ -24,8 +24,8 @@ public class Player extends GameEntity {
         //this may be added to the create entity class
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(22/PPM);
-
+        shape.setRadius(13/PPM);
+        //fdef.filter.categoryBits =
         fdef.shape = shape;
         body.createFixture(fdef);
 
@@ -37,18 +37,6 @@ public class Player extends GameEntity {
         fdef.isSensor = true;
         body.createFixture(fdef).setUserData("head");
 
-        shape.setRadius(22/PPM);
-
-        fdef.shape = shape;
-
-
-        //fdef.filter.categoryBits =
-
-        EdgeShape feet = new EdgeShape();
-        feet.set(new Vector2(-4/PPM, 10/PPM),new Vector2(2/PPM, 5/PPM));
-        fdef.shape = feet;
-        fdef.isSensor = true;
-        body.createFixture(fdef).setUserData("playerBody");
 
 
 // can use edgeShape to define certain body parts
