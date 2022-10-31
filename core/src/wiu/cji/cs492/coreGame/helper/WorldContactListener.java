@@ -59,7 +59,7 @@ public class WorldContactListener implements ContactListener {
         }
 
 
-        int contactDef = fixA.getFilterData().categoryBits| fixB.getFilterData().categoryBits;
+        //int contactDef = fixA.getFilterData().categoryBits| fixB.getFilterData().categoryBits;
 
        // switch (contactDef){
            // case
