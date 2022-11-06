@@ -6,11 +6,8 @@ import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -20,7 +17,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import wiu.cji.cs492.Objects.*;
 import wiu.cji.cs492.coreGame.helper.Hud;
@@ -58,6 +54,7 @@ public class GameScreen implements Screen {
 
 
 
+
     public GameScreen(final ForestAdventures game){
 
         this.game = game;
@@ -69,7 +66,6 @@ public class GameScreen implements Screen {
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
-        //Creates Player
 
         //Camera
         gamecam = new OrthographicCamera();
@@ -127,15 +123,18 @@ public class GameScreen implements Screen {
 
 
 
+
+
         spriteBatch.begin();
         for (Collectables c : collect){
             Body body = c.getBody();
+            //This renders all the sprites for each object
+            c.draw(spriteBatch);
             if(body != null ) {
-                //spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
+
             }else {
                 if (! c.getCollected()){
                     hud.updateFood(1);
-
                     c.setCollected(true);
                    // c.fixture = null;
                     Gdx.app.log("food", "Food has been collected");
@@ -144,10 +143,11 @@ public class GameScreen implements Screen {
 
         }
         spriteBatch.end();
+        //Sets the projection matrix to the huds stage
         spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
-
+        //Sets the renderer to the world and uses the came screen combines camera with the scaling set. PPM
         box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
     }
