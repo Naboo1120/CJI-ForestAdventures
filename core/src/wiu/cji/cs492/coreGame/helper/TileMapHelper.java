@@ -44,7 +44,7 @@ public class TileMapHelper {
     public OrthogonalTiledMapRenderer setUpMap(){
         //grabs the objects and map files
         try {
-            tiledMap = new TmxMapLoader().load("MapAssets/Map1.1.tmx");
+            tiledMap = new TmxMapLoader().load("MapAssets/Map1.2.tmx");
         }
         catch (NullPointerException n){
             Gdx.app.log("Layers", "Map does not exist");
