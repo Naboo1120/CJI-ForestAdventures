@@ -21,6 +21,7 @@ public class Food extends Collectables{
         fixture.setUserData(null);
         this.fixture = null;
         this.collected = false;
+        this.touched = false;
 
     }
 }
