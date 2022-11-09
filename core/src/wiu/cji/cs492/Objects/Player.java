@@ -19,7 +19,7 @@ public class Player extends GameEntity {
     protected Vector2 startLocation;
     protected Texture tex;
     protected TextureRegion texRegion;
-    protected Sprite bunny;
+    protected Sprite bunnyForward, bunnyBack;
 
 
     public Player(float width, float height, Body body){
@@ -44,8 +44,11 @@ public class Player extends GameEntity {
         //Creation of the texture and sprite for the player
         tex = new Texture("PlayerAssets/bunny2.png");
         texRegion = new TextureRegion(tex,51,4,47,31);
-        bunny = new Sprite(texRegion);
-        bunny.setPosition(0,0);
+        bunnyForward = new Sprite(texRegion);
+        bunnyForward.setPosition(0,0);
+        texRegion = new TextureRegion(tex, 0,4,47,31);
+        bunnyBack = new Sprite(texRegion);
+        bunnyBack.setPosition(0,0);
 
 
 
@@ -102,7 +105,10 @@ public class Player extends GameEntity {
     public void render(SpriteBatch spriteBatch) {
         //Drawing of the player, called in the gameScreen class
         spriteBatch.begin();
-        spriteBatch.draw(bunny,body.getPosition().x*PPM - bunny.getWidth()/2, body.getPosition().y*PPM - bunny.getHeight()/2 );
+        if(velocityX>=0)
+            spriteBatch.draw(bunnyForward,body.getPosition().x*PPM - bunnyForward.getWidth()/2, body.getPosition().y*PPM - bunnyForward.getHeight()/2 );
+        else
+            spriteBatch.draw(bunnyBack,body.getPosition().x*PPM - bunnyBack.getWidth()/2, body.getPosition().y*PPM - bunnyBack.getHeight()/2 );
         spriteBatch.end();
 
     }

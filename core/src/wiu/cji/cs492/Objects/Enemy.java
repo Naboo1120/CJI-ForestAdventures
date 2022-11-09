@@ -22,7 +22,7 @@ public class Enemy extends GameEntity {
 
     public Enemy(float width, float height, Body body, int flipTime){
         super(width, height, body);
-        this.speed = 1f; // speed will be half of player
+        this.speed = 3f; // speed will be one third of players speed
         this.velocityX = 1;
         flip = flipTime; //flip time can be changed depending on length of platform
         tflip = flip;
@@ -54,7 +54,7 @@ public class Enemy extends GameEntity {
         y = body.getPosition().y;
         //walks one direction flipping every second infinitely
         body.setLinearVelocity(velocityX * -speed, velocityY);
-        if(flip<=0) {
+        if(tflip<=0) {
             this.velocityX = this.velocityX * -1;
             tflip += this.flip;
         }
