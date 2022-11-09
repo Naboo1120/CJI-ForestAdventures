@@ -130,7 +130,7 @@ public class GameScreen implements Screen {
             Body body = c.getBody();
             //This renders all the sprites for each object
             c.draw(spriteBatch);
-            if(body != null ) {
+            if(body.isActive() ) {
 
             }else {
                 if (! c.getCollected()){
