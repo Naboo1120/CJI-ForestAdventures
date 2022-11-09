@@ -31,7 +31,8 @@ public abstract class Collectables extends GameEntity {
        // body.createFixture(fdef).setUserData("food");
 
         fixture = body.createFixture(fdef);
-        if (type =="Carrot"){ // need to remove later
+
+        if (type =="Carrot"){ // id the type is carrot set this texture
             collTexture = new Texture("MapAssets/Props/Pretzel.png");
             collSprite = new Sprite(collTexture);
             collSprite.setPosition(0,0);
@@ -45,8 +46,11 @@ public abstract class Collectables extends GameEntity {
 
     }
 
-    public void render(SpriteBatch spriteBatch) {
-
+    public void draw(SpriteBatch spriteBatch) {
+        //Draws the sprite on the body for the collectables
+        if(!collected) {
+            spriteBatch.draw(collSprite, body.getPosition().x * PPM - collSprite.getWidth() / 2, body.getPosition().y * PPM - collSprite.getHeight() / 2);
+        }
     }
 
     public Boolean getCollected() {

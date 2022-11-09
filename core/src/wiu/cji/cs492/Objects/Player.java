@@ -41,6 +41,7 @@ public class Player extends GameEntity {
         fdef.isSensor = true;
         body.createFixture(fdef).setUserData("head");
 
+        //Creation of the texture and sprite for the player
         tex = new Texture("PlayerAssets/bunny2.png");
         texRegion = new TextureRegion(tex,51,4,47,31);
         bunny = new Sprite(texRegion);
