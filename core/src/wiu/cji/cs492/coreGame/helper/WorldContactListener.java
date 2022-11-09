@@ -11,6 +11,7 @@ import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 
 import wiu.cji.cs492.Objects.Collectables;
+
 import wiu.cji.cs492.Objects.DeathWall;
 import wiu.cji.cs492.Objects.Enemy;
 import wiu.cji.cs492.Objects.Player;

@@ -6,10 +6,8 @@ import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -19,13 +17,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
-import wiu.cji.cs492.Objects.Collectables;
-import wiu.cji.cs492.Objects.DeathWall;
-import wiu.cji.cs492.Objects.Enemy;
-import wiu.cji.cs492.Objects.GameEntity;
-import wiu.cji.cs492.Objects.Player;
+import wiu.cji.cs492.Objects.*;
 import wiu.cji.cs492.coreGame.helper.Hud;
 import wiu.cji.cs492.coreGame.helper.TileMapHelper;
 import wiu.cji.cs492.coreGame.helper.WorldContactListener;
@@ -38,6 +31,7 @@ public class GameScreen implements Screen {
     private World world;
 
     private Hud hud;
+
 
     //Box2d usage
     private Box2DDebugRenderer box2DDebugRenderer;
@@ -53,10 +47,12 @@ public class GameScreen implements Screen {
     //Tiled map variables
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
-    private Player player;
     private Array<Collectables> collect = new Array<Collectables>();
     private Array<DeathWall> dWalls = new Array<>();
     private Array<Enemy> enemys = new Array<>();
+    private Player player;
+
+
 
 
     public GameScreen(final ForestAdventures game){
@@ -70,13 +66,10 @@ public class GameScreen implements Screen {
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
-        //Creates Player
-
 
         //Camera
         gamecam = new OrthographicCamera();
-        //gamecam.setToOrtho(false,Constants.DEVICE_WIDTH ,Constants.DEVICE_HEIGHT );
-         viewport = new ExtendViewport(250, 225, gamecam);
+        viewport = new ExtendViewport(250, 225, gamecam);
         world.setContactListener(new WorldContactListener(game));
 
     }
@@ -91,7 +84,7 @@ public class GameScreen implements Screen {
     public void update(float delta){
         //Updates the world at 60fps
         world.step(1/60f, 6, 2);
-
+        player.update();
         //updates the camera to follow player
         gamecamUpdate();
         //This allows the camera to be combined with projection and view
@@ -99,21 +92,21 @@ public class GameScreen implements Screen {
 
         for (DeathWall d : dWalls){
             if (d.collided){
-                game.setScreen(new GameOverScreen((ForestAdventures)game));
-                dispose();
+                game.setScreen(new GameOverScreen(game));
+
             }
         }
 
         for (Enemy e : enemys){
             if (e.collided){
-                game.setScreen(new GameOverScreen((ForestAdventures)game));
-                dispose();
+                game.setScreen(new GameOverScreen(game));
+
             }
         }
 
         //Renders the map to the game camera
         orthogonalTiledMapRenderer.setView(gamecam);
-        player.update();
+
 
     }
 
@@ -122,20 +115,26 @@ public class GameScreen implements Screen {
         this.update(delta);
         ScreenUtils.clear(0,0,0.2f,0);
         orthogonalTiledMapRenderer.render();
-
-        hud.stage.draw();
+        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
 
         //Renders the objects
+        player.render(spriteBatch);
+
+
+
+
+
         spriteBatch.begin();
         for (Collectables c : collect){
             Body body = c.getBody();
-            if(body != null ) {
-                spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
+            //This renders all the sprites for each object
+            c.draw(spriteBatch);
+            if(body.isActive() ) {
+
             }else {
                 if (! c.getCollected()){
                     hud.updateFood(1);
-
                     c.setCollected(true);
                    // c.fixture = null;
                     Gdx.app.log("food", "Food has been collected");
@@ -143,16 +142,16 @@ public class GameScreen implements Screen {
             }
 
         }
-
-
-// insert Collectables here
-
         spriteBatch.end();
+        //Sets the projection matrix to the huds stage
+        spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
 
-
+        //Sets the renderer to the world and uses the came screen combines camera with the scaling set. PPM
         box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
     }
+
 
 
 
@@ -179,6 +178,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+        orthogonalTiledMapRenderer.dispose();
+        world.dispose();
+        box2DDebugRenderer.dispose();
+
 
     }
 
@@ -204,9 +207,6 @@ public class GameScreen implements Screen {
     public World getWorld() {
         return world;
     }
-    public void setPlayer(Player player){
-        this.player = player;
-    }
     public void addCollectables(Collectables collectables){
         collect.add(collectables);
         Gdx.app.log("collectables", "Collectable created");
@@ -215,6 +215,9 @@ public class GameScreen implements Screen {
         dWalls.add(d);
     }
     public void addEnemy(Enemy e){enemys.add(e);}
+    public void setPlayer(Player player){
+        this.player = player;
+    }
     public void removeCollectable(Collectables collectables){
         //???
 
