@@ -113,7 +113,7 @@ public class TileMapHelper {
                         Gdx.app.log("sprites", "Death Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
                     else if(tempName.equals("Enemy")){
-                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, 1));
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, 100));
                         Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
 

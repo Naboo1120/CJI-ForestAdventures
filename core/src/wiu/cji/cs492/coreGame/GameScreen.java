@@ -98,6 +98,7 @@ public class GameScreen implements Screen {
         }
 
         for (Enemy e : enemys){
+            e.update();
             if (e.collided){
                 game.setScreen(new GameOverScreen(game));
 

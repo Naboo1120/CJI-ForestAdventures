@@ -17,13 +17,15 @@ import wiu.cji.cs492.coreGame.GameScreen;
 
 public class Enemy extends GameEntity {
 
-    int flip=60;  //flip time is multiplied by 60
+    int flip, tflip;  //flip time is multiplied by 60
     public Boolean collided;
 
     public Enemy(float width, float height, Body body, int flipTime){
         super(width, height, body);
-        this.speed = 5f; // speed will be half of player
+        this.speed = 1f; // speed will be half of player
+        this.velocityX = 1;
         flip = flipTime; //flip time can be changed depending on length of platform
+        tflip = flip;
         collided = false;
 
         FixtureDef fdef = new FixtureDef();
@@ -51,12 +53,13 @@ public class Enemy extends GameEntity {
         x = body.getPosition().x;
         y = body.getPosition().y;
         //walks one direction flipping every second infinitely
+        body.setLinearVelocity(velocityX * -speed, velocityY);
         if(flip<=0) {
-            body.setLinearVelocity(speed*-1, 0);
-            flip += 60;
+            this.velocityX = this.velocityX * -1;
+            tflip += this.flip;
         }
         else
-            flip-=1;
+            tflip-=1;
 
 //        handleInput();
     }
