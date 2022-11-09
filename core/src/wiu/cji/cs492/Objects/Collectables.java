@@ -18,9 +18,11 @@ public abstract class Collectables extends GameEntity {
     protected Boolean collected;
     protected Texture collTexture;
     protected Sprite collSprite;
+    protected Boolean touched;
     public Collectables(float width, float height, Body body, String type) {
         super(width, height, body);
-        collected = false;
+        collected= false;
+        touched = false;
         FixtureDef fdef  = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width/50/PPM + (body.getPosition().x)/PPM , height/50/PPM + (body.getPosition().y)/PPM );
@@ -50,7 +52,7 @@ public abstract class Collectables extends GameEntity {
     public Boolean getCollected() {
         return collected;
     }
-
+public Boolean getTouched(){return  touched;}
     public void setCollected(Boolean collected) {
         this.collected = collected;
     }
