@@ -130,19 +130,21 @@ public class GameScreen implements Screen {
             Body body = c.getBody();
             //This renders all the sprites for each object
             c.draw(spriteBatch);
-            if(body.isActive() ) {
+            if(body.isActive()) {
 
-            }else {
+            }else{
                 if (! c.getCollected()){
                     hud.updateFood(1);
                     c.setCollected(true);
-                   // c.fixture = null;
+                    //c.fixture = null;
                     Gdx.app.log("food", "Food has been collected");
                 }
             }
 
         }
         spriteBatch.end();
+
+        //for()
         //Sets the projection matrix to the huds stage
         spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
