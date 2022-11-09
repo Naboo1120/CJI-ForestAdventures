@@ -127,15 +127,16 @@ public class GameScreen implements Screen {
 
         spriteBatch.begin();
         for (Collectables c : collect){
-            /// Body body = c.getBody();
-            if(!c.getTouched() ) {
-                //spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
+            Body body = c.getBody();
+            //This renders all the sprites for each object
+            c.draw(spriteBatch);
+            if(body.isActive() ) {
+
             }else {
                 if (! c.getCollected()){
                     hud.updateFood(1);
-
                     c.setCollected(true);
-                    // c.fixture = null;
+                   // c.fixture = null;
                     Gdx.app.log("food", "Food has been collected");
                 }
             }
