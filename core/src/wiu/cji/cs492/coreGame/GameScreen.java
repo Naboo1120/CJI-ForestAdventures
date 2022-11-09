@@ -127,7 +127,8 @@ public class GameScreen implements Screen {
 
         spriteBatch.begin();
         for (Collectables c : collect){
-           /// Body body = c.getBody();
+           // Body body = c.getBody();
+            c.draw(spriteBatch);
             if(!c.getTouched() ) {
                 //spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
             }else {
