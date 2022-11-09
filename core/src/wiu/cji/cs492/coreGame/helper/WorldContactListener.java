@@ -31,6 +31,7 @@ public class WorldContactListener implements ContactListener {
         Fixture fixB = contact.getFixtureB();
 
         Gdx.app.log("Begin Contact", ""+ (fixA.getUserData()== null ? fixB.getUserData(): fixB.getUserData()));
+
         if (fixA.getUserData() == "head" || fixB.getUserData() =="head"){
             Fixture head = fixA.getUserData() == "head" ? fixA:fixB;
             Fixture object = head == fixA ? fixB:fixA;
@@ -38,9 +39,10 @@ public class WorldContactListener implements ContactListener {
 
                 if (Collectables.class.isAssignableFrom(object.getUserData().getClass())) {
                     ((Collectables) object.getUserData()).onHeadHit();
+
                 }
                 if (DeathWall.class.isAssignableFrom(object.getUserData().getClass()) && Player.class.isAssignableFrom(head.getUserData().getClass())){
-                  //  ((DeathWall)object.getUserData()).onhit((Player) head.getUserData());
+                  //((DeathWall)object.getUserData()).onhit((Player) head.getUserData());
                 }
             }
         }
