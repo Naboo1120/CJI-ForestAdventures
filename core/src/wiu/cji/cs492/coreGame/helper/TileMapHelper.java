@@ -44,7 +44,7 @@ public class TileMapHelper {
     public OrthogonalTiledMapRenderer setUpMap(){
         //grabs the objects and map files
         try {
-            tiledMap = new TmxMapLoader().load("MapAssets/Map1.2.tmx");
+            tiledMap = new TmxMapLoader().load("MapAssets/Map1.1.tmx");
         }
         catch (NullPointerException n){
             Gdx.app.log("Layers", "Map does not exist");
@@ -106,6 +106,7 @@ public class TileMapHelper {
                     //}
                     else if (tempName.equals("Carrot")) { //|| s.equals("Collectables")){
                         gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot"));
+                        Gdx.app.log("Collection", "width should be "+rectangle.getWidth());
                         Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
                     else if(tempName.equals("Death")){

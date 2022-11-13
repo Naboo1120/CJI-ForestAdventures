@@ -13,24 +13,26 @@ public class DeathWall extends GameEntity{
     public Boolean collided;
     public DeathWall(float width, float height, Body body) {
         super(width, height, body);
-        collided = false;
+        this.collided = false;
         FixtureDef fdef  = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width /2/PPM + body.getPosition().x, height/2/PPM +body.getPosition().y );
+        shape.setAsBox(width /PPM , height/PPM );
         fdef.shape = shape;
-        fdef.isSensor = true;
+        fdef.isSensor=true;
+        body.setGravityScale(0);
+
 
         body.createFixture(fdef).setUserData(this);
 
-        fixture = body.createFixture(fdef);
+        this.fixture = body.createFixture(fdef);
     }
 
     @Override
     public void update() {
 
     }
-    public void onhit(){
-        collided = true;
+    public void onhit( ){
+        this.collided = true;
        // game.dispose();
         Gdx.app.log("DeathWall", "found the players fall damage lol ");
     }

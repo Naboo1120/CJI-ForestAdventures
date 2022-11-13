@@ -26,7 +26,7 @@ public class WorldContactListener implements ContactListener {
 
 
     @Override
-    public void beginContact(Contact contact) {
+    public void beginContact(Contact contact)  {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
@@ -35,12 +35,15 @@ public class WorldContactListener implements ContactListener {
             Fixture head = fixA.getUserData() == "head" ? fixA:fixB;
             Fixture object = head == fixA ? fixB:fixA;
             if (object.getUserData() != null){
-
-                if (Collectables.class.isAssignableFrom(object.getUserData().getClass())) {
-                    ((Collectables) object.getUserData()).onHeadHit();
-                }
-                if (DeathWall.class.isAssignableFrom(object.getUserData().getClass()) && Player.class.isAssignableFrom(head.getUserData().getClass())){
-                  //  ((DeathWall)object.getUserData()).onhit((Player) head.getUserData());
+                try {
+                    if (Collectables.class.isAssignableFrom(object.getUserData().getClass())) {
+                        ((Collectables) object.getUserData()).onHeadHit();
+                    }
+                    if (DeathWall.class.isAssignableFrom(object.getUserData().getClass()) && Player.class.isAssignableFrom(head.getUserData().getClass())) {
+                        ((DeathWall) object.getUserData()).onhit();
+                    }
+                }catch (NullPointerException e){
+                    Gdx.app.log("Collision", "Object no longer exsist");
                 }
             }
         }
@@ -48,17 +51,17 @@ public class WorldContactListener implements ContactListener {
             Fixture head = fixA.getUserData() == "Player Body" ? fixA:fixB;
             Fixture object = head == fixA ? fixB:fixA;
             if (object.getUserData() != null){
-                    Gdx.app.log("Death", " found this object "+object.getUserData()+ " "+ object.getUserData().getClass().toString());
+                    Gdx.app.log("Collision", " found this object "+object.getUserData()+ " "+ object.getUserData().getClass().toString());
               Object temp = object.getUserData().getClass();
                 if (Collectables.class.isAssignableFrom(object.getUserData().getClass())) {
                     ((Collectables) object.getUserData()).onHeadHit();
                 }
                 else if (DeathWall.class.isAssignableFrom(object.getUserData().getClass())){//(DeathWall.class.isAssignableFrom(object.getUserData().getClass())){
-                    Gdx.app.log("Death", " collides with player");
+                    Gdx.app.log("DeathWall", " collides with player");
                     ((DeathWall)object.getUserData()).onhit();
                 }
                 else if (Enemy.class.isAssignableFrom(object.getUserData().getClass())){//(DeathWall.class.isAssignableFrom(object.getUserData().getClass())){
-                    Gdx.app.log("Death", " Enemy collides with player");
+                    Gdx.app.log("EnemyDeath", " Enemy collides with player");
                     ((Enemy)object.getUserData()).onhit();
                 }
             }

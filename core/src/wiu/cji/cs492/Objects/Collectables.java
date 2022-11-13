@@ -25,18 +25,22 @@ public abstract class Collectables extends GameEntity {
         touched = false;
         FixtureDef fdef  = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(width/50/PPM + (body.getPosition().x)/PPM , height/50/PPM + (body.getPosition().y)/PPM );
+
+
+
+        shape.setAsBox(.3f,  .3f);
         fdef.shape = shape;
-
-       // body.createFixture(fdef).setUserData("food");
-
-        fixture = body.createFixture(fdef);
-
         if (type =="Carrot"){ // id the type is carrot set this texture
             collTexture = new Texture("MapAssets/Props/Pretzel.png");
             collSprite = new Sprite(collTexture);
             collSprite.setPosition(0,0);
         }
+        fdef.isSensor = true;
+
+       // body.createFixture(fdef).setUserData("food");
+
+        fixture = body.createFixture(fdef);
+
 
     }
     public abstract void onHeadHit();
@@ -58,6 +62,8 @@ public abstract class Collectables extends GameEntity {
     }
 public Boolean getTouched(){return  touched;}
     public void setCollected(Boolean collected) {
+        Gdx.app.log("Collectables", "Size of collection is " + width  + " with a added postion of " + (body.getPosition().x) / PPM);
+
         this.collected = collected;
     }
 
