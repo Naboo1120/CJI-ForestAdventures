@@ -31,6 +31,7 @@ public class WorldContactListener implements ContactListener {
         Fixture fixB = contact.getFixtureB();
 
         Gdx.app.log("Begin Contact", ""+ (fixA.getUserData()== null ? fixB.getUserData(): fixB.getUserData()));
+
         if (fixA.getUserData() == "head" || fixB.getUserData() =="head"){
             Fixture head = fixA.getUserData() == "head" ? fixA:fixB;
             Fixture object = head == fixA ? fixB:fixA;

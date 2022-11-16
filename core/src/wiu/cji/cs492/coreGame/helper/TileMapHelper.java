@@ -25,6 +25,7 @@ import wiu.cji.cs492.Objects.Enemy;
 import wiu.cji.cs492.Objects.Food;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
+import wiu.cji.cs492.coreGame.LevelListScreen;
 
 import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
@@ -70,7 +71,7 @@ public class TileMapHelper {
         //returns to the game screen
         return new OrthogonalTiledMapRenderer(tiledMap);
     }
-    private void getLayer( String s){
+    private void getLayer(String s){
         try{
             parseMapObjects(tiledMap.getLayers().get(s).getObjects(), s);}
         catch (NullPointerException n){
@@ -121,7 +122,7 @@ public class TileMapHelper {
                         Gdx.app.log("sprites", "Death Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
                     else if(tempName.equals("Enemy")){
-                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, 100));
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, 60));
                         Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
 

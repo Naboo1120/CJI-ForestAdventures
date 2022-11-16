@@ -19,7 +19,9 @@ public class Player extends GameEntity {
     protected Vector2 startLocation;
     protected Texture tex;
     protected TextureRegion texRegion;
-    protected Sprite bunny;
+    protected Sprite frun1, frun2, brun1, brun2, sit, bsit;
+    protected int frames = 30;
+    protected boolean forward = true;
 
 
     public Player(float width, float height, Body body){
@@ -42,10 +44,27 @@ public class Player extends GameEntity {
         body.createFixture(fdef).setUserData("head");
 
         //Creation of the texture and sprite for the player
-        tex = new Texture("PlayerAssets/bunny2.png");
-        texRegion = new TextureRegion(tex,51,4,47,31);
-        bunny = new Sprite(texRegion);
-        bunny.setPosition(0,0);
+        tex = new Texture("PlayerAssets/bunnyAni.png");
+        //        texRegion = new TextureRegion(tex,98,37,49,31);   //tester
+        texRegion = new TextureRegion(tex,147,37,47,31);  //frun1
+        frun1 = new Sprite(texRegion);
+        frun1.setPosition(0,0);
+        texRegion = new TextureRegion(tex,98,37,49,31);     //frun2
+        frun2 = new Sprite(texRegion);
+        frun2.setPosition(0,0);
+        texRegion = new TextureRegion(tex, 0,3,47,31);    //brun1
+        brun1 = new Sprite(texRegion);
+        brun1.setPosition(0,0);
+        texRegion = new TextureRegion(tex,49,3,49,31);      //brun2
+        brun2 = new Sprite(texRegion);
+        brun2.setPosition(0,0);
+        texRegion = new TextureRegion(tex,43,66,47,33);     //sit
+        sit = new Sprite(texRegion);
+        sit.setPosition(0,0);
+        texRegion = new TextureRegion(tex,0,67,42,31);     //bsit
+        bsit = new Sprite(texRegion);
+        bsit.setPosition(0,0);
+
 
 
 
@@ -102,7 +121,39 @@ public class Player extends GameEntity {
     public void render(SpriteBatch spriteBatch) {
         //Drawing of the player, called in the gameScreen class
         spriteBatch.begin();
-        spriteBatch.draw(bunny,body.getPosition().x*PPM - bunny.getWidth()/2, body.getPosition().y*PPM - bunny.getHeight()/2 );
+
+        if(body.getLinearVelocity().x==0 && body.getLinearVelocity().y ==0 && forward) {
+            spriteBatch.draw(sit, body.getPosition().x * PPM - sit.getWidth() / 2, body.getPosition().y * PPM - sit.getHeight() / 2);
+            frames = 10;
+        }
+        else if(body.getLinearVelocity().x==0 && body.getLinearVelocity().y ==0 && !forward)
+        {
+            spriteBatch.draw(bsit, body.getPosition().x * PPM - sit.getWidth() / 2, body.getPosition().y * PPM - sit.getHeight() / 2);
+            frames = 10;
+        }
+        else if(velocityX < 0) {
+            if(frames < 15)
+                spriteBatch.draw(brun1, body.getPosition().x * PPM - brun1.getWidth() / 2, body.getPosition().y * PPM - brun1.getHeight() / 2);
+            else
+                spriteBatch.draw(brun2, body.getPosition().x * PPM - brun2.getWidth() / 2, body.getPosition().y * PPM - brun2.getHeight() / 2);
+            if(frames <= 0)
+                frames +=30;
+            else
+                frames--;
+            forward = false;
+        }
+        else {
+            if(frames<15)
+                spriteBatch.draw(frun1, body.getPosition().x * PPM - frun1.getWidth() / 2, body.getPosition().y * PPM - frun1.getHeight() / 2);
+            else
+                spriteBatch.draw(frun2, body.getPosition().x * PPM - frun2.getWidth() / 2, body.getPosition().y * PPM - frun2.getHeight() / 2);
+            if(frames <= 0)
+                frames +=30;
+            else
+                frames--;
+            forward = true;
+        }
+
         spriteBatch.end();
 
     }

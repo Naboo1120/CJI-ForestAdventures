@@ -105,6 +105,8 @@ public class GameScreen implements Screen {
             }
         }
 
+
+
         //Renders the map to the game camera
         orthogonalTiledMapRenderer.setView(gamecam);
 
@@ -136,13 +138,18 @@ public class GameScreen implements Screen {
                 if (! c.getCollected()){
                     hud.updateFood(1);
                     c.setCollected(true);
-                   // c.fixture = null;
                     Gdx.app.log("food", "Food has been collected");
                 }
             }
 
         }
+        for(Enemy e : enemys){
+            Body body = e.getBody();
+            e.draw(spriteBatch);
+        }
         spriteBatch.end();
+
+        //for()
         //Sets the projection matrix to the huds stage
         spriteBatch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
