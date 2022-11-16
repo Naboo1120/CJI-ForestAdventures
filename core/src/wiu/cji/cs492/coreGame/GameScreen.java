@@ -143,6 +143,10 @@ public class GameScreen implements Screen {
             }
 
         }
+        for(Enemy e : enemys){
+            Body body = e.getBody();
+            e.draw(spriteBatch);
+        }
         spriteBatch.end();
 
         //for()

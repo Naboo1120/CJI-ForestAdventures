@@ -102,7 +102,7 @@ public class Player extends GameEntity {
     public void render(SpriteBatch spriteBatch) {
         //Drawing of the player, called in the gameScreen class
         spriteBatch.begin();
-        spriteBatch.draw(bunny,body.getPosition().x*PPM - bunny.getWidth()/2, body.getPosition().y*PPM - bunny.getHeight()/2 );
+        spriteBatch.draw(bunny,body.getPosition().x*PPM - bunny.getWidth()/2, body.getPosition().y*PPM - bunny.getHeight()/1.5f );
         spriteBatch.end();
 
     }

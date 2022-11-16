@@ -25,6 +25,7 @@ import wiu.cji.cs492.Objects.Enemy;
 import wiu.cji.cs492.Objects.Food;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
+import wiu.cji.cs492.coreGame.LevelListScreen;
 
 import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
@@ -63,7 +64,7 @@ public class TileMapHelper {
         //returns to the game screen
         return new OrthogonalTiledMapRenderer(tiledMap);
     }
-    private void getLayer( String s){
+    private void getLayer(String s){
         try{
             parseMapObjects(tiledMap.getLayers().get(s).getObjects(), s);}
         catch (NullPointerException n){
