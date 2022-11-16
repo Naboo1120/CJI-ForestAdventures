@@ -55,14 +55,14 @@ public class GameScreen implements Screen {
 
 
 
-    public GameScreen(final ForestAdventures game){
+    public GameScreen(final ForestAdventures game, String levelRequested){
 
         this.game = game;
         hud = new Hud(game.batch);
         this.spriteBatch = new SpriteBatch();
         this.world = new World(new Vector2(0,-25.3f),false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
-        this.tileMapHelper = new TileMapHelper(this);
+        this.tileMapHelper = new TileMapHelper(this, levelRequested);
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 

@@ -5,17 +5,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
-public class ForestAdventures extends Game{
+public class ForestAdventures extends Game {
 
 	//Sprite Batch for maps, items and player
 	public SpriteBatch batch;
 	public static BitmapFont font;
-
-
+	protected String levelName;
 
 
 	@Override
-	public void create () {
+	public void create() {
 
 		batch = new SpriteBatch();
 		font = new BitmapFont();
@@ -25,14 +24,21 @@ public class ForestAdventures extends Game{
 	}
 
 	@Override
-	public void render () {
+	public void render() {
 		super.render();
 
 	}
 
 	@Override
-	public void dispose () {
+	public void dispose() {
 		batch.dispose();
 		font.dispose();
+	}
+
+	public String getLevel(){
+		return levelName;
+}
+	public void  setLevel(String levelName){
+			this.levelName = levelName;
 	}
 }

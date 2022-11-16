@@ -34,17 +34,24 @@ import java.util.Locale;
 public class TileMapHelper {
     private TiledMap tiledMap;
     private GameScreen gameScreen;
+    private String levelName;
      // can create an array of maps to cycle through
 
-    public TileMapHelper(GameScreen gameScreen){
+    public TileMapHelper(GameScreen gameScreen, String levelName){
         this.gameScreen = gameScreen;
+        this.levelName = levelName;
     }
 
     //Method to render the map and objects
     public OrthogonalTiledMapRenderer setUpMap(){
         //grabs the objects and map files
         try {
-            tiledMap = new TmxMapLoader().load("MapAssets/Map1.1.tmx");
+            if (levelName != ""){
+                tiledMap = new TmxMapLoader().load(levelName+".tmx");
+            }
+            else{
+                tiledMap = new TmxMapLoader().load("MapAssets/Map1.1.tmx");
+            }
         }
         catch (NullPointerException n){
             Gdx.app.log("Layers", "Map does not exist");

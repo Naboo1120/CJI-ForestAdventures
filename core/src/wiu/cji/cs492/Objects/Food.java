@@ -27,7 +27,7 @@ public class Food extends Collectables{
 
         fixture.setUserData(null);
         body.setGravityScale(-10);
-        
+
 
 
        // this.fixture = null;

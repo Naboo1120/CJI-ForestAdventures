@@ -22,11 +22,12 @@ public class LevelListScreen implements Screen{
     private TextButton l1Button,l2Button, l3Button, l4Button, l5Button, l6Button,l7Button, l8Button, l9Button;
     private TextButton backButton;
     private BitmapFont bitmapFont;
+    private String levelName;
 
 
 
     public LevelListScreen(final ForestAdventures game){
-
+        levelName = "MapAssets/Map1.";
         this.game = game;
 
     }
@@ -128,14 +129,16 @@ public class LevelListScreen implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
         if(l1Button.isTouchFocusListener() == true){
-            game.setScreen(new GameScreen((ForestAdventures)game));
+            game.setScreen(new GameScreen((ForestAdventures)game , levelName+ 1));
             dispose();
         }
         if(l2Button.isTouchFocusListener() == true){
-
+            game.setScreen(new GameScreen((ForestAdventures)game , levelName+ 2));
+            dispose();
         }
         if(l3Button.isTouchFocusListener() == true){
-
+            //game.setScreen(new GameScreen((ForestAdventures)game , levelName+ 4));
+           // dispose();
         }
         if(l4Button.isTouchFocusListener() == true){
 
