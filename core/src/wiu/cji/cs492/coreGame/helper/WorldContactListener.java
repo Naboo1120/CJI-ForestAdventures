@@ -14,6 +14,7 @@ import wiu.cji.cs492.Objects.Collectables;
 
 import wiu.cji.cs492.Objects.DeathWall;
 import wiu.cji.cs492.Objects.Enemy;
+import wiu.cji.cs492.Objects.Finish;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.ForestAdventures;
 
@@ -65,6 +66,11 @@ public class WorldContactListener implements ContactListener {
                     Gdx.app.log("EnemyDeath", " Enemy collides with player");
                     ((Enemy)object.getUserData()).onhit();
                 }
+                else if (Finish.class.isAssignableFrom(object.getUserData().getClass())){//(DeathWall.class.isAssignableFrom(object.getUserData().getClass())){
+                    Gdx.app.log("Finish", " Finish collides with player");
+                    ((Finish)object.getUserData()).onhit();
+                }
+
             }
         }
 

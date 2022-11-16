@@ -50,6 +50,7 @@ public class GameScreen implements Screen {
     private Array<Collectables> collect = new Array<Collectables>();
     private Array<DeathWall> dWalls = new Array<>();
     private Array<Enemy> enemys = new Array<>();
+    private Array<Finish> finish = new Array<>();
     private Player player;
 
 
@@ -93,6 +94,12 @@ public class GameScreen implements Screen {
         for (DeathWall d : dWalls){
             if (d.collided){
                 game.setScreen(new GameOverScreen(game));
+
+            }
+        }
+        for (Finish f : finish){
+            if (f.collided){
+                game.setScreen(new LevelCompleteScreen(game));
 
             }
         }
@@ -221,6 +228,7 @@ public class GameScreen implements Screen {
     public void addDeathWall(DeathWall d){
         dWalls.add(d);
     }
+    public void addFinish(Finish f){finish.add(f);}
     public void addEnemy(Enemy e){enemys.add(e);}
     public void setPlayer(Player player){
         this.player = player;

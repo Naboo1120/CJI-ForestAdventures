@@ -22,6 +22,7 @@ import com.badlogic.gdx.utils.Null;
 import wiu.cji.cs492.Objects.Collectables;
 import wiu.cji.cs492.Objects.DeathWall;
 import wiu.cji.cs492.Objects.Enemy;
+import wiu.cji.cs492.Objects.Finish;
 import wiu.cji.cs492.Objects.Food;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
@@ -67,6 +68,7 @@ public class TileMapHelper {
         //parseMapObjects(tiledMap.getLayers().get("Player").getObjects());
         getLayer("Collectables");
         getLayer("Enemies");
+        // not a layer getLayer("Finish");
 
         //returns to the game screen
         return new OrthogonalTiledMapRenderer(tiledMap);
@@ -125,7 +127,10 @@ public class TileMapHelper {
                         gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, 60));
                         Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
-
+                    else if(tempName.equals("Finish")){
+                        gameScreen.addFinish (new Finish(rectangle.width, rectangle.height, body));
+                        Gdx.app.log("sprites", "Finish Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
 
                 }
 

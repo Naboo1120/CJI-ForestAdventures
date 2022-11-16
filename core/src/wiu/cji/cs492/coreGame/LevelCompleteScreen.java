@@ -98,6 +98,12 @@ public class LevelCompleteScreen implements Screen{
 
         if(nextLevelButton.isTouchFocusListener() == true){
             // next level needs to load in
+            String levelName = game.getLevel();
+            int s = Integer.parseInt(levelName.substring(15)) + 1;
+
+            game.setScreen(new GameScreen((ForestAdventures) game, "MapAssets/Map1." + s));
+            game.setLevel(levelName + s);
+            dispose();
         }
 
         if(mainMenuButton.isTouchFocusListener() == true){
