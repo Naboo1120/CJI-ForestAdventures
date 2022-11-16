@@ -123,14 +123,16 @@ public class LevelListScreen implements Screen{
 
     }
     private void choseLevel(int s ){
-        try{
+        if(s<3) { //replace with a level completed var.
+            try {
 
-        game.setScreen(new GameScreen((ForestAdventures)game , levelName+ s));
-        game.setLevel(levelName+ s);
-        dispose();}
-        catch(Exception e){
+                game.setScreen(new GameScreen((ForestAdventures) game, levelName + s));
+                game.setLevel(levelName + s);
+                dispose();
+            } catch (Exception e) {
+                Gdx.app.log("boop", "" + e.getLocalizedMessage());
 
-
+            }
         }
     }
 
@@ -139,6 +141,7 @@ public class LevelListScreen implements Screen{
         //calls any act method to the actors on stage
         stage.act(delta);
         //Will chnage screens when the button is pressed
+
         if(l1Button.isTouchFocusListener() == true){
             choseLevel(1);
         }
@@ -146,26 +149,25 @@ public class LevelListScreen implements Screen{
             choseLevel(2);
         }
         if(l3Button.isTouchFocusListener() == true){
-            //game.setScreen(new GameScreen((ForestAdventures)game , levelName+ 4));
-           // dispose();
+            choseLevel(3);
         }
         if(l4Button.isTouchFocusListener() == true){
-
+            choseLevel(4);
         }
         if(l5Button.isTouchFocusListener() == true){
-
+            choseLevel(5);
         }
         if(l6Button.isTouchFocusListener() == true){
-
+            choseLevel(6);
         }
         if(l7Button.isTouchFocusListener() == true){
-
+            choseLevel(7);
         }
         if(l8Button.isTouchFocusListener() == true){
-
+            choseLevel(8);
         }
         if(l9Button.isTouchFocusListener() == true){
-
+            choseLevel(9);
         }
 
         if(backButton.isTouchFocusListener() == true){
