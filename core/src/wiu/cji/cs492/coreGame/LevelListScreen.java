@@ -122,6 +122,17 @@ public class LevelListScreen implements Screen{
 
 
     }
+    private void choseLevel(int s ){
+        try{
+
+        game.setScreen(new GameScreen((ForestAdventures)game , levelName+ s));
+        game.setLevel(levelName+ s);
+        dispose();}
+        catch(Exception e){
+
+
+        }
+    }
 
     //Used to separate logic from rendering
     public void update(float delta){
@@ -129,12 +140,10 @@ public class LevelListScreen implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
         if(l1Button.isTouchFocusListener() == true){
-            game.setScreen(new GameScreen((ForestAdventures)game , levelName+ 1));
-            dispose();
+            choseLevel(1);
         }
         if(l2Button.isTouchFocusListener() == true){
-            game.setScreen(new GameScreen((ForestAdventures)game , levelName+ 2));
-            dispose();
+            choseLevel(2);
         }
         if(l3Button.isTouchFocusListener() == true){
             //game.setScreen(new GameScreen((ForestAdventures)game , levelName+ 4));
