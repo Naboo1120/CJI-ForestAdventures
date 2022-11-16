@@ -102,7 +102,7 @@ public class LevelCompleteScreen implements Screen{
             int s = Integer.parseInt(levelName.substring(15)) + 1;
 
             game.setScreen(new GameScreen((ForestAdventures) game, "MapAssets/Map1." + s));
-            game.setLevel(levelName + s);
+            game.setLevel("MapAssets/Map1." + s);
             dispose();
         }
 
