@@ -19,6 +19,9 @@ public class Enemy extends GameEntity {
 
     int flip, tflip;  //flip time is multiplied by 60
     public Boolean collided;
+    public Texture enemyTex;
+    public TextureRegion enemyTexReg;
+    public Sprite enemySprite;
 
     public Enemy(float width, float height, Body body, int flipTime){
         super(width, height, body);
@@ -41,6 +44,11 @@ public class Enemy extends GameEntity {
         fdef.shape = head;
         fdef.isSensor = true;
         body.createFixture(fdef).setUserData(this);
+
+        enemyTex = new Texture("EnemyAssets/fox-NESW.png");
+        enemyTexReg = new TextureRegion(enemyTex,0,106,45,22);
+        enemySprite = new Sprite(enemyTexReg);
+        enemySprite.setPosition(0,0);
 
     }
     public void handleInput(){      //in case of input
@@ -70,9 +78,7 @@ public class Enemy extends GameEntity {
         Gdx.app.log("Enemy", "found the player was attacked ");
     }
 
-    @Override
-    public void render(SpriteBatch spriteBatch) {
-
-
+    public void draw(SpriteBatch spriteBatch) {
+        spriteBatch.draw(enemySprite,  body.getPosition().x * PPM - enemySprite.getWidth() / 2, body.getPosition().y * PPM - enemySprite.getHeight() / 4);
     }
 }

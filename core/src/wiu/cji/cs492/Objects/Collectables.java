@@ -18,7 +18,6 @@ public abstract class Collectables extends GameEntity {
     protected Boolean collected;
     protected Texture collTexture;
     protected Sprite collSprite;
-    protected  Boolean touched;
     public Collectables(float width, float height, Body body, String type) {
         super(width, height, body);
         collected = false;
@@ -26,7 +25,7 @@ public abstract class Collectables extends GameEntity {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width/50/PPM + (body.getPosition().x)/PPM , height/50/PPM + (body.getPosition().y)/PPM );
         fdef.shape = shape;
-        //body.createFixture(fdef).setUserData("food");
+
 
         fixture = body.createFixture(fdef);
 
@@ -56,7 +55,6 @@ public abstract class Collectables extends GameEntity {
         return collected;
     }
 
-    public Boolean getTouched(){return  touched;}
 
     public void setCollected(Boolean collected) {
         this.collected = collected;
@@ -65,4 +63,6 @@ public abstract class Collectables extends GameEntity {
     public Texture getTexture(){
         return this.texture;
     }
+
+
 }

@@ -121,6 +121,7 @@ public class Player extends GameEntity {
     public void render(SpriteBatch spriteBatch) {
         //Drawing of the player, called in the gameScreen class
         spriteBatch.begin();
+
         if(body.getLinearVelocity().x==0 && body.getLinearVelocity().y ==0 && forward) {
             spriteBatch.draw(sit, body.getPosition().x * PPM - sit.getWidth() / 2, body.getPosition().y * PPM - sit.getHeight() / 2);
             frames = 10;
@@ -152,6 +153,7 @@ public class Player extends GameEntity {
                 frames--;
             forward = true;
         }
+
         spriteBatch.end();
 
     }
