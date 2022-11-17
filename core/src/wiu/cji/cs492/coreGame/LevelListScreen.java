@@ -22,11 +22,12 @@ public class LevelListScreen implements Screen{
     private TextButton l1Button,l2Button, l3Button, l4Button, l5Button, l6Button,l7Button, l8Button, l9Button;
     private TextButton backButton;
     private BitmapFont bitmapFont;
+    private String levelName;
 
 
 
     public LevelListScreen(final ForestAdventures game){
-
+        levelName = "MapAssets/Map1.";
         this.game = game;
 
     }
@@ -121,39 +122,52 @@ public class LevelListScreen implements Screen{
 
 
     }
+    private void choseLevel(int s ){
+        if(s<3) { //replace with a level completed var.
+            try {
+
+                game.setScreen(new GameScreen((ForestAdventures) game, levelName + s));
+                game.setLevel(levelName + s);
+                dispose();
+            } catch (Exception e) {
+                Gdx.app.log("boop", "" + e.getLocalizedMessage());
+
+            }
+        }
+    }
 
     //Used to separate logic from rendering
     public void update(float delta){
         //calls any act method to the actors on stage
         stage.act(delta);
         //Will chnage screens when the button is pressed
+
         if(l1Button.isTouchFocusListener() == true){
-            game.setScreen(new GameScreen((ForestAdventures)game));
-            dispose();
+            choseLevel(1);
         }
         if(l2Button.isTouchFocusListener() == true){
-
+            choseLevel(2);
         }
         if(l3Button.isTouchFocusListener() == true){
-
+            choseLevel(3);
         }
         if(l4Button.isTouchFocusListener() == true){
-
+            choseLevel(4);
         }
         if(l5Button.isTouchFocusListener() == true){
-
+            choseLevel(5);
         }
         if(l6Button.isTouchFocusListener() == true){
-
+            choseLevel(6);
         }
         if(l7Button.isTouchFocusListener() == true){
-
+            choseLevel(7);
         }
         if(l8Button.isTouchFocusListener() == true){
-
+            choseLevel(8);
         }
         if(l9Button.isTouchFocusListener() == true){
-
+            choseLevel(9);
         }
 
         if(backButton.isTouchFocusListener() == true){
