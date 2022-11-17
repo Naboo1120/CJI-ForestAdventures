@@ -2,6 +2,8 @@ package wiu.cji.cs492.coreGame.helper;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ai.steer.behaviors.Jump;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -82,8 +84,6 @@ public class Hud implements Disposable {
         jumpButton = new TextButton("JUMP", jumpButtonStyle);
         jumpButton.setPosition(0,0);
 
-
-
         //Creation of the label "%03d" means the length of the label
         foodLabel = new Label(String.format("%03d", foodCount), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         foodLabel.setFontScale(4);
@@ -113,6 +113,7 @@ public class Hud implements Disposable {
         }
         if(jumpButton.isPressed()) {
                 return 2;
+
         }
 
 

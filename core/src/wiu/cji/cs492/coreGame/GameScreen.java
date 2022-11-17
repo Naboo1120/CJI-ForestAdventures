@@ -5,6 +5,7 @@ import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -53,7 +54,7 @@ public class GameScreen implements Screen {
     private Array<Finish> finish = new Array<>();
     private Player player;
 
-
+    private Sound FaintSound;
 
 
     public GameScreen(final ForestAdventures game, String levelRequested){
@@ -67,6 +68,7 @@ public class GameScreen implements Screen {
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
+        FaintSound = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/FaintSound.mp3"));
 
         //Camera
         gamecam = new OrthographicCamera();
@@ -93,6 +95,8 @@ public class GameScreen implements Screen {
 
         for (DeathWall d : dWalls){
             if (d.collided){
+                long id = FaintSound.play(1f);
+                FaintSound.setLooping(id,false);
                 game.setScreen(new GameOverScreen(game));
 
             }
@@ -107,6 +111,8 @@ public class GameScreen implements Screen {
         for (Enemy e : enemys){
             e.update();
             if (e.collided){
+                long id = FaintSound.play(1f);
+                FaintSound.setLooping(id,false);
                 game.setScreen(new GameOverScreen(game));
 
             }
