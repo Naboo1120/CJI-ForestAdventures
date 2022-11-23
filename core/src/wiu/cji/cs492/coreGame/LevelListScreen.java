@@ -123,7 +123,7 @@ public class LevelListScreen implements Screen{
 
     }
     private void choseLevel(int s ){
-        if(s<3) { //replace with a level completed var.
+        if(s<4) { //replace with a level completed var.
             try {
 
                 game.setScreen(new GameScreen((ForestAdventures) game, levelName + s));
