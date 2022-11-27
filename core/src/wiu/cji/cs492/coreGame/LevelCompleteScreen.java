@@ -1,5 +1,7 @@
 package wiu.cji.cs492.coreGame;
 
+import static wiu.cji.cs492.coreGame.helper.Constants.AVAILABLE_LEVELS;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -100,10 +102,12 @@ public class LevelCompleteScreen implements Screen{
             // next level needs to load in
             String levelName = game.getLevel();
             int s = Integer.parseInt(levelName.substring(15)) + 1;
+            if (s<= AVAILABLE_LEVELS){
+                game.setScreen(new GameScreen((ForestAdventures) game, "MapAssets/Map1." + s));
+                game.setLevel("MapAssets/Map1." + s);
+                dispose();
+            }
 
-            game.setScreen(new GameScreen((ForestAdventures) game, "MapAssets/Map1." + s));
-            game.setLevel("MapAssets/Map1." + s);
-            dispose();
         }
 
         if(mainMenuButton.isTouchFocusListener() == true){
