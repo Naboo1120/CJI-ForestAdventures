@@ -1,6 +1,7 @@
 package wiu.cji.cs492.coreGame.helper;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -15,6 +16,7 @@ import wiu.cji.cs492.Objects.Collectables;
 import wiu.cji.cs492.Objects.DeathWall;
 import wiu.cji.cs492.Objects.Enemy;
 import wiu.cji.cs492.Objects.Finish;
+import wiu.cji.cs492.Objects.Food;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.ForestAdventures;
 
@@ -55,9 +57,14 @@ public class WorldContactListener implements ContactListener {
             if (object.getUserData() != null){
                     Gdx.app.log("Collision", " found this object "+object.getUserData()+ " "+ object.getUserData().getClass().toString());
               Object temp = object.getUserData().getClass();
-                if (Collectables.class.isAssignableFrom(object.getUserData().getClass())) {
-                    ((Collectables) object.getUserData()).onHeadHit();
-                }
+                if (Food.class.isAssignableFrom(object.getUserData().getClass())) {
+                    Vector2 v = new Vector2(1,1);
+                    if (Player.class.isAssignableFrom(head.getUserData().getClass())){
+                        v = ((Player)(head.getUserData())).getBody().getLinearVelocity();
+                    }
+
+                    ((Food) object.getUserData()).onHeadHits(v);
+            }
                 else if (DeathWall.class.isAssignableFrom(object.getUserData().getClass())){//(DeathWall.class.isAssignableFrom(object.getUserData().getClass())){
                     Gdx.app.log("DeathWall", " collides with player");
                     ((DeathWall)object.getUserData()).onhit();
@@ -89,7 +96,7 @@ public class WorldContactListener implements ContactListener {
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
-
+        //contact.setEnabled(false);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package wiu.cji.cs492.coreGame;
 
+import static wiu.cji.cs492.coreGame.helper.Constants.AVAILABLE_LEVELS;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -82,6 +84,7 @@ public class LevelListScreen implements Screen{
         l9Button = new TextButton("Level 9", textButtonStyle);
         l9Button.pad(9);
 
+
         //we will add more when levels are made
 
         backButton = new TextButton("Main Menu", textButtonStyle);
@@ -123,7 +126,7 @@ public class LevelListScreen implements Screen{
 
     }
     private void choseLevel(int s ){
-        if(s<3) { //replace with a level completed var.
+        if(s<= AVAILABLE_LEVELS) { //replace with a level completed var.
             try {
 
                 game.setScreen(new GameScreen((ForestAdventures) game, levelName + s));
