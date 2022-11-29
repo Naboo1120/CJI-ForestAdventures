@@ -2,6 +2,7 @@ package wiu.cji.cs492.coreGame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class LevelCompleteScreen implements Screen{
     final ForestAdventures game;
@@ -19,8 +21,9 @@ public class LevelCompleteScreen implements Screen{
     private TextureAtlas atlas;
     private TextButton nextLevelButton;
     private TextButton mainMenuButton;
-    private TextArea playerScore;
     private BitmapFont bitmapFont;
+    private String playerScore;
+    private Label foodLabel;
 
 
     public LevelCompleteScreen(final ForestAdventures game){
@@ -65,6 +68,11 @@ public class LevelCompleteScreen implements Screen{
 
         mainMenuButton = new TextButton("Main Menu", textButtonStyle);
         mainMenuButton.pad(20);
+
+        //String for food collection
+        playerScore = String.valueOf(Hud.getFoodCount());
+
+        foodLabel = new Label("Good Job! \n Food Collected : "+ playerScore,new Label.LabelStyle(bitmapFont, Color.WHITE));
 
         //Adding the button to the table and table to the stage
         refresh();
@@ -117,7 +125,7 @@ public class LevelCompleteScreen implements Screen{
         //Adding the button to the table and table to the stage
         table.clear();
         table.add(nextLevelButton).left().pad(20);
-        table.add(playerScore).pad(20);
+        table.add(foodLabel).pad(20);
         table.add(mainMenuButton).pad(20);
         stage.clear();
         stage.addActor(table);

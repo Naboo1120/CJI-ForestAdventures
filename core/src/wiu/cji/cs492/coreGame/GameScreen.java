@@ -116,6 +116,7 @@ public class GameScreen implements Screen {
         for (Enemy e : enemys){
             e.update();
             if (e.collided){
+
                 FaintSound.play();
                 FaintSound.setLooping(false);
                 while (FaintSound.isPlaying())
