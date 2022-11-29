@@ -25,7 +25,7 @@ public class Hud implements Disposable {
     public static Stage stage;
     private Viewport viewport;
 
-    private Integer foodCount;
+    private static Integer foodCount;
 
     public Integer movement;
 
@@ -119,6 +119,9 @@ public class Hud implements Disposable {
         return 0;
     }
 
+    public static Integer getFoodCount() {
+        return foodCount;
+    }
 
     @Override
     public void dispose() {
