@@ -25,14 +25,16 @@ public class Enemy extends GameEntity {
     protected Sprite frun1, frun2, brun1, brun2;
     protected int frames = 30;
     protected boolean forward = true;
+    protected String eType;
 
-    public Enemy(float width, float height, Body body, int flipTime){
+    public Enemy(float width, float height, Body body, String type, int flipTime){
         super(width, height, body);
         this.speed = 3f; // speed will be one third of players speed
         this.velocityX = 1;
         flip = flipTime; //flip time can be changed depending on length of platform
         tflip = flip;
         collided = false;
+        eType = type;
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();

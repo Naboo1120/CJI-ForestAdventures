@@ -119,12 +119,30 @@ public class TileMapHelper {
                         Gdx.app.log("Collection", "width should be "+rectangle.getWidth());
                         Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
+                    else if (tempName.equals("Acorn")) { //|| s.equals("Collectables")){
+                        gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Acorn"));
+                        Gdx.app.log("Collection", "width should be "+rectangle.getWidth());
+                        Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
+                    else if (tempName.equals("Trash")) { //|| s.equals("Collectables")){
+                        gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Trash"));
+                        Gdx.app.log("Collection", "width should be "+rectangle.getWidth());
+                        Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
                     else if(tempName.equals("Death")){
                         gameScreen.addDeathWall (new DeathWall(rectangle.width, rectangle.height, body));
                         Gdx.app.log("sprites", "Death Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
-                    else if(tempName.equals("Enemy")){
-                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, 60));
+                    else if(tempName.equals("Fox")){
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Fox", 60));
+                        Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
+                    else if(tempName.equals("Snake")){
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Snake", 60));
+                        Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
+                    else if(tempName.equals("Wolf")){
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Wolf", 60));
                         Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
                     else if(tempName.equals("Finish")){
