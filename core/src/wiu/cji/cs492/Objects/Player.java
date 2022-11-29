@@ -2,6 +2,9 @@ package wiu.cji.cs492.Objects;
 
 import static wiu.cji.cs492.coreGame.helper.Constants.PPM;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ai.steer.behaviors.Jump;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,6 +25,7 @@ public class Player extends GameEntity {
     protected Sprite frun1, frun2, brun1, brun2, sit, bsit;
     protected int frames = 30;
     protected boolean forward = true;
+    private Sound JumpSound;
 
 
     public Player(float width, float height, Body body){
@@ -34,8 +38,7 @@ public class Player extends GameEntity {
         shape.setRadius(13/PPM);
         //fdef.filter.categoryBits =
 
-
-        //fdef.filter.categoryBits =
+        JumpSound = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/JumpSound.mp3"));
 
         EdgeShape head = new EdgeShape();
         head.set(new Vector2(-2/PPM, 10/PPM),new Vector2(2/PPM, 5/PPM));
@@ -88,6 +91,8 @@ public class Player extends GameEntity {
                 float force = body.getMass() * 15;
                 body.setLinearVelocity(body.getLinearVelocity().x, 0); // might need a debounce
                 body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
+                long id = JumpSound.play(1f);
+                JumpSound.setLooping(id,false);
             }
         }
         else{
