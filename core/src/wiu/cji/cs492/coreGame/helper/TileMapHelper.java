@@ -22,6 +22,7 @@ import com.badlogic.gdx.utils.Null;
 import wiu.cji.cs492.Objects.Collectables;
 import wiu.cji.cs492.Objects.DeathWall;
 import wiu.cji.cs492.Objects.Enemy;
+import wiu.cji.cs492.Objects.Finish;
 import wiu.cji.cs492.Objects.Food;
 import wiu.cji.cs492.Objects.Player;
 import wiu.cji.cs492.coreGame.GameScreen;
@@ -35,17 +36,24 @@ import java.util.Locale;
 public class TileMapHelper {
     private TiledMap tiledMap;
     private GameScreen gameScreen;
+    private String levelName;
      // can create an array of maps to cycle through
 
-    public TileMapHelper(GameScreen gameScreen){
+    public TileMapHelper(GameScreen gameScreen, String levelName){
         this.gameScreen = gameScreen;
+        this.levelName = levelName;
     }
 
     //Method to render the map and objects
     public OrthogonalTiledMapRenderer setUpMap(){
         //grabs the objects and map files
         try {
-            tiledMap = new TmxMapLoader().load("MapAssets/Map1.1.tmx");
+            if (levelName != ""){
+                tiledMap = new TmxMapLoader().load(levelName+".tmx");
+            }
+            else{
+                tiledMap = new TmxMapLoader().load("MapAssets/Map1.1.tmx");
+            }
         }
         catch (NullPointerException n){
             Gdx.app.log("Layers", "Map does not exist");
@@ -60,6 +68,7 @@ public class TileMapHelper {
         //parseMapObjects(tiledMap.getLayers().get("Player").getObjects());
         getLayer("Collectables");
         getLayer("Enemies");
+        // not a layer getLayer("Finish");
 
         //returns to the game screen
         return new OrthogonalTiledMapRenderer(tiledMap);
@@ -107,6 +116,7 @@ public class TileMapHelper {
                     //}
                     else if (tempName.equals("Carrot")) { //|| s.equals("Collectables")){
                         gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Carrot"));
+                        Gdx.app.log("Collection", "width should be "+rectangle.getWidth());
                         Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
                     else if(tempName.equals("Death")){
@@ -117,7 +127,10 @@ public class TileMapHelper {
                         gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, 60));
                         Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
-
+                    else if(tempName.equals("Finish")){
+                        gameScreen.addFinish (new Finish(rectangle.width, rectangle.height, body));
+                        Gdx.app.log("sprites", "Finish Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
 
                 }
 

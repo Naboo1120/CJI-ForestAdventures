@@ -8,10 +8,10 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-public class DeathWall extends GameEntity{
+public class Finish extends GameEntity{
     protected Fixture fixture;
     public Boolean collided;
-    public DeathWall(float width, float height, Body body) {
+    public Finish(float width, float height, Body body) {
         super(width, height, body);
         this.collided = false;
         FixtureDef fdef  = new FixtureDef();

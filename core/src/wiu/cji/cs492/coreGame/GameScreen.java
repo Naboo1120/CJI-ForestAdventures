@@ -50,19 +50,20 @@ public class GameScreen implements Screen {
     private Array<Collectables> collect = new Array<Collectables>();
     private Array<DeathWall> dWalls = new Array<>();
     private Array<Enemy> enemys = new Array<>();
+    private Array<Finish> finish = new Array<>();
     private Player player;
 
 
 
 
-    public GameScreen(final ForestAdventures game){
+    public GameScreen(final ForestAdventures game, String levelRequested){
 
         this.game = game;
         hud = new Hud(game.batch);
         this.spriteBatch = new SpriteBatch();
         this.world = new World(new Vector2(0,-25.3f),false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
-        this.tileMapHelper = new TileMapHelper(this);
+        this.tileMapHelper = new TileMapHelper(this, levelRequested);
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
@@ -93,6 +94,12 @@ public class GameScreen implements Screen {
         for (DeathWall d : dWalls){
             if (d.collided){
                 game.setScreen(new GameOverScreen(game));
+
+            }
+        }
+        for (Finish f : finish){
+            if (f.collided){
+                game.setScreen(new LevelCompleteScreen(game));
 
             }
         }
@@ -130,12 +137,11 @@ public class GameScreen implements Screen {
 
         spriteBatch.begin();
         for (Collectables c : collect){
-            Body body = c.getBody();
-            //This renders all the sprites for each object
+           // Body body = c.getBody();
             c.draw(spriteBatch);
-            if(body.isActive()) {
-
-            }else{
+            if(!c.getTouched() ) {
+                //spriteBatch.draw(c.getTexture(), body.getPosition().x, body.getPosition().y);
+            }else {
                 if (! c.getCollected()){
                     hud.updateFood(1);
                     c.setCollected(true);
@@ -222,6 +228,7 @@ public class GameScreen implements Screen {
     public void addDeathWall(DeathWall d){
         dWalls.add(d);
     }
+    public void addFinish(Finish f){finish.add(f);}
     public void addEnemy(Enemy e){enemys.add(e);}
     public void setPlayer(Player player){
         this.player = player;

@@ -14,6 +14,8 @@ public class ForestAdventures extends Game{
 	public static BitmapFont font;
 
 	public Prefs prefs;
+	protected String levelName;
+
 
 	@Override
 	public void create () {
@@ -37,5 +39,12 @@ public class ForestAdventures extends Game{
 	public void dispose () {
 		batch.dispose();
 		font.dispose();
+	}
+
+	public String getLevel(){
+		return levelName;
+}
+	public void  setLevel(String levelName){
+			this.levelName = levelName;
 	}
 }
