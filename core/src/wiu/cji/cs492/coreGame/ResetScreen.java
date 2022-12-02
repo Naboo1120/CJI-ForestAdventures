@@ -108,7 +108,16 @@ public class ResetScreen implements Screen{
 
         if(YesButton.isTouchFocusListener() == true){
             // Reset all progress in save file
-
+            game.prefs.getGameSaveData().putInteger("level1", 0);
+            game.prefs.getGameSaveData().putInteger("level2", 0);
+            game.prefs.getGameSaveData().putInteger("level3", 0);
+            game.prefs.getGameSaveData().putInteger("level4", 0);
+            game.prefs.getGameSaveData().putInteger("level5", 0);
+            game.prefs.getGameSaveData().putInteger("level6", 0);
+            game.prefs.getGameSaveData().putInteger("level7", 0);
+            game.prefs.getGameSaveData().putInteger("level8", 0);
+            game.prefs.getGameSaveData().putInteger("level9", 0);
+            game.prefs.getGameSaveData().flush();
 
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();

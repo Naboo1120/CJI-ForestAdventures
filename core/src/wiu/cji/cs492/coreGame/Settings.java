@@ -121,7 +121,7 @@ public class Settings implements Screen{
             dispose();
         }
 
-        if(backButton.isTouchFocusListener() == true){
+        if(resetButton.isTouchFocusListener() == true){
             game.setScreen(new ResetScreen((ForestAdventures)game));
             dispose();
         }
@@ -133,6 +133,7 @@ public class Settings implements Screen{
         //Adding the button to the table and table to the stage
         table.clear();
         table.add(musicButton).left().pad(20);
+        table.add(resetButton).pad(20);
         table.add(backButton).pad(20);
         stage.clear();
         stage.addActor(table);
