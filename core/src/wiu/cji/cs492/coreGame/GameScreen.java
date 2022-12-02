@@ -69,7 +69,7 @@ public class GameScreen implements Screen {
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
-        FaintSound = Gdx.audio.newMusic(Gdx.files.internal("SoundEffects/FaintSound.mp3"));
+        FaintSound = Gdx.audio.newMusic(Gdx.files.internal("SoundEffects/FaintSound1.mp3"));
 
         //Camera
         gamecam = new OrthographicCamera();
