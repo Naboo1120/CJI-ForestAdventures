@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="515" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="305">
+<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="515" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="306">
  <tileset firstgid="1" source="back.tsx"/>
  <tileset firstgid="136" source="far.tsx"/>
  <tileset firstgid="301" source="tileset.tsx"/>
@@ -294,10 +294,18 @@
    <polygon points="0,0 192,0 192,48 0,48"/>
   </object>
  </objectgroup>
- <objectgroup id="9" name="Enemies" offsetx="80" offsety="-16">
-  <object id="165" name="Wolf" x="6062" y="254"/>
-  <object id="275" name="Wolf" x="7623" y="249"/>
-  <object id="276" name="Wolf" x="7118" y="247"/>
-  <object id="277" name="Wolf" x="643" y="215"/>
+ <objectgroup id="9" name="Enemies" offsetx="1.33333" offsety="-10.6667">
+  <object id="165" name="Wolf" x="6160.67" y="244.667"/>
+  <object id="275" name="Wolf" x="7736.33" y="262.333"/>
+  <object id="276" name="Wolf" x="7118" y="247">
+   <properties>
+    <property name="WalkTime" type="float" value="0.5"/>
+   </properties>
+  </object>
+  <object id="277" name="Wolf" x="724.333" y="217.667">
+   <properties>
+    <property name="WalkTime" type="float" value="0.1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
