@@ -146,7 +146,7 @@
  </objectgroup>
  <objectgroup id="9"/>
  <objectgroup id="8" name="Player">
-  <object id="36" name="Player" x="200.42" y="221.33" width="27.5" height="25.75"/>
+  <object id="36" name="Squirrel" x="200.42" y="221.33" width="27.5" height="25.75"/>
  </objectgroup>
  <objectgroup id="11" name="Ground Object">
   <object id="224" name="top" x="34.7171" y="49.7598" width="8250" height="40"/>

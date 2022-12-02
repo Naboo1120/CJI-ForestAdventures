@@ -51,7 +51,53 @@ public class Enemy extends GameEntity {
         body.createFixture(fdef).setUserData(this);
 
         //load enemy skins
-        enemyTex = new Texture("EnemyAssets/fox-NESW.png");
+        if(type.equals("Fox")) {
+            enemyTex = new Texture("EnemyAssets/fox-NESW.png");
+            enemyTexReg = new TextureRegion(enemyTex,0,108,45,28);
+            brun1 = new Sprite(enemyTexReg);
+            brun1.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,100,108,45,28);
+            brun2 = new Sprite(enemyTexReg);
+            brun2.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,0,230,45,28);
+            frun1 = new Sprite(enemyTexReg);
+            frun1.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,100,230,45,28);
+            frun2 = new Sprite(enemyTexReg);
+            frun2.setPosition(0,0);
+        }
+        else if(type.equals("Snake"))
+        {
+            enemyTex = new Texture("EnemyAssets/Snake.png");
+            enemyTexReg = new TextureRegion(enemyTex,5,5,10,10);
+            brun1 = new Sprite(enemyTexReg);
+            brun1.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,100,108,45,28);
+            brun2 = new Sprite(enemyTexReg);
+            brun2.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,0,230,45,28);
+            frun1 = new Sprite(enemyTexReg);
+            frun1.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,100,230,45,28);
+            frun2 = new Sprite(enemyTexReg);
+            frun2.setPosition(0,0);
+        }
+        else if(type.equals("Wolf"))
+        {
+            enemyTex = new Texture("EnemyAssets/Wolf.png");
+            enemyTexReg = new TextureRegion(enemyTex,0,0,45,28);
+            brun1 = new Sprite(enemyTexReg);
+            brun1.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,100,0,45,28);
+            brun2 = new Sprite(enemyTexReg);
+            brun2.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,0,0,45,28);
+            frun1 = new Sprite(enemyTexReg);
+            frun1.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,100,0,45,28);
+            frun2 = new Sprite(enemyTexReg);
+            frun2.setPosition(0,0);
+        }
         // set all enemy skins
         enemyTexReg = new TextureRegion(enemyTex,0,108,45,28);
         brun1 = new Sprite(enemyTexReg);

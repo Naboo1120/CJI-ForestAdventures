@@ -148,7 +148,7 @@
  </objectgroup>
  <objectgroup id="9"/>
  <objectgroup id="8" name="Player" offsetx="80" offsety="-16">
-  <object id="36" name="Player" x="126.417" y="271.333" width="27.5" height="25.75"/>
+  <object id="36" name="Raccoon" x="126.417" y="271.333" width="27.5" height="25.75"/>
  </objectgroup>
  <objectgroup id="11" name="Ground Object">
   <object id="224" name="top" x="34.7171" y="49.7598" width="8250" height="40"/>

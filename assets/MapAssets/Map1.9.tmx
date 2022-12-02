@@ -157,7 +157,7 @@
   <object id="135" name="Death" x="-105.061" y="362.758" width="9080" height="30"/>
  </objectgroup>
  <objectgroup id="8" name="Player">
-  <object id="36" name="Player" x="220" y="250" width="27.5" height="25.75"/>
+  <object id="36" name="Raccoon" x="220" y="250" width="27.5" height="25.75"/>
  </objectgroup>
  <objectgroup id="9"/>
  <objectgroup id="11" name="Ground Object">

@@ -26,9 +26,10 @@ public class Player extends GameEntity {
     protected int frames = 30;
     protected boolean forward = true;
     private Sound JumpSound;
+    public String playerType;
 
 
-    public Player(float width, float height, Body body){
+    public Player(float width, float height, Body body, String type){
         super(width, height, body);
         this.speed = 10f;
         startLocation = body.getPosition();
@@ -36,6 +37,7 @@ public class Player extends GameEntity {
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(13/PPM);
+        playerType = type;
         //fdef.filter.categoryBits =
 
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("SoundEffects/JumpSound.mp3"));
@@ -47,27 +49,72 @@ public class Player extends GameEntity {
         body.createFixture(fdef).setUserData("head");
 
         //Creation of the texture and sprite for the player
-        tex = new Texture("PlayerAssets/bunnyAni.png");
-        //        texRegion = new TextureRegion(tex,98,37,49,31);   //tester
-        texRegion = new TextureRegion(tex,147,37,47,31);  //frun1
-        frun1 = new Sprite(texRegion);
-        frun1.setPosition(0,0);
-        texRegion = new TextureRegion(tex,98,37,49,31);     //frun2
-        frun2 = new Sprite(texRegion);
-        frun2.setPosition(0,0);
-        texRegion = new TextureRegion(tex, 0,3,47,31);    //brun1
-        brun1 = new Sprite(texRegion);
-        brun1.setPosition(0,0);
-        texRegion = new TextureRegion(tex,49,3,49,31);      //brun2
-        brun2 = new Sprite(texRegion);
-        brun2.setPosition(0,0);
-        texRegion = new TextureRegion(tex,43,66,47,33);     //sit
-        sit = new Sprite(texRegion);
-        sit.setPosition(0,0);
-        texRegion = new TextureRegion(tex,0,67,42,31);     //bsit
-        bsit = new Sprite(texRegion);
-        bsit.setPosition(0,0);
-
+        if(type.equals("Bunny")) {
+            tex = new Texture("PlayerAssets/bunnyAni.png");
+            //        texRegion = new TextureRegion(tex,98,37,49,31);   //tester
+            texRegion = new TextureRegion(tex, 147, 37, 47, 31);  //frun1
+            frun1 = new Sprite(texRegion);
+            frun1.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 98, 37, 49, 31);     //frun2
+            frun2 = new Sprite(texRegion);
+            frun2.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 0, 3, 47, 31);    //brun1
+            brun1 = new Sprite(texRegion);
+            brun1.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 49, 3, 49, 31);      //brun2
+            brun2 = new Sprite(texRegion);
+            brun2.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 43, 66, 47, 33);     //sit
+            sit = new Sprite(texRegion);
+            sit.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 0, 67, 42, 31);     //bsit
+            bsit = new Sprite(texRegion);
+            bsit.setPosition(0, 0);
+        }
+        else if(type.equals("Squirrel")) {
+            tex = new Texture("PlayerAssets/Squirrel.png");
+            //        texRegion = new TextureRegion(tex,98,37,49,31);   //tester
+            texRegion = new TextureRegion(tex, 147, 37, 47, 31);  //frun1
+            frun1 = new Sprite(texRegion);
+            frun1.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 98, 37, 49, 31);     //frun2
+            frun2 = new Sprite(texRegion);
+            frun2.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 0, 3, 47, 31);    //brun1
+            brun1 = new Sprite(texRegion);
+            brun1.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 49, 3, 49, 31);      //brun2
+            brun2 = new Sprite(texRegion);
+            brun2.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 43, 66, 47, 33);     //sit
+            sit = new Sprite(texRegion);
+            sit.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 0, 67, 42, 31);     //bsit
+            bsit = new Sprite(texRegion);
+            bsit.setPosition(0, 0);
+        }
+        else if(type.equals("Raccoon")) {
+            tex = new Texture("PlayerAssets/Raccoon.png");
+            //        texRegion = new TextureRegion(tex,98,37,49,31);   //tester
+            texRegion = new TextureRegion(tex, 147, 37, 47, 31);  //frun1
+            frun1 = new Sprite(texRegion);
+            frun1.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 98, 37, 49, 31);     //frun2
+            frun2 = new Sprite(texRegion);
+            frun2.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 0, 3, 47, 31);    //brun1
+            brun1 = new Sprite(texRegion);
+            brun1.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 49, 3, 49, 31);      //brun2
+            brun2 = new Sprite(texRegion);
+            brun2.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 43, 66, 47, 33);     //sit
+            sit = new Sprite(texRegion);
+            sit.setPosition(0, 0);
+            texRegion = new TextureRegion(tex, 0, 67, 42, 31);     //bsit
+            bsit = new Sprite(texRegion);
+            bsit.setPosition(0, 0);
+        }
 
 
 

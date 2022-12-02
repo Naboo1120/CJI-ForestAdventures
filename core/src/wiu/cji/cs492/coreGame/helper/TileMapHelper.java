@@ -103,11 +103,23 @@ public class TileMapHelper {
                             false,
                             gameScreen.getWorld()
                     );
-                    if (tempName.toLowerCase().equals("player")){
+                    if (tempName.equals("Bunny")){
                         Iterator<Fixture> tmp = body.getFixtureList().iterator();
                         tmp.next().setUserData("Player Body");
                         Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
-                        gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));
+                        gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body, "Bunny"));
+                    }
+                    else if (tempName.equals("Raccoon")){
+                        Iterator<Fixture> tmp = body.getFixtureList().iterator();
+                        tmp.next().setUserData("Player Body");
+                        Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
+                        gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body, "Raccoon"));
+                    }
+                    else if (tempName.equals("Squirrel")){
+                        Iterator<Fixture> tmp = body.getFixtureList().iterator();
+                        tmp.next().setUserData("Player Body");
+                        Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
+                        gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body, "Squirrel"));
                     }
 
                    // else if (tempName.equals("enemy")) { //|| s.equals("Collectables")){

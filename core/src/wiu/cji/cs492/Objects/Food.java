@@ -8,13 +8,13 @@ import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Food extends Collectables{
     Vector2 startPosition;
-
+    public String food;
     public Food(float width, float height, Body body, String type) {
         super(width, height, body, type);
         this.fixture.setUserData(this);
         this.fixture.setSensor(true);
         body.setGravityScale(0);
-
+        food = type;
 
 
 
