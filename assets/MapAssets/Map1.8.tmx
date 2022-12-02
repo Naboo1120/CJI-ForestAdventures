@@ -297,7 +297,15 @@
  <objectgroup id="9" name="Enemies" offsetx="80" offsety="-16">
   <object id="165" name="Wolf" x="6062" y="254"/>
   <object id="275" name="Wolf" x="7623" y="249"/>
-  <object id="276" name="Wolf" x="7118" y="247"/>
-  <object id="277" name="Wolf" x="643" y="215"/>
+  <object id="276" name="Wolf" x="7118" y="247">
+   <properties>
+    <property name="WalkTime" type="float" value="0.5"/>
+   </properties>
+  </object>
+  <object id="277" name="Wolf" x="643" y="215">
+   <properties>
+    <property name="WalkTime" type="float" value="0.1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

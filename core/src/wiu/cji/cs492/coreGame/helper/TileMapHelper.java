@@ -146,16 +146,17 @@ public class TileMapHelper {
                         Gdx.app.log("sprites", "Death Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
                     else if(tempName.equals("Fox")){
-                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Fox", 60));
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Fox", Math.round(60.0f* ( mapObject.getProperties().get("WalkTime",Float.class) == null ? 1 : mapObject.getProperties().get("WalkTime",Float.class)) )));
                         Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
                     else if(tempName.equals("Snake")){
-                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Snake", 60));
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Snake", Math.round(60.0f* ( mapObject.getProperties().get("WalkTime",Float.class) == null ? 1 : mapObject.getProperties().get("WalkTime",Float.class)) )));
                         Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
                     else if(tempName.equals("Wolf")){
-                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Wolf", 60));
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Wolf",  Math.round(60.0f* ( mapObject.getProperties().get("WalkTime",Float.class) == null ? 1 : mapObject.getProperties().get("WalkTime",Float.class)) )));
                         Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                        //Gdx.app.log("speed", "enemy speed:"+ Math.round(60.0f* ( mapObject.getProperties().get("WalkTime",Float.class) == null ? 1 : mapObject.getProperties().get("WalkTime",Float.class)) ));
                     }
                     else if(tempName.equals("Finish")){
                         gameScreen.addFinish (new Finish(rectangle.width, rectangle.height, body));
