@@ -253,7 +253,11 @@
   <object id="295" name="Snake" x="6587.33" y="252"/>
   <object id="296" name="Snake" x="7080.67" y="248"/>
   <object id="297" name="Snake" x="7356" y="252"/>
-  <object id="298" name="Snake" x="1564" y="222"/>
+  <object id="298" name="Snake" x="1640" y="228.667">
+   <properties>
+    <property name="WalkTime" type="float" value="0.7"/>
+   </properties>
+  </object>
   <object id="299" name="Snake" x="2058.67" y="282.667"/>
   <object id="300" name="Snake" x="3478.67" y="229.333"/>
   <object id="301" name="Snake" x="3658" y="230.667"/>
