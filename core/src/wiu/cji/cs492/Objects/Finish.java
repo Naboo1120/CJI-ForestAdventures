@@ -33,7 +33,10 @@ public class Finish extends GameEntity{
     }
     public void onhit( ){
         this.collided = true;
-       // game.dispose();
+        // game.dispose();
+
+        // update game log
+
         Gdx.app.log("DeathWall", "found the players fall damage lol ");
     }
 }

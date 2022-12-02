@@ -99,11 +99,13 @@ public class Settings implements Screen{
         if(musicButton.isTouchFocusListener() == true){
             if(musicButton.getText().toString().equals("Music: Off")) {
                 //turn music off when music is added******
+                game.music.setVolume(.5f);
                 musicButton.setText("Music: On");
             }
             else{
                 //turn music on when music is added******
                 musicButton.setText("Music: Off");
+                game.music.setVolume(0f);
             }
 
             refresh();

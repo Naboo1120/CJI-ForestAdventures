@@ -22,6 +22,9 @@ public class Enemy extends GameEntity {
     public Texture enemyTex;
     public TextureRegion enemyTexReg;
     public Sprite enemySprite;
+    protected Sprite frun1, frun2, brun1, brun2;
+    protected int frames = 30;
+    protected boolean forward = true;
 
     public Enemy(float width, float height, Body body, int flipTime){
         super(width, height, body);
@@ -45,17 +48,24 @@ public class Enemy extends GameEntity {
         fdef.isSensor = true;
         body.createFixture(fdef).setUserData(this);
 
+        //load enemy skins
         enemyTex = new Texture("EnemyAssets/fox-NESW.png");
-        enemyTexReg = new TextureRegion(enemyTex,0,106,45,22);
-        enemySprite = new Sprite(enemyTexReg);
-        enemySprite.setPosition(0,0);
+        // set all enemy skins
+        enemyTexReg = new TextureRegion(enemyTex,0,108,45,28);
+        brun1 = new Sprite(enemyTexReg);
+        brun1.setPosition(0,0);
+        enemyTexReg = new TextureRegion(enemyTex,100,108,45,28);
+        brun2 = new Sprite(enemyTexReg);
+        brun2.setPosition(0,0);
+        enemyTexReg = new TextureRegion(enemyTex,0,230,45,28);
+        frun1 = new Sprite(enemyTexReg);
+        frun1.setPosition(0,0);
+        enemyTexReg = new TextureRegion(enemyTex,100,230,45,28);
+        frun2 = new Sprite(enemyTexReg);
+        frun2.setPosition(0,0);
 
     }
-    public void handleInput(){      //in case of input
-        if(Gdx.input.isTouched()){
 
-        }
-    }
     @Override
     public void update() {
         x = body.getPosition().x;
@@ -69,7 +79,6 @@ public class Enemy extends GameEntity {
         else
             tflip-=1;
 
-//        handleInput();
     }
 
     public void onhit(){
@@ -79,6 +88,30 @@ public class Enemy extends GameEntity {
     }
 
     public void draw(SpriteBatch spriteBatch) {
-        spriteBatch.draw(enemySprite,  body.getPosition().x * PPM - enemySprite.getWidth() / 2, body.getPosition().y * PPM - enemySprite.getHeight() / 4);
+//        spriteBatch.draw(frun1,  body.getPosition().x * PPM - frun1.getWidth() / 2, body.getPosition().y * PPM - frun1.getHeight() / 4);
+
+
+        if(velocityX < 0) {
+            if(frames < 15)
+                spriteBatch.draw(brun1, body.getPosition().x * PPM - brun1.getWidth() / 2, body.getPosition().y * PPM - brun1.getHeight() / 2);
+            else
+                spriteBatch.draw(brun2, body.getPosition().x * PPM - brun2.getWidth() / 2, body.getPosition().y * PPM - brun2.getHeight() / 2);
+            if(frames <= 0)
+                frames +=30;
+            else
+                frames--;
+            forward = false;
+        }
+        else {
+            if(frames<15)
+                spriteBatch.draw(frun1, body.getPosition().x * PPM - frun1.getWidth() / 2, body.getPosition().y * PPM - frun1.getHeight() / 2);
+            else
+                spriteBatch.draw(frun2, body.getPosition().x * PPM - frun2.getWidth() / 2, body.getPosition().y * PPM - frun2.getHeight() / 2);
+            if(frames <= 0)
+                frames +=30;
+            else
+                frames--;
+            forward = true;
+        }
     }
 }
