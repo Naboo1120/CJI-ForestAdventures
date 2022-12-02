@@ -149,14 +149,11 @@
   <object id="36" name="Squirrel" x="200.42" y="221.33" width="27.5" height="25.75"/>
  </objectgroup>
  <objectgroup id="11" name="Ground Object">
-  <object id="224" name="top" x="34.7171" y="49.7598" width="8250" height="40"/>
+  <object id="224" name="top" x="32" y="16" width="8250" height="40"/>
   <object id="225" name="Bottom" x="39.7171" y="373.76" width="8250" height="40"/>
-  <object id="226" x="34.7171" y="90.7598" width="100" height="320"/>
-  <object id="227" name="Finish" x="8130.72" y="90.7598" width="112" height="288"/>
+  <object id="226" x="28.2588" y="49.4265" width="112.917" height="361.333"/>
+  <object id="227" name="Finish" x="8123.98" y="56.0931" width="125.481" height="322.667"/>
   <object id="228" x="8258.72" y="90.7598" width="16" height="272"/>
-  <object id="229" x="34.7171" y="42.7598">
-   <polygon points="0,0 0,48 8240,48 8240,0"/>
-  </object>
   <object id="230" x="192" y="288">
    <polygon points="0,0 96,0 96,48 0,48"/>
   </object>

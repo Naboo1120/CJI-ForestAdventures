@@ -267,10 +267,10 @@
   <object id="78" x="3536" y="320">
    <polygon points="0,0 0,48 224,48 224,0"/>
   </object>
-  <object id="127" name="top" x="0" y="55" width="8250" height="40"/>
+  <object id="127" name="top" x="0" y="16" width="8250" height="40"/>
   <object id="128" name="Bottom" x="5" y="379" width="8250" height="40"/>
-  <object id="130" x="0" y="96" width="100" height="320"/>
-  <object id="131" name="Finish" x="8096" y="96" width="112" height="288"/>
+  <object id="130" x="0" y="56" width="100" height="360"/>
+  <object id="131" name="Finish" x="8088.74" y="58.6667" width="126.519" height="325.333"/>
   <object id="132" x="8224" y="96" width="16" height="272"/>
   <object id="133" x="8419" y="492" width="1"/>
  </objectgroup>
