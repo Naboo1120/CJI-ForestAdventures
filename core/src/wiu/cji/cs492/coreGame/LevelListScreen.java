@@ -93,14 +93,30 @@ public class LevelListScreen implements Screen{
 
         //Adding the button to the table and table to the stage
         table.add(l1Button).top();
-        table.add(l2Button);
-        table.add(l3Button).bottom();
-        table.add(l4Button);
-        table.add(l5Button).top();
-        table.add(l6Button);
-        table.add(l7Button).bottom();
-        table.add(l8Button);
-        table.add(l9Button).top();
+        if(game.prefs.getGameSaveData().getInteger("level1") == 1){
+            table.add(l2Button);
+        }
+        if(game.prefs.getGameSaveData().getInteger("level2") == 1){
+            table.add(l3Button).bottom();
+        }
+        if(game.prefs.getGameSaveData().getInteger("level3") == 1){
+            table.add(l4Button);
+        }
+        if(game.prefs.getGameSaveData().getInteger("level4") == 1){
+            table.add(l5Button).top();
+        }
+        if(game.prefs.getGameSaveData().getInteger("level5") == 1){
+            table.add(l6Button);
+        }
+        if(game.prefs.getGameSaveData().getInteger("level6") == 1){
+            table.add(l7Button).bottom();
+        }
+        if(game.prefs.getGameSaveData().getInteger("level7") == 1){
+            table.add(l8Button);
+        }
+        if(game.prefs.getGameSaveData().getInteger("level8") == 1){
+            table.add(l9Button).top();
+        }
 
         table.add(backButton).pad(20);
         stage.addActor(table);

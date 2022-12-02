@@ -22,6 +22,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import wiu.cji.cs492.Objects.*;
 import wiu.cji.cs492.coreGame.helper.Hud;
+import wiu.cji.cs492.coreGame.helper.Prefs;
 import wiu.cji.cs492.coreGame.helper.TileMapHelper;
 import wiu.cji.cs492.coreGame.helper.WorldContactListener;
 
@@ -57,6 +58,8 @@ public class GameScreen implements Screen {
 
     private Music FaintSound;
 
+    //Game safe file
+    public Prefs prefs;
 
     public GameScreen(final ForestAdventures game, String levelRequested){
 
@@ -75,6 +78,8 @@ public class GameScreen implements Screen {
         gamecam = new OrthographicCamera();
         viewport = new ExtendViewport(250, 225, gamecam);
         world.setContactListener(new WorldContactListener(game));
+
+        prefs = new Prefs();
 
     }
 
@@ -103,12 +108,15 @@ public class GameScreen implements Screen {
                     player.update();
                 }
                 game.setScreen(new GameOverScreen(game));
-
             }
         }
         for (Finish f : finish){
             if (f.collided){
                 game.setScreen(new LevelCompleteScreen(game));
+                //On finish collision it will run the function to write on the save game file
+                prefs.increaseLevel(game.getLevel());
+                Gdx.app.log("Level  Stats:", String.valueOf(prefs.getGameSaveData().getInteger("level2")));
+
 
             }
         }
@@ -145,6 +153,8 @@ public class GameScreen implements Screen {
 
         //Renders the objects
         player.render(spriteBatch);
+
+
 
 
 
