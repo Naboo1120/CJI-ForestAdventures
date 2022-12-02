@@ -11,7 +11,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 public class Finish extends GameEntity{
     protected Fixture fixture;
     public Boolean collided;
-    public Finish(float width, float height, Body body) {
+    public String finishType;
+    public Finish(float width, float height, Body body, String type) {
         super(width, height, body);
         this.collided = false;
         FixtureDef fdef  = new FixtureDef();
@@ -20,7 +21,7 @@ public class Finish extends GameEntity{
         fdef.shape = shape;
         fdef.isSensor=true;
         body.setGravityScale(0);
-
+        finishType = type;
 
         body.createFixture(fdef).setUserData(this);
 

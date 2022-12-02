@@ -108,7 +108,10 @@ public class GameScreen implements Screen {
         }
         for (Finish f : finish){
             if (f.collided){
-                game.setScreen(new LevelCompleteScreen(game));
+                if(f.finishType.equals("NextLevel"))
+                    game.setScreen(new LevelCompleteScreen(game));
+                else
+                    game.setScreen(new GameCompleteScreen(game));
 
             }
         }

@@ -159,7 +159,11 @@ public class TileMapHelper {
                         //Gdx.app.log("speed", "enemy speed:"+ Math.round(60.0f* ( mapObject.getProperties().get("WalkTime",Float.class) == null ? 1 : mapObject.getProperties().get("WalkTime",Float.class)) ));
                     }
                     else if(tempName.equals("Finish")){
-                        gameScreen.addFinish (new Finish(rectangle.width, rectangle.height, body));
+                        gameScreen.addFinish (new Finish(rectangle.width, rectangle.height, body, "NextLevel"));
+                        Gdx.app.log("sprites", "Finish Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
+                    else if(tempName.equals("End")){
+                        gameScreen.addFinish (new Finish(rectangle.width, rectangle.height, body, "EndGame"));
                         Gdx.app.log("sprites", "Finish Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
 
