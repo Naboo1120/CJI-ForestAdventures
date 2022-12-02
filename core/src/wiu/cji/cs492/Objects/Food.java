@@ -8,12 +8,13 @@ import wiu.cji.cs492.coreGame.helper.Hud;
 
 public class Food extends Collectables{
     Vector2 startPosition;
-
+    public String food;
     public Food(float width, float height, Body body, String type) {
         super(width, height, body, type);
-        fixture.setUserData(this);
+        this.fixture.setUserData(this);
+        this.fixture.setSensor(true);
         body.setGravityScale(0);
-
+        food = type;
 
 
 
@@ -23,10 +24,27 @@ public class Food extends Collectables{
     public void onHeadHit() {
         Gdx.app.log("Food", "Player has collided with food");
         //this.body = null; // might have to remove body from world???
-        fixture.setSensor(true);
+        this.fixture.setSensor(true);
 
-        fixture.setUserData(null);
+        this.fixture.setUserData(null);
         body.setGravityScale(-10);
+
+
+
+
+        // this.fixture = null;
+        this.collected = false;
+        this.touched = true;
+
+    }
+    public void onHeadHits(Vector2 v) {
+        Gdx.app.log("Food", "Player has collided with food");
+        //this.body = null; // might have to remove body from world???
+        this.fixture.setSensor(true);
+
+        this.fixture.setUserData(null);
+        body.setGravityScale(-100);
+///NOTE TO JOY REMAP LEVEL 1.8
 
 
 

@@ -87,36 +87,36 @@
 </data>
  </layer>
  <objectgroup id="4" name="Collectables">
-  <object id="7" name="Carrot" x="1204.67" y="222"/>
-  <object id="277" name="Carrot" x="1439" y="214"/>
-  <object id="278" name="Carrot" x="1897" y="190"/>
-  <object id="279" name="Carrot" x="2353" y="228"/>
-  <object id="280" name="Carrot" x="2579" y="235"/>
-  <object id="281" name="Carrot" x="2107" y="223"/>
-  <object id="282" name="Carrot" x="2837" y="197"/>
-  <object id="283" name="Carrot" x="3545" y="226"/>
-  <object id="284" name="Carrot" x="3704" y="197"/>
-  <object id="285" name="Carrot" x="4155" y="236"/>
-  <object id="286" name="Carrot" x="4526" y="219"/>
-  <object id="287" name="Carrot" x="4807" y="211"/>
-  <object id="288" name="Carrot" x="4933" y="191"/>
-  <object id="289" name="Carrot" x="5372" y="224"/>
-  <object id="290" name="Carrot" x="5622" y="254"/>
-  <object id="291" name="Carrot" x="5531" y="249"/>
-  <object id="292" name="Carrot" x="5991" y="214"/>
-  <object id="293" name="Carrot" x="6388" y="250"/>
-  <object id="294" name="Carrot" x="6573" y="289"/>
-  <object id="295" name="Carrot" x="6734" y="299"/>
-  <object id="296" name="Carrot" x="6925" y="263"/>
-  <object id="297" name="Carrot" x="7401" y="233"/>
-  <object id="298" name="Carrot" x="7166" y="219"/>
-  <object id="299" name="Carrot" x="7799" y="296"/>
-  <object id="300" name="Carrot" x="7663" y="262"/>
-  <object id="301" name="Carrot" x="880" y="250"/>
-  <object id="302" name="Carrot" x="636" y="245"/>
-  <object id="303" name="Carrot" x="282" y="219"/>
+  <object id="7" name="Acorn" x="1204.67" y="222"/>
+  <object id="277" name="Acorn" x="1439" y="214"/>
+  <object id="278" name="Acorn" x="1897" y="190"/>
+  <object id="279" name="Acorn" x="2353" y="228"/>
+  <object id="280" name="Acorn" x="2579" y="235"/>
+  <object id="281" name="Acorn" x="2107" y="223"/>
+  <object id="282" name="Acorn" x="2837" y="197"/>
+  <object id="283" name="Acorn" x="3545" y="226"/>
+  <object id="284" name="Acorn" x="3704" y="197"/>
+  <object id="285" name="Acorn" x="4155" y="236"/>
+  <object id="286" name="Acorn" x="4526" y="219"/>
+  <object id="287" name="Acorn" x="4807" y="211"/>
+  <object id="288" name="Acorn" x="4933" y="191"/>
+  <object id="289" name="Acorn" x="5372" y="224"/>
+  <object id="290" name="Acorn" x="5622" y="254"/>
+  <object id="291" name="Acorn" x="5531" y="249"/>
+  <object id="292" name="Acorn" x="5991" y="214"/>
+  <object id="293" name="Acorn" x="6388" y="250"/>
+  <object id="294" name="Acorn" x="6573" y="289"/>
+  <object id="295" name="Acorn" x="6734" y="299"/>
+  <object id="296" name="Acorn" x="6925" y="263"/>
+  <object id="297" name="Acorn" x="7401" y="233"/>
+  <object id="298" name="Acorn" x="7166" y="219"/>
+  <object id="299" name="Acorn" x="7799" y="296"/>
+  <object id="300" name="Acorn" x="7663" y="262"/>
+  <object id="301" name="Acorn" x="880" y="250"/>
+  <object id="302" name="Acorn" x="636" y="245"/>
+  <object id="303" name="Acorn" x="282" y="219"/>
  </objectgroup>
- <layer id="12" name="Ground" width="515" height="23">
+ <layer id="12" name="Ground" width="515" height="23" offsetx="64" offsety="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -147,10 +147,10 @@
   <object id="135" name="Death" x="-105.061" y="362.758" width="9080" height="30"/>
  </objectgroup>
  <objectgroup id="9"/>
- <objectgroup id="8" name="Player">
-  <object id="36" name="Player" x="126.417" y="200.33" width="27.5" height="25.75"/>
+ <objectgroup id="8" name="Player" offsetx="64" offsety="0">
+  <object id="36" name="Squirrel" x="126.417" y="200.33" width="27.5" height="25.75"/>
  </objectgroup>
- <objectgroup id="11" name="Ground Object" offsetx="-64" offsety="-16">
+ <objectgroup id="11" name="Ground Object">
   <object id="224" name="top" x="34.7171" y="49.7598" width="8250" height="40"/>
   <object id="225" name="Bottom" x="39.7171" y="373.76" width="8250" height="40"/>
   <object id="226" x="34.7171" y="90.7598" width="100" height="320"/>
@@ -275,14 +275,14 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Enemies">
-  <object id="235" name="Enemy" x="6291" y="251"/>
-  <object id="236" name="Enemy" x="5864" y="234"/>
-  <object id="237" name="Enemy" x="7077" y="266"/>
-  <object id="238" name="Enemy" x="7274" y="251"/>
-  <object id="239" name="Enemy" x="7914" y="299"/>
-  <object id="240" name="Enemy" x="463" y="255"/>
-  <object id="241" name="Enemy" x="1677" y="230"/>
-  <object id="242" name="Enemy" x="2188" y="218"/>
-  <object id="243" name="Enemy" x="3332" y="292"/>
+  <object id="235" name="Snake" x="6291" y="251"/>
+  <object id="236" name="Snake" x="5864" y="234"/>
+  <object id="237" name="Snake" x="7077" y="266"/>
+  <object id="238" name="Snake" x="7274" y="251"/>
+  <object id="239" name="Snake" x="7914" y="299"/>
+  <object id="240" name="Snake" x="463" y="255"/>
+  <object id="241" name="Snake" x="1677" y="230"/>
+  <object id="242" name="Snake" x="2188" y="218"/>
+  <object id="243" name="Snake" x="3332" y="292"/>
  </objectgroup>
 </map>

@@ -1,7 +1,10 @@
 package wiu.cji.cs492.coreGame;
 
+import static wiu.cji.cs492.coreGame.helper.Constants.AVAILABLE_LEVELS;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -9,22 +12,23 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import wiu.cji.cs492.coreGame.helper.Hud;
 
-public class Settings implements Screen{
+public class ResetScreen implements Screen{
     final ForestAdventures game;
     private Stage stage;
     private Table table;
     private Texture Background;
     private Skin skin;
     private TextureAtlas atlas;
-    private TextButton musicButton;
-    private TextButton backButton;
-    private TextButton resetButton;
+    private TextButton YesButton;
+    private TextButton NoButton;
     private BitmapFont bitmapFont;
-    private ProgressBar pBar;
+    private String playerScore;
+    private Label resetLabel;
 
 
-    public Settings(final ForestAdventures game){
+    public ResetScreen(final ForestAdventures game){
 
         this.game = game;
 
@@ -61,14 +65,16 @@ public class Settings implements Screen{
 
         //Button object created with above properties
 
-        musicButton = new TextButton("Music: On", textButtonStyle);
-        musicButton.pad(20);
+        YesButton = new TextButton("Yes", textButtonStyle);
+        YesButton.pad(20);
 
-        backButton = new TextButton("Main Menu", textButtonStyle);
-        backButton.pad(20);
+        NoButton = new TextButton("No", textButtonStyle);
+        NoButton.pad(20);
 
-        resetButton = new TextButton("Reset Progress", textButtonStyle);
-        resetButton.pad(20);
+        //String for food collection
+        playerScore = String.valueOf(Hud.getFoodCount());
+
+        resetLabel = new Label("Are you sure you want to reset all your progress?",new Label.LabelStyle(bitmapFont, Color.WHITE));
 
         //Adding the button to the table and table to the stage
         refresh();
@@ -100,40 +106,28 @@ public class Settings implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
 
-        if(musicButton.isTouchFocusListener() == true){
-            if(musicButton.getText().toString().equals("Music: Off")) {
-                //turn music off when music is added******
-                game.music.setVolume(.5f);
-                musicButton.setText("Music: On");
-            }
-            else{
-                //turn music on when music is added******
-                musicButton.setText("Music: Off");
-                game.music.setVolume(0f);
-            }
+        if(YesButton.isTouchFocusListener() == true){
+            // Reset all progress in save file
 
-            refresh();
-            //update screen so button changes****** still needs work
+
+            game.setScreen(new MainMenuScreen((ForestAdventures)game));
+            dispose();
+
         }
 
-        if(backButton.isTouchFocusListener() == true){
+        if(NoButton.isTouchFocusListener() == true){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
-
-        if(backButton.isTouchFocusListener() == true){
-            game.setScreen(new ResetScreen((ForestAdventures)game));
-            dispose();
-        }
-
     }
 
     public void refresh()
     {
         //Adding the button to the table and table to the stage
         table.clear();
-        table.add(musicButton).left().pad(20);
-        table.add(backButton).pad(20);
+        table.add(YesButton).left().pad(20);
+        table.add(resetLabel).pad(20);
+        table.add(NoButton).pad(20);
         stage.clear();
         stage.addActor(table);
     }

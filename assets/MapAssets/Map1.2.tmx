@@ -156,7 +156,7 @@
  </objectgroup>
  <objectgroup id="9"/>
  <objectgroup id="8" name="Player">
-  <object id="36" name="Player" x="132.417" y="195.333" width="27.5" height="25.75"/>
+  <object id="36" name="Bunny" x="132.417" y="195.333" width="27.5" height="25.75"/>
  </objectgroup>
  <objectgroup id="5" name="Ground Object">
   <object id="42" x="33" y="322">
@@ -275,14 +275,14 @@
   <object id="133" x="8419" y="492" width="1"/>
  </objectgroup>
  <objectgroup id="9" name="Enemies">
-  <object id="39" name="Enemy" x="517.333" y="304.667"/>
-  <object id="109" name="Enemy" x="1595" y="276"/>
-  <object id="110" name="Enemy" x="2140" y="247"/>
-  <object id="111" name="Enemy" x="2603" y="234"/>
-  <object id="112" name="Enemy" x="3052" y="279"/>
-  <object id="113" name="Enemy" x="3658" y="300"/>
-  <object id="114" name="Enemy" x="5665" y="215"/>
-  <object id="115" name="Enemy" x="6470" y="215"/>
-  <object id="117" name="Enemy" x="7377" y="189"/>
+  <object id="39" name="Fox" x="517.333" y="304.667"/>
+  <object id="109" name="Fox" x="1595" y="276"/>
+  <object id="110" name="Fox" x="2140" y="247"/>
+  <object id="111" name="Fox" x="2603" y="234"/>
+  <object id="112" name="Fox" x="3052" y="279"/>
+  <object id="113" name="Fox" x="3658" y="300"/>
+  <object id="114" name="Fox" x="5665" y="215"/>
+  <object id="115" name="Fox" x="6470" y="215"/>
+  <object id="117" name="Fox" x="7377" y="189"/>
  </objectgroup>
 </map>

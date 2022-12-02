@@ -72,7 +72,7 @@ public class GameScreen implements Screen {
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
 
-        FaintSound = Gdx.audio.newMusic(Gdx.files.internal("SoundEffects/FaintSound.mp3"));
+        FaintSound = Gdx.audio.newMusic(Gdx.files.internal("SoundEffects/FaintSound1.mp3"));
 
         //Camera
         gamecam = new OrthographicCamera();
@@ -108,15 +108,19 @@ public class GameScreen implements Screen {
                     player.update();
                 }
                 game.setScreen(new GameOverScreen(game));
+
             }
         }
         for (Finish f : finish){
             if (f.collided){
-                game.setScreen(new LevelCompleteScreen(game));
                 //On finish collision it will run the function to write on the save game file
                 prefs.increaseLevel(game.getLevel());
                 Gdx.app.log("Level  Stats:", String.valueOf(prefs.getGameSaveData().getInteger("level2")));
 
+                if(f.finishType.equals("NextLevel"))
+                    game.setScreen(new LevelCompleteScreen(game));
+                else
+                    game.setScreen(new GameCompleteScreen(game));
 
             }
         }
@@ -124,6 +128,7 @@ public class GameScreen implements Screen {
         for (Enemy e : enemys){
             e.update();
             if (e.collided){
+
                 FaintSound.play();
                 FaintSound.setLooping(false);
                 while (FaintSound.isPlaying())
@@ -153,8 +158,6 @@ public class GameScreen implements Screen {
 
         //Renders the objects
         player.render(spriteBatch);
-
-
 
 
 

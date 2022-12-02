@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -31,7 +32,19 @@ public abstract class Collectables extends GameEntity {
         shape.setAsBox(.3f,  .3f);
         fdef.shape = shape;
         if (type =="Carrot"){ // id the type is carrot set this texture
-            collTexture = new Texture("MapAssets/Props/Pretzel.png");
+            collTexture = new Texture("MapAssets/Props/Carrot.png");
+            collSprite = new Sprite(collTexture);
+            collSprite.setPosition(0,0);
+        }
+        else if(type == "Acorn")
+        {
+            collTexture = new Texture("MapAssets/Props/Acorn.png");
+            collSprite = new Sprite(collTexture);
+            collSprite.setPosition(0,0);
+        }
+        else if(type == "Trash")
+        {
+            collTexture = new Texture("MapAssets/Props/Garbage.png");
             collSprite = new Sprite(collTexture);
             collSprite.setPosition(0,0);
         }

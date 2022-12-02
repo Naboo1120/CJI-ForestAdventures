@@ -103,11 +103,23 @@ public class TileMapHelper {
                             false,
                             gameScreen.getWorld()
                     );
-                    if (tempName.toLowerCase().equals("player")){
+                    if (tempName.equals("Bunny")){
                         Iterator<Fixture> tmp = body.getFixtureList().iterator();
                         tmp.next().setUserData("Player Body");
                         Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
-                        gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body));
+                        gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body, "Bunny"));
+                    }
+                    else if (tempName.equals("Raccoon")){
+                        Iterator<Fixture> tmp = body.getFixtureList().iterator();
+                        tmp.next().setUserData("Player Body");
+                        Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
+                        gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body, "Raccoon"));
+                    }
+                    else if (tempName.equals("Squirrel")){
+                        Iterator<Fixture> tmp = body.getFixtureList().iterator();
+                        tmp.next().setUserData("Player Body");
+                        Gdx.app.log("Player", "Player object started at x: "+body.getPosition().x + " y: "+body.getPosition().y);
+                        gameScreen.setPlayer(new Player(rectangle.width, rectangle.height, body, "Squirrel"));
                     }
 
                    // else if (tempName.equals("enemy")) { //|| s.equals("Collectables")){
@@ -119,16 +131,39 @@ public class TileMapHelper {
                         Gdx.app.log("Collection", "width should be "+rectangle.getWidth());
                         Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
+                    else if (tempName.equals("Acorn")) { //|| s.equals("Collectables")){
+                        gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Acorn"));
+                        Gdx.app.log("Collection", "width should be "+rectangle.getWidth());
+                        Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
+                    else if (tempName.equals("Trash")) { //|| s.equals("Collectables")){
+                        gameScreen.addCollectables(new Food(rectangle.width, rectangle.height, body, "Trash"));
+                        Gdx.app.log("Collection", "width should be "+rectangle.getWidth());
+                        Gdx.app.log("sprites", "Sprite Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
                     else if(tempName.equals("Death")){
                         gameScreen.addDeathWall (new DeathWall(rectangle.width, rectangle.height, body));
                         Gdx.app.log("sprites", "Death Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
-                    else if(tempName.equals("Enemy")){
-                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, 60));
+                    else if(tempName.equals("Fox")){
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Fox", Math.round(60.0f* ( mapObject.getProperties().get("WalkTime",Float.class) == null ? 1 : mapObject.getProperties().get("WalkTime",Float.class)) )));
                         Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
+                    else if(tempName.equals("Snake")){
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Snake", Math.round(60.0f* ( mapObject.getProperties().get("WalkTime",Float.class) == null ? 1 : mapObject.getProperties().get("WalkTime",Float.class)) )));
+                        Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
+                    else if(tempName.equals("Wolf")){
+                        gameScreen.addEnemy (new Enemy(rectangle.width, rectangle.height, body, "Wolf",  Math.round(60.0f* ( mapObject.getProperties().get("WalkTime",Float.class) == null ? 1 : mapObject.getProperties().get("WalkTime",Float.class)) )));
+                        Gdx.app.log("sprites", "enemy Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                        //Gdx.app.log("speed", "enemy speed:"+ Math.round(60.0f* ( mapObject.getProperties().get("WalkTime",Float.class) == null ? 1 : mapObject.getProperties().get("WalkTime",Float.class)) ));
+                    }
                     else if(tempName.equals("Finish")){
-                        gameScreen.addFinish (new Finish(rectangle.width, rectangle.height, body));
+                        gameScreen.addFinish (new Finish(rectangle.width, rectangle.height, body, "NextLevel"));
+                        Gdx.app.log("sprites", "Finish Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
+                    }
+                    else if(tempName.equals("End")){
+                        gameScreen.addFinish (new Finish(rectangle.width, rectangle.height, body, "EndGame"));
                         Gdx.app.log("sprites", "Finish Position is x:"+body.getPosition().x + " y:"+body.getPosition().y);
                     }
 
