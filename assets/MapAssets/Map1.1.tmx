@@ -188,6 +188,6 @@
   <object id="42" name="Finish" x="3232" y="128" width="96" height="256"/>
  </objectgroup>
  <objectgroup id="9" name="Enemies">
-  <object id="39" name="Enemy" x="517.333" y="304.667"/>
+  <object id="39" name="Fox" x="517.333" y="304.667"/>
  </objectgroup>
 </map>

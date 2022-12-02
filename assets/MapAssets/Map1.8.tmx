@@ -87,33 +87,33 @@
 </data>
  </layer>
  <objectgroup id="4" name="Collectables" offsetx="80" offsety="-16">
-  <object id="7" name="Carrot" x="1204.67" y="222"/>
-  <object id="278" name="Carrot" x="831" y="215"/>
-  <object id="279" name="Carrot" x="1085" y="248"/>
-  <object id="280" name="Carrot" x="1530" y="190"/>
-  <object id="281" name="Carrot" x="1373" y="215"/>
-  <object id="283" name="Carrot" x="2196" y="215"/>
-  <object id="284" name="Carrot" x="2527" y="221"/>
-  <object id="285" name="Carrot" x="1898" y="191"/>
-  <object id="286" name="Carrot" x="3253" y="221"/>
-  <object id="287" name="Carrot" x="2894" y="208"/>
-  <object id="288" name="Carrot" x="3684" y="196"/>
-  <object id="289" name="Carrot" x="3464" y="209"/>
-  <object id="290" name="Carrot" x="3960" y="238"/>
-  <object id="291" name="Carrot" x="4240" y="247"/>
-  <object id="292" name="Carrot" x="4350" y="244"/>
-  <object id="293" name="Carrot" x="4939" y="189"/>
-  <object id="294" name="Carrot" x="5244" y="227"/>
-  <object id="295" name="Carrot" x="4607" y="236"/>
-  <object id="296" name="Carrot" x="5867" y="208"/>
-  <object id="297" name="Carrot" x="5499" y="217"/>
-  <object id="298" name="Carrot" x="5668" y="232"/>
-  <object id="299" name="Carrot" x="6449" y="244"/>
-  <object id="300" name="Carrot" x="6690" y="238"/>
-  <object id="301" name="Carrot" x="6831" y="242"/>
-  <object id="302" name="Carrot" x="7377" y="204"/>
-  <object id="303" name="Carrot" x="8015" y="268"/>
-  <object id="304" name="Carrot" x="7836" y="260"/>
+  <object id="7" name="Trash" x="1204.67" y="222"/>
+  <object id="278" name="Trash" x="831" y="215"/>
+  <object id="279" name="Trash" x="1085" y="248"/>
+  <object id="280" name="Trash" x="1530" y="190"/>
+  <object id="281" name="Trash" x="1373" y="215"/>
+  <object id="283" name="Trash" x="2196" y="215"/>
+  <object id="284" name="Trash" x="2527" y="221"/>
+  <object id="285" name="Trash" x="1898" y="191"/>
+  <object id="286" name="Trash" x="3253" y="221"/>
+  <object id="287" name="Trash" x="2894" y="208"/>
+  <object id="288" name="Trash" x="3684" y="196"/>
+  <object id="289" name="Trash" x="3464" y="209"/>
+  <object id="290" name="Trash" x="3960" y="238"/>
+  <object id="291" name="Trash" x="4240" y="247"/>
+  <object id="292" name="Trash" x="4350" y="244"/>
+  <object id="293" name="Trash" x="4939" y="189"/>
+  <object id="294" name="Trash" x="5244" y="227"/>
+  <object id="295" name="Trash" x="4607" y="236"/>
+  <object id="296" name="Trash" x="5867" y="208"/>
+  <object id="297" name="Trash" x="5499" y="217"/>
+  <object id="298" name="Trash" x="5668" y="232"/>
+  <object id="299" name="Trash" x="6449" y="244"/>
+  <object id="300" name="Trash" x="6690" y="238"/>
+  <object id="301" name="Trash" x="6831" y="242"/>
+  <object id="302" name="Trash" x="7377" y="204"/>
+  <object id="303" name="Trash" x="8015" y="268"/>
+  <object id="304" name="Trash" x="7836" y="260"/>
  </objectgroup>
  <layer id="12" name="Ground" width="515" height="23" offsetx="80" offsety="-16">
   <data encoding="csv">
@@ -295,9 +295,9 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Enemies" offsetx="80" offsety="-16">
-  <object id="165" name="Enemy" x="6062" y="254"/>
-  <object id="275" name="Enemy" x="7623" y="249"/>
-  <object id="276" name="Enemy" x="7118" y="247"/>
-  <object id="277" name="Enemy" x="643" y="215"/>
+  <object id="165" name="Wolf" x="6062" y="254"/>
+  <object id="275" name="Wolf" x="7623" y="249"/>
+  <object id="276" name="Wolf" x="7118" y="247"/>
+  <object id="277" name="Wolf" x="643" y="215"/>
  </objectgroup>
 </map>

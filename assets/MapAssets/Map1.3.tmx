@@ -262,11 +262,11 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Enemies">
-  <object id="165" name="Enemy" x="6062" y="254"/>
-  <object id="166" name="Enemy" x="6319" y="265"/>
-  <object id="167" name="Enemy" x="2806" y="249"/>
-  <object id="168" name="Enemy" x="2397" y="269"/>
-  <object id="170" name="Enemy" x="739" y="300"/>
-  <object id="219" name="Enemy" x="3100" y="241"/>
+  <object id="165" name="Fox" x="6062" y="254"/>
+  <object id="166" name="Fox" x="6319" y="265"/>
+  <object id="167" name="Fox" x="2806" y="249"/>
+  <object id="168" name="Fox" x="2397" y="269"/>
+  <object id="170" name="Fox" x="739" y="300"/>
+  <object id="219" name="Fox" x="3100" y="241"/>
  </objectgroup>
 </map>
