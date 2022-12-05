@@ -92,7 +92,7 @@ public class MainMenuScreen implements Screen{
         //Draws the background before the buttons
         stage.getBatch().begin();
         stage.getBatch().draw(Background, 0,0,800,400);
-        stage.getBatch().draw(Title, 25, 250, 750, 120);
+        stage.getBatch().draw(Title, 25, 250, 750, 100);
         stage.getBatch().end();
 
         //Draws the actors or buttons
