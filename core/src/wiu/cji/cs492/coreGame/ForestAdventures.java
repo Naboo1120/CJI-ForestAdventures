@@ -15,9 +15,11 @@ public class ForestAdventures extends Game {
 	//Sprite Batch for maps, items and player
 	public SpriteBatch batch;
 	public static BitmapFont font;
+
 	public Prefs prefs;
 	protected String levelName;
 	public Music music;
+
 
 	@Override
 	public void create() {
