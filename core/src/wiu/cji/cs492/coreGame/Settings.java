@@ -132,7 +132,17 @@ public class Settings implements Screen{
         }
 
         if(unlockButton.isTouchFocusListener()){
-            //Unlock all levels here
+            //Unlock all Levels here
+            game.prefs.getGameSaveData().putInteger("level1", 1);
+            game.prefs.getGameSaveData().putInteger("level2", 1);
+            game.prefs.getGameSaveData().putInteger("level3", 1);
+            game.prefs.getGameSaveData().putInteger("level4", 1);
+            game.prefs.getGameSaveData().putInteger("level5", 1);
+            game.prefs.getGameSaveData().putInteger("level6", 1);
+            game.prefs.getGameSaveData().putInteger("level7", 1);
+            game.prefs.getGameSaveData().putInteger("level8", 1);
+            game.prefs.getGameSaveData().putInteger("level9", 1);
+            game.prefs.getGameSaveData().flush();
 
             game.setScreen(new LevelListScreen((ForestAdventures)game));
             dispose();
