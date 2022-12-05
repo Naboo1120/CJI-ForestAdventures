@@ -1,5 +1,9 @@
 # CJI-ForestAdventures
 Project for CS492, WIU
-In order to run you must have android studio or some other android simulatior.
-This game is intended for anyone looking to enjoy themselfs and waste some time.
 Authors: Christiaan Masucci, Joy Taylor, Ian Hathorn
+
+In order to run you must have android studio or some other android simulatior.
+Forest Adventures is a 2-D side scroller game that takes you through an adventure through the wilderness
+You travel looking for food as a bunny, raccoon, and squirrel preparing for winter
+Along the way you come across enemies, ready to stop you in your path, that you must avoid 
+Goal: Make it to the end of the whole forest while collecting as much food as possible
