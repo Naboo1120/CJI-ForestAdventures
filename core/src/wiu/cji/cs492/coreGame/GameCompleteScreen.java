@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import wiu.cji.cs492.coreGame.helper.Hud;
+import wiu.cji.cs492.coreGame.helper.Prefs;
 
 public class GameCompleteScreen implements Screen{
     final ForestAdventures game;
@@ -25,11 +26,13 @@ public class GameCompleteScreen implements Screen{
     private BitmapFont bitmapFont;
     private String playerScore;
     private Label foodLabel;
+    Prefs prefs;
 
 
     public GameCompleteScreen(final ForestAdventures game){
 
         this.game = game;
+        prefs = new Prefs();
 
     }
 
@@ -69,9 +72,11 @@ public class GameCompleteScreen implements Screen{
         mainMenuButton.pad(20);
 
         //String for food collection
-        playerScore = String.valueOf(Hud.getFoodCount());
+        prefs.updateScore(game.getLevel(), Hud.getFoodCount());
+        playerScore = String.valueOf(prefs.getScore(game.getLevel()));
 
-        foodLabel = new Label("Good Job! \n Food Collected : "+ playerScore,new Label.LabelStyle(bitmapFont, Color.WHITE));
+
+        foodLabel = new Label("Good Job! \n Food Collected : "+ String.valueOf(Hud.getFoodCount()) + "\nHigh Score: " + playerScore,new Label.LabelStyle(bitmapFont, Color.WHITE));
 
         //Adding the button to the table and table to the stage
         refresh();
