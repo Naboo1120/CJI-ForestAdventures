@@ -17,6 +17,7 @@ public class MainMenuScreen implements Screen{
     private Stage stage;
     private Table table;
     private Texture Background;
+    private Texture Title;
     private Skin skin;
     private TextureAtlas atlas;
     private TextButton playButton;
@@ -42,6 +43,7 @@ public class MainMenuScreen implements Screen{
         Gdx.input.setInputProcessor(stage);
         //Adding image file to a texture object
         Background = new Texture("Main Menu Assets/forest.png");
+        Title = new Texture("Main Menu Assets/Title.png");
         //Atlas lets there be images and text to an button object
         atlas = new TextureAtlas("Main Menu Assets/Buttons/Skin/uiskin.atlas");
         //Will let you apply the skin to the object
@@ -90,6 +92,7 @@ public class MainMenuScreen implements Screen{
         //Draws the background before the buttons
         stage.getBatch().begin();
         stage.getBatch().draw(Background, 0,0,800,400);
+        stage.getBatch().draw(Title, 25, 250, 750, 120);
         stage.getBatch().end();
 
         //Draws the actors or buttons
