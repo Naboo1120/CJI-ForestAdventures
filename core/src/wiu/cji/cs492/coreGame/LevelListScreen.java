@@ -161,35 +161,35 @@ public class LevelListScreen implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
 
-        if(l1Button.isTouchFocusListener() == true){
+        if(l1Button.isTouchFocusListener()){
             choseLevel(1);
         }
-        if(l2Button.isTouchFocusListener() == true){
+        if(l2Button.isTouchFocusListener()){
             choseLevel(2);
         }
-        if(l3Button.isTouchFocusListener() == true){
+        if(l3Button.isTouchFocusListener()){
             choseLevel(3);
         }
-        if(l4Button.isTouchFocusListener() == true){
+        if(l4Button.isTouchFocusListener()){
             choseLevel(4);
         }
-        if(l5Button.isTouchFocusListener() == true){
+        if(l5Button.isTouchFocusListener()){
             choseLevel(5);
         }
-        if(l6Button.isTouchFocusListener() == true){
+        if(l6Button.isTouchFocusListener()){
             choseLevel(6);
         }
-        if(l7Button.isTouchFocusListener() == true){
+        if(l7Button.isTouchFocusListener()){
             choseLevel(7);
         }
-        if(l8Button.isTouchFocusListener() == true){
+        if(l8Button.isTouchFocusListener()){
             choseLevel(8);
         }
-        if(l9Button.isTouchFocusListener() == true){
+        if(l9Button.isTouchFocusListener()){
             choseLevel(9);
         }
 
-        if(backButton.isTouchFocusListener() == true){
+        if(backButton.isTouchFocusListener()){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
