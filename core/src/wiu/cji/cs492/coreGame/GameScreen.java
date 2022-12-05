@@ -67,7 +67,7 @@ public class GameScreen implements Screen {
         hud = new Hud(game.batch);
         this.spriteBatch = new SpriteBatch();
         this.world = new World(new Vector2(0,-25.3f),false);
-        this.box2DDebugRenderer = new Box2DDebugRenderer();
+        //this.box2DDebugRenderer = new Box2DDebugRenderer();
         this.tileMapHelper = new TileMapHelper(this, levelRequested);
         //Calls to helper class
         this.orthogonalTiledMapRenderer = tileMapHelper.setUpMap(); //Can we use this to pass levels?
@@ -153,7 +153,7 @@ public class GameScreen implements Screen {
         this.update(delta);
         ScreenUtils.clear(0,0,0.2f,0);
         orthogonalTiledMapRenderer.render();
-        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
+       // box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
 
         //Renders the objects
@@ -190,7 +190,7 @@ public class GameScreen implements Screen {
         hud.stage.draw();
 
         //Sets the renderer to the world and uses the came screen combines camera with the scaling set. PPM
-        box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
+        //box2DDebugRenderer.render(world, gamecam.combined.scl(PPM));
 
     }
 
@@ -222,7 +222,7 @@ public class GameScreen implements Screen {
     public void dispose() {
         orthogonalTiledMapRenderer.dispose();
         world.dispose();
-        box2DDebugRenderer.dispose();
+        //box2DDebugRenderer.dispose();
 
 
     }

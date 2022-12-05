@@ -305,8 +305,8 @@
    <polygon points="0,0 0,48 -208,48 -208,0"/>
   </object>
   <object id="315" name="Finish" x="8120" y="25" width="209" height="338"/>
-  <object id="316" class="Top" x="0" y="-1" width="9028" height="85"/>
-  <object id="317" x="-80" y="80" width="112" height="304"/>
+  <object id="316" class="Top" x="0" y="-48" width="9028" height="85"/>
+  <object id="317" x="-80" y="12" width="112" height="372"/>
   <object id="318" x="8176" y="16" width="144" height="368"/>
   <object id="319" x="3792" y="272">
    <polygon points="0,0 64,0 64,48 0,48"/>
