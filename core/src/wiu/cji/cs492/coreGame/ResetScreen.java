@@ -106,7 +106,7 @@ public class ResetScreen implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
 
-        if(YesButton.isTouchFocusListener() == true){
+        if(YesButton.isTouchFocusListener()){
             // Reset all progress in save file
 
 
@@ -115,7 +115,7 @@ public class ResetScreen implements Screen{
 
         }
 
-        if(NoButton.isTouchFocusListener() == true){
+        if(NoButton.isTouchFocusListener()){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
