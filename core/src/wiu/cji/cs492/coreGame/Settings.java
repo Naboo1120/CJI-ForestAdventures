@@ -20,6 +20,7 @@ public class Settings implements Screen{
     private TextButton musicButton;
     private TextButton backButton;
     private TextButton resetButton;
+    private TextButton unlockButton;
     private BitmapFont bitmapFont;
     private ProgressBar pBar;
 
@@ -70,6 +71,9 @@ public class Settings implements Screen{
         resetButton = new TextButton("Reset Progress", textButtonStyle);
         resetButton.pad(20);
 
+        unlockButton = new TextButton("Unlock All Levels", textButtonStyle);
+        unlockButton.pad(10);
+
         //Adding the button to the table and table to the stage
         refresh();
 
@@ -100,7 +104,7 @@ public class Settings implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
 
-        if(musicButton.isTouchFocusListener() == true){
+        if(musicButton.isTouchFocusListener()){
             if(musicButton.getText().toString().equals("Music: Off")) {
                 //turn music off when music is added******
                 game.music.setVolume(.5f);
@@ -116,13 +120,21 @@ public class Settings implements Screen{
             //update screen so button changes****** still needs work
         }
 
-        if(backButton.isTouchFocusListener() == true){
+        if(backButton.isTouchFocusListener()){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
 
-        if(resetButton.isTouchFocusListener() == true){
+
+        if(backButton.isTouchFocusListener()){
             game.setScreen(new ResetScreen((ForestAdventures)game));
+            dispose();
+        }
+
+        if(unlockButton.isTouchFocusListener()){
+            //Unlock all levels here
+
+            game.setScreen(new LevelListScreen((ForestAdventures)game));
             dispose();
         }
 
@@ -135,6 +147,8 @@ public class Settings implements Screen{
         table.add(musicButton).left().pad(20);
         table.add(resetButton).pad(20);
         table.add(backButton).pad(20);
+        table.add(unlockButton).right().pad(150);
+        table.setPosition(300,0);
         stage.clear();
         stage.addActor(table);
     }
