@@ -126,13 +126,23 @@ public class Settings implements Screen{
         }
 
 
-        if(backButton.isTouchFocusListener()){
+        if(resetButton.isTouchFocusListener()){
             game.setScreen(new ResetScreen((ForestAdventures)game));
             dispose();
         }
 
         if(unlockButton.isTouchFocusListener()){
-            //Unlock all levels here
+            //Unlock all Levels here
+            game.prefs.getGameSaveData().putInteger("level1", 1);
+            game.prefs.getGameSaveData().putInteger("level2", 1);
+            game.prefs.getGameSaveData().putInteger("level3", 1);
+            game.prefs.getGameSaveData().putInteger("level4", 1);
+            game.prefs.getGameSaveData().putInteger("level5", 1);
+            game.prefs.getGameSaveData().putInteger("level6", 1);
+            game.prefs.getGameSaveData().putInteger("level7", 1);
+            game.prefs.getGameSaveData().putInteger("level8", 1);
+            game.prefs.getGameSaveData().putInteger("level9", 1);
+            game.prefs.getGameSaveData().flush();
 
             game.setScreen(new LevelListScreen((ForestAdventures)game));
             dispose();
@@ -148,7 +158,7 @@ public class Settings implements Screen{
         table.add(resetButton).pad(20);
         table.add(backButton).pad(20);
         table.add(unlockButton).right().pad(150);
-        table.setPosition(300,0);
+        table.setPosition(213,0);
         stage.clear();
         stage.addActor(table);
     }
