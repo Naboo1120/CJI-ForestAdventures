@@ -76,7 +76,7 @@ public class GameCompleteScreen implements Screen{
         playerScore = String.valueOf(prefs.getScore(game.getLevel()));
 
 
-        foodLabel = new Label("Good Job! \n Food Collected : "+ String.valueOf(Hud.getFoodCount()) + "\nHigh Score: " + playerScore,new Label.LabelStyle(bitmapFont, Color.WHITE));
+        foodLabel = new Label("You Beat the Game!!!! \n WAHOOOO!!! \n Food Collected : "+ String.valueOf(Hud.getFoodCount()) + "\nHigh Score: " + playerScore,new Label.LabelStyle(bitmapFont, Color.WHITE));
 
         //Adding the button to the table and table to the stage
         refresh();
