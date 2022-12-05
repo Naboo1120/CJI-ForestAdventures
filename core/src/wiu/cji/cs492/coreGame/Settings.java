@@ -61,9 +61,15 @@ public class Settings implements Screen{
 
 
         //Button object created with above properties
-
-        musicButton = new TextButton("Music: On", textButtonStyle);
-        musicButton.pad(20);
+        if(game.music.getVolume()==0f) {
+            musicButton = new TextButton("Music: Off", textButtonStyle);
+            musicButton.pad(20);
+        }
+        else
+        {
+            musicButton = new TextButton("Music: On", textButtonStyle);
+            musicButton.pad(20);
+        }
 
         backButton = new TextButton("Main Menu", textButtonStyle);
         backButton.pad(20);

@@ -72,22 +72,22 @@ public class Player extends GameEntity {
         else if(type.equals("Squirrel")) {
             tex = new Texture("PlayerAssets/Squirrel.png");
             //        texRegion = new TextureRegion(tex,98,37,49,31);   //tester
-            texRegion = new TextureRegion(tex, 0, 3, 33, 31);  //frun1
+            texRegion = new TextureRegion(tex, 0, -5, 33, 30);  //frun1
             frun1 = new Sprite(texRegion);
             frun1.setPosition(0, 0);
-            texRegion = new TextureRegion(tex, 70, 3, 49, 31);     //frun2
+            texRegion = new TextureRegion(tex, 70, -5, 49, 30);     //frun2
             frun2 = new Sprite(texRegion);
             frun2.setPosition(0, 0);
-            texRegion = new TextureRegion(tex, 0, 30, 33, 31);    //brun1
+            texRegion = new TextureRegion(tex, 0, 25, 30, 30);    //brun1
             brun1 = new Sprite(texRegion);
             brun1.setPosition(0, 0);
-            texRegion = new TextureRegion(tex, 65, 30, 55, 31);      //brun2
+            texRegion = new TextureRegion(tex, 65, 25, 55, 30);      //brun2
             brun2 = new Sprite(texRegion);
             brun2.setPosition(0, 0);
-            texRegion = new TextureRegion(tex, 130, 0, 30, 23);     //sit
+            texRegion = new TextureRegion(tex, 130, -5, 30, 30);     //sit
             sit = new Sprite(texRegion);
             sit.setPosition(0, 0);
-            texRegion = new TextureRegion(tex, 130, 30, 30, 23);     //bsit
+            texRegion = new TextureRegion(tex, 130, 25, 30, 30);     //bsit
             bsit = new Sprite(texRegion);
             bsit.setPosition(0, 0);
         }
