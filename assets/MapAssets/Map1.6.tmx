@@ -149,14 +149,11 @@
   <object id="36" name="Squirrel" x="200.42" y="221.33" width="27.5" height="25.75"/>
  </objectgroup>
  <objectgroup id="11" name="Ground Object">
-  <object id="224" name="top" x="34.7171" y="49.7598" width="8250" height="40"/>
+  <object id="224" name="top" x="32" y="16" width="8250" height="40"/>
   <object id="225" name="Bottom" x="39.7171" y="373.76" width="8250" height="40"/>
-  <object id="226" x="34.7171" y="90.7598" width="100" height="320"/>
-  <object id="227" name="Finish" x="8130.72" y="90.7598" width="112" height="288"/>
+  <object id="226" x="28.2588" y="49.4265" width="112.917" height="361.333"/>
+  <object id="227" name="Finish" x="8123.98" y="56.0931" width="125.481" height="322.667"/>
   <object id="228" x="8258.72" y="90.7598" width="16" height="272"/>
-  <object id="229" x="34.7171" y="42.7598">
-   <polygon points="0,0 0,48 8240,48 8240,0"/>
-  </object>
   <object id="230" x="192" y="288">
    <polygon points="0,0 96,0 96,48 0,48"/>
   </object>
@@ -256,7 +253,11 @@
   <object id="295" name="Snake" x="6587.33" y="252"/>
   <object id="296" name="Snake" x="7080.67" y="248"/>
   <object id="297" name="Snake" x="7356" y="252"/>
-  <object id="298" name="Snake" x="1564" y="222"/>
+  <object id="298" name="Snake" x="1640" y="228.667">
+   <properties>
+    <property name="WalkTime" type="float" value="0.7"/>
+   </properties>
+  </object>
   <object id="299" name="Snake" x="2058.67" y="282.667"/>
   <object id="300" name="Snake" x="3478.67" y="229.333"/>
   <object id="301" name="Snake" x="3658" y="230.667"/>

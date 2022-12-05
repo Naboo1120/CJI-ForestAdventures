@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import wiu.cji.cs492.coreGame.helper.Hud;
+import wiu.cji.cs492.coreGame.helper.Prefs;
 
 public class LevelCompleteScreen implements Screen{
     final ForestAdventures game;
@@ -26,12 +27,13 @@ public class LevelCompleteScreen implements Screen{
     private BitmapFont bitmapFont;
     private String playerScore;
     private Label foodLabel;
+    public Prefs prefs;
 
 
     public LevelCompleteScreen(final ForestAdventures game){
 
         this.game = game;
-
+        prefs = new Prefs();
     }
 
     @Override
@@ -72,9 +74,11 @@ public class LevelCompleteScreen implements Screen{
         mainMenuButton.pad(20);
 
         //String for food collection
-        playerScore = String.valueOf(Hud.getFoodCount());
+        prefs.updateScore(game.getLevel(), Hud.getFoodCount());
+        playerScore = String.valueOf(prefs.getScore(game.getLevel()));
 
-        foodLabel = new Label("Good Job! \n Food Collected : "+ playerScore,new Label.LabelStyle(bitmapFont, Color.WHITE));
+
+        foodLabel = new Label("Good Job! \n Food Collected : "+ String.valueOf(Hud.getFoodCount()) + "\nHigh Score: " + playerScore,new Label.LabelStyle(bitmapFont, Color.WHITE));
 
         //Adding the button to the table and table to the stage
         refresh();
@@ -106,7 +110,7 @@ public class LevelCompleteScreen implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
 
-        if(nextLevelButton.isTouchFocusListener() == true){
+        if(nextLevelButton.isTouchFocusListener()){
             // next level needs to load in
             String levelName = game.getLevel();
             int s = Integer.parseInt(levelName.substring(15)) + 1;
@@ -118,7 +122,7 @@ public class LevelCompleteScreen implements Screen{
 
         }
 
-        if(mainMenuButton.isTouchFocusListener() == true){
+        if(mainMenuButton.isTouchFocusListener()){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }

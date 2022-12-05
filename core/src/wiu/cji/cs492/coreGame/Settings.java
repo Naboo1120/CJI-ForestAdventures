@@ -72,7 +72,7 @@ public class Settings implements Screen{
         resetButton.pad(20);
 
         unlockButton = new TextButton("Unlock All Levels", textButtonStyle);
-        unlockButton.pad(10);
+        unlockButton.pad(0);
 
         //Adding the button to the table and table to the stage
         refresh();
@@ -158,7 +158,7 @@ public class Settings implements Screen{
         table.add(resetButton).pad(20);
         table.add(backButton).pad(20);
         table.add(unlockButton).right().pad(150);
-        table.setPosition(213,0);
+        table.setPosition(203,0);
         stage.clear();
         stage.addActor(table);
     }

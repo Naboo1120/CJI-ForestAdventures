@@ -140,10 +140,10 @@
   <object id="36" name="Bunny" x="132.417" y="195.333" width="27.5" height="25.75"/>
  </objectgroup>
  <objectgroup id="5" name="Ground Object">
-  <object id="19" x="64" y="342.514">
-   <polygon points="0,40.1531 0,-227.534 32,-227.534 32,40.1531"/>
+  <object id="19" x="62.0522" y="303.115">
+   <polygon points="0,45.0682 0,-255.387 35.9172,-255.387 35.9172,45.0682"/>
   </object>
-  <object id="21" x="62.0447" y="81.0095">
+  <object id="21" x="64" y="48">
    <polygon points="0,0 3216,0 3216,32 0,32"/>
   </object>
   <object id="23" x="64" y="320">
@@ -185,7 +185,7 @@
   <object id="41" x="80" y="368">
    <polygon points="0,16 3200,16 3200,32 0,32"/>
   </object>
-  <object id="42" name="Finish" x="3232" y="128" width="96" height="256"/>
+  <object id="42" name="Finish" x="3233.9" y="79.6683" width="96.0575" height="305.044"/>
  </objectgroup>
  <objectgroup id="9" name="Enemies">
   <object id="39" name="Fox" x="517.333" y="304.667"/>
