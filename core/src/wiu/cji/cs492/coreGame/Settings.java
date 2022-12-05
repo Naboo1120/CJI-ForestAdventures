@@ -158,7 +158,7 @@ public class Settings implements Screen{
         table.add(resetButton).pad(20);
         table.add(backButton).pad(20);
         table.add(unlockButton).right().pad(150);
-        table.setPosition(203,0);
+        table.setPosition(205,0);
         stage.clear();
         stage.addActor(table);
     }

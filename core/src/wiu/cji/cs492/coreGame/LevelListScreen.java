@@ -133,8 +133,8 @@ public class LevelListScreen implements Screen{
         //Draws the background before the buttons
         stage.getBatch().begin();
         stage.getBatch().draw(Background, 0,0,800,400);
+        table.setPosition(10,0);
         stage.getBatch().end();
-
         //Draws the actors or buttons
         stage.draw();
 

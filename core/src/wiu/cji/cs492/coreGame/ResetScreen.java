@@ -117,6 +117,15 @@ public class ResetScreen implements Screen{
             game.prefs.getGameSaveData().putInteger("level7", 0);
             game.prefs.getGameSaveData().putInteger("level8", 0);
             game.prefs.getGameSaveData().putInteger("level9", 0);
+            game.prefs.getGameSaveData().putInteger("score1", 0);
+            game.prefs.getGameSaveData().putInteger("score2", 0);
+            game.prefs.getGameSaveData().putInteger("score3", 0);
+            game.prefs.getGameSaveData().putInteger("score4", 0);
+            game.prefs.getGameSaveData().putInteger("score5", 0);
+            game.prefs.getGameSaveData().putInteger("score6", 0);
+            game.prefs.getGameSaveData().putInteger("score7", 0);
+            game.prefs.getGameSaveData().putInteger("score8", 0);
+            game.prefs.getGameSaveData().putInteger("score9", 0);
             game.prefs.getGameSaveData().flush();
 
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
