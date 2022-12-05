@@ -110,7 +110,7 @@ public class GameCompleteScreen implements Screen{
 
 
 
-        if(mainMenuButton.isTouchFocusListener() == true){
+        if(mainMenuButton.isTouchFocusListener()){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }

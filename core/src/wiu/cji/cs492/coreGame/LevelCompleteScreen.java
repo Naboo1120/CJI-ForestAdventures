@@ -110,7 +110,7 @@ public class LevelCompleteScreen implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
 
-        if(nextLevelButton.isTouchFocusListener() == true){
+        if(nextLevelButton.isTouchFocusListener()){
             // next level needs to load in
             String levelName = game.getLevel();
             int s = Integer.parseInt(levelName.substring(15)) + 1;
@@ -122,7 +122,7 @@ public class LevelCompleteScreen implements Screen{
 
         }
 
-        if(mainMenuButton.isTouchFocusListener() == true){
+        if(mainMenuButton.isTouchFocusListener()){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }

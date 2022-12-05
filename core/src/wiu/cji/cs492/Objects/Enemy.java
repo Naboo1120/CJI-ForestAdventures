@@ -13,15 +13,12 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
-import wiu.cji.cs492.coreGame.GameScreen;
-
 public class Enemy extends GameEntity {
 
     int flip, tflip;  //flip time is multiplied by 60
     public Boolean collided;
     public Texture enemyTex;
     public TextureRegion enemyTexReg;
-    public Sprite enemySprite;
     protected Sprite frun1, frun2, brun1, brun2;
     protected int frames = 30;
     protected boolean forward = true;

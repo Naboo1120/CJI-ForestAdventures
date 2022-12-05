@@ -95,12 +95,12 @@ public class GameOverScreen implements Screen{
         //calls any act method to the actors on stage
         stage.act(delta);
         //Will chnage screens when the button is pressed
-        if(restartButton.isTouchFocusListener() == true){
+        if(restartButton.isTouchFocusListener()){
             game.setScreen(new GameScreen((ForestAdventures)game, game.getLevel()));
             dispose();
         }
 
-        if(menuButton.isTouchFocusListener() == true){
+        if(menuButton.isTouchFocusListener()){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
