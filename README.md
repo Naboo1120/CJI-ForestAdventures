@@ -1,5 +1,6 @@
 # CJI-ForestAdventures
 Project for CS492, WIU
+
 Authors: Christiaan Masucci, Joy Taylor, Ian Hathorn
 
 In order to run you must have android studio or some other android simulatior.
