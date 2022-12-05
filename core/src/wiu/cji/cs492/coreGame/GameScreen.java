@@ -115,7 +115,7 @@ public class GameScreen implements Screen {
             if (f.collided){
                 //On finish collision it will run the function to write on the save game file
                 prefs.increaseLevel(game.getLevel());
-                Gdx.app.log("Level  Stats:", String.valueOf(prefs.getGameSaveData().getInteger("level2")));
+                //Gdx.app.log("Level  Stats:", String.valueOf(prefs.getGameSaveData().getInteger("level2")));
 
                 if(f.finishType.equals("NextLevel"))
                     game.setScreen(new LevelCompleteScreen(game));
