@@ -117,6 +117,8 @@ public class GameScreen implements Screen {
                 prefs.increaseLevel(game.getLevel());
                 Gdx.app.log("Level  Stats:", String.valueOf(prefs.getGameSaveData().getInteger("level2")));
 
+                prefs.updateScore(game.getLevel(), Hud.getFoodCount());
+
                 if(f.finishType.equals("NextLevel"))
                     game.setScreen(new LevelCompleteScreen(game));
                 else
