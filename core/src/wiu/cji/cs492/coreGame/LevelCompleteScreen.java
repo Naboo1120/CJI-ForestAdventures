@@ -1,7 +1,10 @@
 package wiu.cji.cs492.coreGame;
 
+import static wiu.cji.cs492.coreGame.helper.Constants.AVAILABLE_LEVELS;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -9,23 +12,23 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import wiu.cji.cs492.coreGame.helper.Hud;
 
-public class Settings implements Screen{
+public class LevelCompleteScreen implements Screen{
     final ForestAdventures game;
     private Stage stage;
     private Table table;
     private Texture Background;
     private Skin skin;
     private TextureAtlas atlas;
-    private TextButton musicButton;
-    private TextButton backButton;
-    private TextButton resetButton;
-    private TextButton unlockButton;
+    private TextButton nextLevelButton;
+    private TextButton mainMenuButton;
     private BitmapFont bitmapFont;
-    private ProgressBar pBar;
+    private String playerScore;
+    private Label foodLabel;
 
 
-    public Settings(final ForestAdventures game){
+    public LevelCompleteScreen(final ForestAdventures game){
 
         this.game = game;
 
@@ -62,17 +65,16 @@ public class Settings implements Screen{
 
         //Button object created with above properties
 
-        musicButton = new TextButton("Music: On", textButtonStyle);
-        musicButton.pad(20);
+        nextLevelButton = new TextButton("Next Level", textButtonStyle);
+        nextLevelButton.pad(20);
 
-        backButton = new TextButton("Main Menu", textButtonStyle);
-        backButton.pad(20);
+        mainMenuButton = new TextButton("Main Menu", textButtonStyle);
+        mainMenuButton.pad(20);
 
-        resetButton = new TextButton("Reset Progress", textButtonStyle);
-        resetButton.pad(20);
+        //String for food collection
+        playerScore = String.valueOf(Hud.getFoodCount());
 
-        unlockButton = new TextButton("Unlock All Levels", textButtonStyle);
-        unlockButton.pad(0);
+        foodLabel = new Label("Good Job! \n Food Collected : "+ playerScore,new Label.LabelStyle(bitmapFont, Color.WHITE));
 
         //Adding the button to the table and table to the stage
         refresh();
@@ -104,51 +106,31 @@ public class Settings implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
 
-        if(musicButton.isTouchFocusListener()){
-            if(musicButton.getText().toString().equals("Music: Off")) {
-                //turn music off when music is added******
-                game.music.setVolume(.5f);
-                musicButton.setText("Music: On");
-            }
-            else{
-                //turn music on when music is added******
-                musicButton.setText("Music: Off");
-                game.music.setVolume(0f);
+        if(nextLevelButton.isTouchFocusListener() == true){
+            // next level needs to load in
+            String levelName = game.getLevel();
+            int s = Integer.parseInt(levelName.substring(15)) + 1;
+            if (s<= AVAILABLE_LEVELS){
+                game.setScreen(new GameScreen((ForestAdventures) game, "MapAssets/Map1." + s));
+                game.setLevel("MapAssets/Map1." + s);
+                dispose();
             }
 
-            refresh();
-            //update screen so button changes****** still needs work
         }
 
-        if(backButton.isTouchFocusListener()){
+        if(mainMenuButton.isTouchFocusListener() == true){
             game.setScreen(new MainMenuScreen((ForestAdventures)game));
             dispose();
         }
-
-
-        if(resetButton.isTouchFocusListener()){
-            game.setScreen(new ResetScreen((ForestAdventures)game));
-            dispose();
-        }
-
-        if(unlockButton.isTouchFocusListener()){
-            //Unlock all levels here
-
-            game.setScreen(new LevelListScreen((ForestAdventures)game));
-            dispose();
-        }
-
     }
 
     public void refresh()
     {
         //Adding the button to the table and table to the stage
         table.clear();
-        table.add(musicButton).left().pad(20);
-        table.add(resetButton).pad(20);
-        table.add(backButton).pad(20);
-        table.add(unlockButton).right().pad(150);
-        table.setPosition(213,0);
+        table.add(nextLevelButton).left().pad(20);
+        table.add(foodLabel).pad(20);
+        table.add(mainMenuButton).pad(20);
         stage.clear();
         stage.addActor(table);
     }

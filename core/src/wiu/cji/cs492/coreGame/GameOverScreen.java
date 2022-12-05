@@ -21,6 +21,7 @@ public class GameOverScreen implements Screen{
     private TextButton menuButton;
     private BitmapFont bitmapFont;
     private ProgressBar pBar;
+    private String LastLevel;
 
 
     public GameOverScreen(final ForestAdventures game){
@@ -59,7 +60,7 @@ public class GameOverScreen implements Screen{
 
 
         //Button object created with above properties
-        restartButton = new TextButton("PLAY", textButtonStyle);
+        restartButton = new TextButton("Retry Level", textButtonStyle);
         restartButton.pad(20);
 
         menuButton = new TextButton("Main Menu", textButtonStyle);
@@ -95,7 +96,7 @@ public class GameOverScreen implements Screen{
         stage.act(delta);
         //Will chnage screens when the button is pressed
         if(restartButton.isTouchFocusListener() == true){
-            game.setScreen(new GameScreen((ForestAdventures)game));
+            game.setScreen(new GameScreen((ForestAdventures)game, game.getLevel()));
             dispose();
         }
 
