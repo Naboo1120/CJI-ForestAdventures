@@ -69,18 +69,18 @@ public class Enemy extends GameEntity {
         else if(type.equals("Snake"))
         {
             enemyTex = new Texture("EnemyAssets/Snake.png");
-            enemyTexReg = new TextureRegion(enemyTex,5,5,10,10);
-            brun1 = new Sprite(enemyTexReg);
-            brun1.setPosition(0,0);
-            enemyTexReg = new TextureRegion(enemyTex,100,108,45,28);
-            brun2 = new Sprite(enemyTexReg);
-            brun2.setPosition(0,0);
-            enemyTexReg = new TextureRegion(enemyTex,0,230,45,28);
+            enemyTexReg = new TextureRegion(enemyTex,0,2,40,30);
             frun1 = new Sprite(enemyTexReg);
             frun1.setPosition(0,0);
-            enemyTexReg = new TextureRegion(enemyTex,100,230,45,28);
+            enemyTexReg = new TextureRegion(enemyTex,40,2,40,30);
             frun2 = new Sprite(enemyTexReg);
             frun2.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,80,0,40,30);
+            brun1 = new Sprite(enemyTexReg);
+            brun1.setPosition(0,0);
+            enemyTexReg = new TextureRegion(enemyTex,120,0,40,30);
+            brun2 = new Sprite(enemyTexReg);
+            brun2.setPosition(0,0);
         }
         else if(type.equals("Wolf"))
         {
